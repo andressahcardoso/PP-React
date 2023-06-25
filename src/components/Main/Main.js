@@ -21,7 +21,7 @@ function Main() {
 
             <ButtonLoginRegister>
                 <Link to="/Login"><Login>Entrar</Login></Link>
-                <a href="../registration/register1.html"><Register>Registrar-se</Register></a>
+                <Link to='/Register/Informations'><Register>Registre-se</Register></Link>
             </ButtonLoginRegister>
         </MainContainer>  
     )
