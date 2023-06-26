@@ -74,8 +74,7 @@ export const InformationStep = styled.p`
 `
 
 export const StepMargin = styled.div`
-    margin-left: 2vw;
-    margin-right: 10vw;
+    margin-right: 12vw;
 `
 
 export const FormItens = styled.section`
