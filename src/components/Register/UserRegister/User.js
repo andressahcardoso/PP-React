@@ -63,7 +63,7 @@ function User() {
             </EnterWith>
 
             <NextPreviousButtons>
-                <Link to="/Register/Information"><Button>Voltar</Button></Link>
+                <Link to="/Register/Informations"><Button>Voltar</Button></Link>
                 <Link to="/Register/Forms"><NextButton src={NextButtonImg} alt="Próxima etapa"/></Link>
             </NextPreviousButtons>
     </Users>
