@@ -1,6 +1,6 @@
-import {Themes, Header, Line, Div, CircleStep, StepConcluedBack, InformationStep, StepConclued, AnimatedBackground, NextPreviousButtons, Button, P, NextButton, SunTheme, ButtonTheme, ImgSun} from "./styled"
+import {Themes, Header, Line, Div, CircleStep, StepConcluedBack, InformationStep, StepConclued, AnimatedBackground, NextPreviousButtons, Button, P, NextButton, SunTheme, ButtonTheme, ImgSun, ImgContainer, Title, Subtitle, ParagrafoImg} from "./styled"
 import { Link } from "react-router-dom"
-import React, { useState } from 'react';
+
 import NextButtonImg from "../../../assets/next.png"
 import SunImg from "../../../assets/Sun.svg"
 
@@ -32,11 +32,13 @@ function Theme() {
         </Header>
 
         <SunTheme>
-            <ImgSun src={SunImg} />
+            <ImgContainer>
+                <ImgSun src={SunImg} />
+            </ImgContainer>
 
-            <h2>Escolha um tema</h2>
-            <p>Claro ou escuro?</p>
-            <p>Você poderá altera-lo posteriormente</p>
+            <Title>Escolha um tema</Title>
+            <Subtitle>Claro ou escuro?</Subtitle>
+            <ParagrafoImg>Você poderá altera-lo posteriormente</ParagrafoImg>
         </SunTheme>
             
         <ButtonTheme>

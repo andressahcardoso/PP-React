@@ -11,11 +11,9 @@ function Main() {
             </MainImage>
 
             <TextDescription>
-                <Title>Nome</Title>
-                <Subtitle>texto texto texto</Subtitle>
-                <Paragrafo>texto  inicial sobre a proposta texto texto texto texto
-                    texto texto texto texto texto texto texto texto
-                    texto texto texto texto texto texto
+                <Title>Finite</Title>
+                <Subtitle>Rede Social Orgânica</Subtitle>
+                <Paragrafo>Seja bem-vindo(a) ao Finite, uma plataforma de rede social voltada ao seu bem estar, pensando sempre na sua melhor interação com outros usuários cadastrados.
                 </Paragrafo>
             </TextDescription>
 

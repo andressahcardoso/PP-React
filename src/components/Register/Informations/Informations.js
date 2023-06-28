@@ -8,11 +8,9 @@ function Informations() {
     return (
         <Information>
             <TextDescription>
-                <Title>Nome</Title>
-                <Subtitle>texto texto texto</Subtitle>
-                <Paragrafo>texto  inicial sobre a proposta texto texto texto texto
-                    texto texto texto texto texto texto texto texto
-                    texto texto texto texto texto texto
+                <Title>Finite</Title>
+                <Subtitle>Rede Social Orgânica</Subtitle>
+                <Paragrafo>Você ja parou para pensar quanto tempo gasta por dia em redes sociais tradicionais? Com a Finite esse controle será muito mais acessivel a você!
                 </Paragrafo>
             </TextDescription>
 

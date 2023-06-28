@@ -46,16 +46,24 @@ export const Title = styled.h1`
     text-align: center;
     font-weight: bold;
     font-size: 30px;
+    color: #ffffffe5;
 `
 
 export const Subtitle = styled.h2`
     display: block;
     text-align: center;
     margin-top: -2vh;
+    color: #ffffffe5;
 `
 
 export const Paragrafo = styled.p`
     text-align: center;
+    color: #ffffffe5;
+`
+
+export const Paragrafo2 = styled.p`
+    text-align: center;
+    color: #ffffffe5;
 `
 
 export const TextTitle = styled.p`

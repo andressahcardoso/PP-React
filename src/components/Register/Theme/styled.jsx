@@ -132,7 +132,14 @@ export const SunTheme = styled.div`
         justify-content: center; /* Alinhar no centro - HORIZONTAL */
         align-content: center; /* Alinhar no centro - VERTICAL */
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
+        text-align: center;
 
+`
+
+export const ImgContainer =styled.div`
+     display: flex;
+        justify-content: center; /* Alinhar no centro - HORIZONTAL */
+        align-content: center; 
 `
 
 export const ImgSun = styled.img`
@@ -141,6 +148,18 @@ export const ImgSun = styled.img`
 
 export const ButtonTheme = styled.div`
     grid-area: buttons;
+`
+
+export const Title = styled.h3`
+    font-size: 24px;
+`
+
+export const Subtitle = styled.p`
+    font-size: 20px;
+`
+
+export const ParagrafoImg = styled.p`
+    font-size: 18px;
 `
 
 
