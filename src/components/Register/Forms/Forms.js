@@ -73,8 +73,8 @@ function Forms() {
             <Component24h>
             <Input type="number" value={value} />
             <ButtonIncrement>
-                <ButtonNum onClick={handleIncrease}><img src={Addition}/></ButtonNum>
-                <ButtonNum onClick={handleDecrease}><img src={Subtraction}/></ButtonNum>
+                <ButtonNum onClick={handleIncrease}><img src={Addition} alt="Addition"/></ButtonNum>
+                <ButtonNum onClick={handleDecrease}><img src={Subtraction} alt="Subtraction"/></ButtonNum>
             </ButtonIncrement>
             </Component24h>
         </div>
@@ -84,8 +84,8 @@ function Forms() {
             <Component24h>
             <Input type="number" value={value2} />
             <ButtonIncrement>
-                <ButtonNum onClick={handleIncrease2}><img src={Addition}/></ButtonNum>
-                <ButtonNum onClick={handleDecrease2}><img src={Subtraction}/></ButtonNum>
+                <ButtonNum onClick={handleIncrease2}><img src={Addition} alt="Addition"/></ButtonNum>
+                <ButtonNum onClick={handleDecrease2}><img src={Subtraction}  alt="Subtraction"/></ButtonNum>
             </ButtonIncrement>
             </Component24h>
         </div>

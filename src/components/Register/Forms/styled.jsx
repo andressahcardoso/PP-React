@@ -14,8 +14,8 @@ export const Header = styled.div`
     grid-area: header;
     margin-top: 3vh;
     padding-left: 0vw;
-    padding-right: 18vw;
-    width: 100%;
+    padding-right: 0vw;
+    width: 98vw;
         display: flex;
         justify-content: center; /* Alinhar no centro - HORIZONTAL */
         align-content: center; /* Alinhar no centro - VERTICAL */
@@ -31,7 +31,7 @@ export const Line = styled.div`
 `
 
 export const Div = styled.div`
-    margin-right: 12vw;
+    margin-right: 10vw;
     margin-top: -3vh;
 `
 

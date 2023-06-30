@@ -1,4 +1,4 @@
-import {Themes, Header, Line, Div, CircleStep, StepConcluedBack, InformationStep, StepConclued, AnimatedBackground, NextPreviousButtons, Button, P, NextButton, SunTheme, ButtonTheme, ImgSun, ImgContainer, Title, Subtitle, ParagrafoImg} from "./styled"
+import {Themes, Header, Line, Div, CircleStep, StepConcluedBack, InformationStep, StepConclued, AnimatedBackground, NextPreviousButtons, Button, P, NextButton, SunTheme, ButtonTheme, ImgSun, ImgContainer, Title, Subtitle, ParagrafoImg, CheckBox, CheckBoxLabel, CheckBoxWrapper} from "./styled"
 import { Link } from "react-router-dom"
 
 import NextButtonImg from "../../../assets/next.png"
@@ -42,7 +42,10 @@ function Theme() {
         </SunTheme>
             
         <ButtonTheme>
-            <button>oi</button>
+            <CheckBoxWrapper>
+                <CheckBox id="checkbox" type="checkbox"  />
+                <CheckBoxLabel htmlFor="checkbox" />
+            </CheckBoxWrapper>
         </ButtonTheme>
 
             <NextPreviousButtons>
