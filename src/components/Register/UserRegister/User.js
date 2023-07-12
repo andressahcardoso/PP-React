@@ -1,13 +1,17 @@
-import {Users, Header, Line, CircleStep, StepConclued, InformationStep, StepMargin, Step, FormItens, SelectContainer, Option, Label, Input, EnterWith, TextLine, EnterText, ButtonsContainer, GoogleIcon, GoogleText, Button, NextButton, NextPreviousButtons, Div} from "./styled"
+import {Users, Line, CircleStep, StepConclued, InformationStep, StepMargin, Step, FormItens, SelectContainer, Option, Label, Input, EnterWith, TextLine, EnterText, ButtonsContainer, GoogleIcon, GoogleText, Button, NextButton, NextPreviousButtons, Div} from "./styled"
 
 import GoogleLogo from "../../../assets/google-logo.svg"
 import NextButtonImg from "../../../assets/next.png"
 import { Link } from "react-router-dom"
 
+import Header from "../Header/Header"
+
 function User() {
     return (
         <Users> 
-            <Header>
+
+            <Header/>
+            {/* <Header>
                 <Line></Line>
                 <Div>
                     <CircleStep>
@@ -27,7 +31,7 @@ function User() {
                     </CircleStep>
                     <InformationStep>Tema</InformationStep>
                 </div>    
-            </Header>
+            </Header> */}
 
             <FormItens>
                 <form>
