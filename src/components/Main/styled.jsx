@@ -10,10 +10,10 @@ export const MainContainer = styled.section`
     background-color: white;
 `
 
-export const MainImage = styled.div`
+export const MainImage = styled.video`
     grid-area: main-image;
-    background-color: rgba(145, 159, 229, 1);
     border-radius: 0px 0px 50px 50px;
+    width: 100vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -51,11 +51,10 @@ export const MainTitle = styled.h1`
     color: rgba(255, 255, 255, 0.575);   
 `
 
-export const Title = styled.h1`
+export const Logo = styled.img`
     display: block;
-    text-align: center;
-    font-weight: bold;
-    font-size: 35px;
+    margin-left: 15vw;
+    width: 55vw;
 `
 
 export const Subtitle = styled.h1`

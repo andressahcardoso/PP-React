@@ -1,17 +1,17 @@
-import {MainContainer, MainImage, TextDescription, ButtonLoginRegister, PhoneImg, MainTitle, Title, Subtitle, Paragrafo, Login, Register} from "./styled";
+import {MainContainer, MainImage, TextDescription, ButtonLoginRegister, PhoneImg, MainTitle, Logo, Subtitle, Paragrafo, Login, Register} from "./styled";
 import PhoneLogo from "../../assets/phone-logo.svg"
 import { Link } from 'react-router-dom';
+import FiniteIntro from '../../assets/Video/Finite_Intro_1.mp4'
+import Finite from '../../assets/Finite_Logo.svg'
 
 function Main() {
     return (
         <MainContainer>
-            <MainImage>
-                <PhoneImg src={PhoneLogo} alt="Imagem de Celular"/>
-                <MainTitle>logo</MainTitle>
-            </MainImage>
+                <MainImage src={FiniteIntro} type="video/mp4" autoPlay muted></MainImage>
+          
 
             <TextDescription>
-                <Title>Finite</Title>
+                <Logo src={Finite}></Logo>
                 <Subtitle>Rede Social Orgânica</Subtitle>
                 <Paragrafo>Seja bem-vindo(a) ao Finite, uma plataforma de rede social voltada ao seu bem estar, pensando sempre na sua melhor interação com outros usuários cadastrados.
                 </Paragrafo>
