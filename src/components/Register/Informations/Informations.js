@@ -1,8 +1,10 @@
-import {Information, TextDescription, TextWelcome, NextPreviousButtons, Title, Subtitle, Paragrafo, TextTitle, Text, Buttons, PreviousButton} from "./styled"
-
-import PreviousImg from "../../../assets/previous.png"
+import {Information, TextDescription, TextWelcome, NextPreviousButtons, Title, Subtitle, Paragrafo, TextTitle, Text, Buttons, PreviousButton} from "./InformationsStyle"
 
 import { Link } from 'react-router-dom';
+
+// Images
+import PreviousImg from "../../../assets/previous.png"
+
 
 function Informations() {
     return (
@@ -17,8 +19,7 @@ function Informations() {
             <TextWelcome>
                 <TextTitle>Olá, seja bem vindo(a)!</TextTitle>
                 <Text>Antes de iniciar a sua experiência na plataforma iremos realizar algumas configurações de preferência iniciais.</Text>
-            </TextWelcome>
-            
+            </TextWelcome>         
 
             <NextPreviousButtons>
                 <Link to='/'><PreviousButton src={PreviousImg} alt="Voltar a Página inicial"/></Link>

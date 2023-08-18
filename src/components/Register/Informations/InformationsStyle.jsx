@@ -9,6 +9,9 @@ export const Information = styled.section`
     background-color: white;
 `
 
+
+// Start | Text description
+
 export const TextDescription = styled.div`
     grid-area: text-description;
     margin-top: -2vh;
@@ -22,23 +25,6 @@ export const TextDescription = styled.div`
 
     background-color: rgba(145, 159, 229, 1);
     border-radius: 0px 0px 50px 50px;
-`
-
-export const TextWelcome = styled.div`
-    padding-top: 5vh;
-    padding-left: 8vw;
-    padding-right: 24vw;
-`
-
-export const NextPreviousButtons = styled.div`
-    grid-area: next-previous-buttons;
-    height: 10vh;
-    padding-left: 8vw;
-    padding-right: 8vw;
-        display: flex;
-        justify-content: space-between;
-        align-content: center; /* Alinhar no centro - VERTICAL */
-        flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
 `
 
 export const Title = styled.h1`
@@ -61,9 +47,14 @@ export const Paragrafo = styled.p`
     color: #ffffffe5;
 `
 
-export const Paragrafo2 = styled.p`
-    text-align: center;
-    color: #ffffffe5;
+
+// Start | Text welcome
+
+export const TextWelcome = styled.div`
+    grid-area: textWelcome;
+    padding-top: 5vh;
+    padding-left: 8vw;
+    padding-right: 24vw;
 `
 
 export const TextTitle = styled.p`
@@ -74,6 +65,20 @@ export const Text = styled.p`
     text-align: justify;
 `
 
+
+// Start | Next and Previous Buttons
+
+export const NextPreviousButtons = styled.div`
+    grid-area: next-previous-buttons;
+    height: 10vh;
+    padding-left: 8vw;
+    padding-right: 8vw;
+        display: flex;
+        justify-content: space-between;
+        align-content: center; 
+        flex-wrap: wrap; 
+`
+
 export const PreviousButton = styled.img`
     width: 6vh;
     height: 6vh;
@@ -81,17 +86,13 @@ export const PreviousButton = styled.img`
 
 export const Buttons = styled.button`
     text-align: center;
-
     align-items: center;
     color: white;
     font-size: 18px;
     font-weight: 500;
-
     height: 6vh;
-    
     padding-left: 8vw;
     padding-right: 8vw;
-
     background-color: rgba(145, 159, 229, 1);
     border: solid 1px rgba(145, 159, 229, 1);
     border-radius: 30px;

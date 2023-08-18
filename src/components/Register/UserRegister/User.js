@@ -1,38 +1,20 @@
-import {Users, Line, CircleStep, StepConclued, InformationStep, StepMargin, Step, FormItens, SelectContainer, Option, Label, Input, EnterWith, TextLine, EnterText, ButtonsContainer, GoogleIcon, GoogleText, Button, NextButton, NextPreviousButtons, Div} from "./styled"
+import {Users, Header, FormItens, Option, SelectContainer,Label, Input, EnterWith, TextLine, EnterText, ButtonsContainer, GoogleIcon, GoogleText, NextPreviousButtons} from "./UserStyle"
 
+// Components
+import HeaderContainer from "../Header/Header"
+import Footer from "../Footer/Footer"
+
+// Images
 import GoogleLogo from "../../../assets/google-logo.svg"
-import NextButtonImg from "../../../assets/next.png"
-import { Link } from "react-router-dom"
 
-import Header from "../Header/Header"
 
 function User() {
     return (
         <Users> 
-
-            <Header/>
-            {/* <Header>
-                <Line></Line>
-                <Div>
-                    <CircleStep>
-                        <StepConclued>1</StepConclued>
-                    </CircleStep>
-                    <InformationStep>Informações</InformationStep>
-                </Div>
-                <StepMargin>
-                    <CircleStep>
-                        <Step>2</Step>
-                    </CircleStep>
-                    <InformationStep>Questionário</InformationStep>
-                </StepMargin>
-                <div>
-                    <CircleStep>
-                        <Step>3</Step>
-                    </CircleStep>
-                    <InformationStep>Tema</InformationStep>
-                </div>    
-            </Header> */}
-
+            <Header>
+                <HeaderContainer/>
+            </Header>
+           
             <FormItens>
                 <form>
                     <Option>Escolha uma opção</Option>
@@ -67,11 +49,10 @@ function User() {
             </EnterWith>
 
             <NextPreviousButtons>
-                <Link to="/Register/Informations"><Button>Voltar</Button></Link>
-                <Link to="/Register/Forms"><NextButton src={NextButtonImg} alt="Próxima etapa"/></Link>
+                <Footer back="/Register/Informations" next="/Register/Forms"/>
             </NextPreviousButtons>
-    </Users>
+        </Users>
     )
 }
 
-export default User
+export default User;

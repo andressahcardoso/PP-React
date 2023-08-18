@@ -1,14 +1,15 @@
-import {MainContainer, MainImage, TextDescription, ButtonLoginRegister, PhoneImg, MainTitle, Logo, Subtitle, Paragrafo, Login, Register} from "./styled";
-import PhoneLogo from "../../assets/phone-logo.svg"
+import {MainContainer, MainVideo, TextDescription, ButtonLoginRegister, Logo, Subtitle, Paragrafo, Login, Register} from "./MainStyle";
+
 import { Link } from 'react-router-dom';
+
+// Images and video
 import FiniteIntro from '../../assets/Video/Finite_Intro_1.mp4'
 import Finite from '../../assets/Finite_Logo.svg'
 
 function Main() {
     return (
         <MainContainer>
-   
-            <MainImage src={FiniteIntro} type="video/mp4" width="430" autoPlay></MainImage>
+            <MainVideo src={FiniteIntro} type="video/mp4" width="430" autoPlay></MainVideo>
         
             <TextDescription>
                 <Logo src={Finite}></Logo>
@@ -25,4 +26,4 @@ function Main() {
     )
 }
 
-export default Main
+export default Main;

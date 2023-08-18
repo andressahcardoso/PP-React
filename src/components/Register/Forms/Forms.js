@@ -1,14 +1,18 @@
-import {Form, Header, Line, Div, CircleStep, StepConclued, InformationStep, Step, NextPreviousButtons, Button, NextButton, Component24h, ButtonIncrement, Text, Question, Time, TimeComponent, Input, ButtonNum, Week, AnimatedBackground, P, StepConcluedBack} from "./styled"
-import { Link } from "react-router-dom"
+import {Form, Header, Text, Question, TimeComponent, Time, Component24h, Input, ButtonIncrement, ButtonNum, Week, NextPreviousButtons} from "./FormsStyle"
+
 import React, { useState } from 'react';
-import NextButtonImg from "../../../assets/next.png"
+
+// Components
+import HeaderContainer from "../Header/Header"
+import Footer from "../Footer/Footer";
+
+// Images
 import Addition from "../../../assets/Addition.svg"
 import Subtraction from "../../../assets/Subtraction.svg"
 
 
 function Forms() {
 
-      
     const [value, setValue] = useState(0);
         
     const handleIncrease = () => {
@@ -31,73 +35,46 @@ function Forms() {
     };
 
     
-    
-   
     return (
         <Form> 
-        <Header>
-            <Line></Line>
-            <Div>
-                <CircleStep>
-                    <StepConcluedBack>1</StepConcluedBack>
-                </CircleStep>
-                <InformationStep>Informações</InformationStep>
-            </Div>
-            <Div>
-                <CircleStep>
-                    <StepConclued>
-                        <AnimatedBackground/><P>2</P><AnimatedBackground />
-                    </StepConclued>
-                </CircleStep>
-                <InformationStep>Questionário</InformationStep>
-            </Div>
-            <div>
-                <CircleStep>
-                    <Step>3</Step>
-                </CircleStep>
-                <InformationStep>Tema</InformationStep>
-            </div>    
-        </Header>
+            <Header>
+                <HeaderContainer/>
+            </Header>
 
-    
+            <Text>
+                <Question>Quanto tempo você gostaria de passar na plataforma?</Question>
+                <p>! Períodos descritos abaixo</p>
+            </Text>
 
-        <Text>
-            <Question>Quanto tempo você gostaria de passar na plataforma?</Question>
-            <p>! Períodos descritos abaixo</p>
-        </Text>
+            <TimeComponent>
+                <div>
+                    <Time>24h</Time>
+                    <Component24h>
+                    <Input type="number" value={value} />
+                    <ButtonIncrement>
+                        <ButtonNum onClick={handleIncrease}><img src={Addition} alt="Addition"/></ButtonNum>
+                        <ButtonNum onClick={handleDecrease}><img src={Subtraction} alt="Subtraction"/></ButtonNum>
+                    </ButtonIncrement>
+                    </Component24h>
+                </div>
 
-        <TimeComponent>
+                <div>
+                    <Week>Semana</Week>
+                    <Component24h>
+                    <Input type="number" value={value2} />
+                    <ButtonIncrement>
+                        <ButtonNum onClick={handleIncrease2}><img src={Addition} alt="Addition"/></ButtonNum>
+                        <ButtonNum onClick={handleDecrease2}><img src={Subtraction}  alt="Subtraction"/></ButtonNum>
+                    </ButtonIncrement>
+                    </Component24h>
+                </div>
+            </TimeComponent>
 
-       <div>
-            <Time>24h</Time>
-            <Component24h>
-            <Input type="number" value={value} />
-            <ButtonIncrement>
-                <ButtonNum onClick={handleIncrease}><img src={Addition} alt="Addition"/></ButtonNum>
-                <ButtonNum onClick={handleDecrease}><img src={Subtraction} alt="Subtraction"/></ButtonNum>
-            </ButtonIncrement>
-            </Component24h>
-        </div>
-
-        <div>
-            <Week>Semana</Week>
-            <Component24h>
-            <Input type="number" value={value2} />
-            <ButtonIncrement>
-                <ButtonNum onClick={handleIncrease2}><img src={Addition} alt="Addition"/></ButtonNum>
-                <ButtonNum onClick={handleDecrease2}><img src={Subtraction}  alt="Subtraction"/></ButtonNum>
-            </ButtonIncrement>
-            </Component24h>
-        </div>
-
-        </TimeComponent>
-
-        <NextPreviousButtons>
-            <Link to="/Register/User"><Button>Voltar</Button></Link>
-            <Link to="/Register/Theme"><NextButton src={NextButtonImg} alt="Próxima etapa"/></Link>
-        </NextPreviousButtons>
+            <NextPreviousButtons>
+                <Footer back="/Register/User" next="/Register/Theme"/>
+            </NextPreviousButtons>
         </Form>
     )
 }
 
-export default Forms
+export default Forms;

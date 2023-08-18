@@ -3,21 +3,24 @@ import styled from "styled-components";
 export const MainContainer = styled.section`
     display: grid;
     grid-template-rows: 50vh 35vh 15vh;
-    grid-template-areas: 'main-image'
+    grid-template-areas: 'main-video'
                          'text-description'
                          'button-login-register'
                          ;        
     background-color: white;
 `
 
-export const MainImage = styled.video`
-    grid-area: main-image;
+export const MainVideo = styled.video`
+    grid-area: main-video;
     border-radius: 0px 0px 50px 50px;
     width: 100vw;
         display: flex;
         justify-content: center;
         align-items: center;
 `
+
+
+// Start | Text description
 
 export const TextDescription = styled.div`
     grid-area: text-description;
@@ -28,27 +31,6 @@ export const TextDescription = styled.div`
         justify-content: center; /* ALinhar no centro - HORIZONTAL */
         align-content: center; /* Alinhar no centro - VERTICAL */
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
-`
-
-export const ButtonLoginRegister = styled.div`
-     grid-area: button-login-register;
-        display: inline-block;
-        text-align: center;
-        margin-top: 2%;
-`
-
-export const PhoneImg = styled.img`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-export const MainTitle = styled.h1`
-    position: absolute;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.575);   
 `
 
 export const Logo = styled.img`
@@ -65,6 +47,16 @@ export const Subtitle = styled.h1`
 
 export const Paragrafo = styled.p`
     text-align: center;
+`
+
+
+// Start | Button login register
+
+export const ButtonLoginRegister = styled.div`
+     grid-area: button-login-register;
+        display: inline-block;
+        text-align: center;
+        margin-top: 2%;
 `
 
 export const Login = styled.button`

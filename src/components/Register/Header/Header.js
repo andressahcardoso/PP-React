@@ -1,6 +1,4 @@
-import {Line, CircleStep, StepConclued, InformationStep, Div} from "./styled"
-
-import {HeaderContainer, StepsContainer} from "./styled"
+import {HeaderContainer, Line, StepsContainer, Div, CircleStep, StepConclued, AnimatedBackground, P, InformationStep} from "./HeaderStyle"
 
 function Header() {
     return (
@@ -9,7 +7,9 @@ function Header() {
             <StepsContainer>
                 <Div>
                     <CircleStep>
-                        <StepConclued>1</StepConclued>
+                        <StepConclued>
+                            <AnimatedBackground/><P>1</P><AnimatedBackground />
+                        </StepConclued>
                     </CircleStep>
                     <InformationStep>Informações</InformationStep>
                 </Div>
@@ -25,10 +25,9 @@ function Header() {
                     </CircleStep>
                     <InformationStep>Tema</InformationStep>
                 </Div>
-            </StepsContainer>
-              
+            </StepsContainer>  
         </HeaderContainer>
     )
 }
 
-export default Header
+export default Header;

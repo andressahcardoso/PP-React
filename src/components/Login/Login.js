@@ -1,13 +1,11 @@
-import {Header, PreviousButton, WelcomeBack, FormItens, Form, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, ButtonsContainer, GoogleIcon, GoogleText, ImagemLogo, Subtitle, GoogleDiv, buttonG} from "./styled"
-import PreviousImg from "../../assets/previous.png"
-import GoogleLogo from "../../assets/google-logo.svg"
-import { Link } from 'react-router-dom';
+import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Form, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv} from "./LoginStyle"
 
-
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 
+// Images
+import PreviousImg from "../../assets/previous.png"
 import Logo from '../../assets/Finite_Logo.svg'
 
 function Login() {
@@ -103,4 +101,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Login;

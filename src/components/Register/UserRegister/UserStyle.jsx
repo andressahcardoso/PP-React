@@ -22,67 +22,19 @@ export const Header = styled.div`
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
 `
 
-export const Line = styled.div`
-    width: 65vw;
-    margin-top: 3vh;
-    border-bottom: solid 3px rgba(145, 159, 229, 1);  
-        display: flex;
-        justify-content: center; /* Alinhar no centro - HORIZONTAL */
-`
-
-export const Div = styled.div`
-    margin-right: 10vw;
-    margin-top: -3vh;
-`
-
-export const CircleStep = styled.div`
-    display: flex;
-    justify-content: center; /* Alinhar no centro - HORIZONTAL */
-`
-
-export const StepConclued = styled.div`
-    height: 3vh;
-    width: 3vh;
-    padding: 1vh;
-    margin-top: 0vh;
-    text-align: center;
-    color: rgba(145, 159, 229, 1);
-
-    border: solid 3px rgba(145, 159, 229, 1);
-    background-color: white;
-    border-radius: 50%;
-    color: white;
-    background-color: rgba(145, 159, 229, 1);
-`
-
-
-export const Step = styled.div`
-    height: 3vh;
-    width: 3vh;
-    padding: 1vh;
-    margin-top: -3vh;
-    text-align: center;
-    color: rgba(145, 159, 229, 1);
-
-    border: solid 3px rgba(145, 159, 229, 1);
-    background-color: white;
-    border-radius: 50%;
-`
-
-export const InformationStep = styled.p`
-    text-align: center;
-`
-
-export const StepMargin = styled.div`
-    margin-right: 12vw;
-`
+// Start | Form itens
 
 export const FormItens = styled.section`
     grid-area: form_itens;
-        display: flex;
+    display: flex;
         justify-content: center; /* Alinhar no centro - HORIZONTAL */
         align-content: center; /* Alinhar no centro - VERTICAL */
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
+`
+
+export const Option = styled.label`
+    padding: 0px 2px 1px;
+    margin-left: 2vw;
 `
 
 export const SelectContainer = styled.div`
@@ -95,11 +47,6 @@ export const SelectContainer = styled.div`
     border: 1px solid rgba(145, 159, 229, 1);
     border-radius: 10px;
         box-sizing: border-box;
-`
-
-export const Option = styled.label`
-    padding: 0px 2px 1px;
-    margin-left: 2vw;
 `
 
 export const Label = styled.label`
@@ -122,6 +69,9 @@ export const Input = styled.input`
     border: solid 1px rgb(223, 228, 254);
     border-radius: 10px;
 `
+
+
+// Start | Enter with area
 
 export const EnterWith = styled.section`
     grid-area: enterWith;
@@ -158,7 +108,7 @@ export const GoogleIcon = styled.img`
     position: relative;
     color: white;
     font-size: 18px;
-
+    
     height: 2.8vh;
     margin-top: -.7.2vh;
     margin-right: -35.5%;
@@ -189,6 +139,8 @@ export const GoogleText = styled.p`
 `
 
 
+// Start | Next and previous button
+
 export const NextPreviousButtons = styled.div`
     grid-area: next-previous-buttons;
     padding-left: 8vw;
@@ -197,21 +149,4 @@ export const NextPreviousButtons = styled.div`
         justify-content: space-between;
         align-content: center; /* Alinhar no centro - VERTICAL */
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */ 
-`
-
-export const Button = styled.button`
-    align-items: center;
-    color: rgba(145, 159, 229, 1);
-    font-size: 19px;
-    font-weight: 500;
-
-    height: 6vh;
-
-    background-color: white;
-    border: solid 0px ;
-`
-
-export const NextButton = styled.img`
-    width: 6vh;
-    height: 6vh;
 `

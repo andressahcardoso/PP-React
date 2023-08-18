@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+
+// Start | Header
+
 export const Header = styled.header`
     height: 10vh;
     padding-right: 8vw;
@@ -9,16 +12,19 @@ export const Header = styled.header`
         align-content: center; /* Alinhar no centro - VERTICAL */
 `
 
+export const ImagemLogo =styled.img`
+    height: 13vh;
+    margin-top: -1.5vh;
+`
+
 export const PreviousButton = styled.img`
     width: 2.5em;
     height: 2.5em;
     margin-top: 2.5vh;
 `
 
-export const ImagemLogo =styled.img`
-    height: 13vh;
-    margin-top: -1.5vh;
-`
+
+// Start | Welcome back area
 
 export const WelcomeBack = styled.h3`
     height: 5vh;
@@ -31,8 +37,11 @@ export const Subtitle = styled.h3`
     margin-top: -2vh;
 `
 
+
+// Start | Form itens
+
 export const FormItens = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     height: 46vh;
     padding-top: 3vh;
         display: flex;
@@ -81,6 +90,9 @@ export const LoginButton  = styled.button`
     font-size: 20px;
     font-weight: 700;
 `
+
+
+// Start | Enter with 
 
 export const EnterWith = styled.section`
     height: 24vh;
@@ -147,9 +159,5 @@ export const GoogleText = styled.p`
 `
 
 export const GoogleDiv = styled.div`
-    width: 80vw;
-`
-
-export const buttonG = styled.div`
     width: 80vw;
 `
