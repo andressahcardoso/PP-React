@@ -7,9 +7,9 @@ import Finite from '../../assets/Finite_Logo.svg'
 function Main() {
     return (
         <MainContainer>
-                <MainImage src={FiniteIntro} type="video/mp4" autoPlay muted></MainImage>
-          
-
+   
+            <MainImage src={FiniteIntro} type="video/mp4" width="430" autoPlay></MainImage>
+        
             <TextDescription>
                 <Logo src={Finite}></Logo>
                 <Subtitle>Rede Social Orgânica</Subtitle>

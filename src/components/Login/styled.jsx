@@ -2,13 +2,11 @@ import styled from "styled-components";
 
 export const Header = styled.header`
     height: 10vh;
-    padding-left: 8vw;
     padding-right: 8vw;
     border-bottom: solid 1px rgb(201, 201, 201);
         display: flex;
         justify-content: space-between;
         align-content: center; /* Alinhar no centro - VERTICAL */
-        flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
 `
 
 export const PreviousButton = styled.img`
@@ -17,11 +15,20 @@ export const PreviousButton = styled.img`
     margin-top: 2.5vh;
 `
 
+export const ImagemLogo =styled.img`
+    height: 13vh;
+    margin-top: -1.5vh;
+`
+
 export const WelcomeBack = styled.h3`
     height: 5vh;
     padding-top: 0.1vh;
     padding-left: 6vw; 
     font-size: 20px;
+`
+
+export const Subtitle = styled.h3`
+    margin-top: -2vh;
 `
 
 export const FormItens = styled.div`
@@ -137,4 +144,12 @@ export const GoogleText = styled.p`
     background-color: white;
     border: solid 1px rgba(145, 159, 229, 1);
     border-radius: 30px;
+`
+
+export const GoogleDiv = styled.div`
+    width: 80vw;
+`
+
+export const buttonG = styled.div`
+    width: 80vw;
 `

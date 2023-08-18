@@ -15,7 +15,7 @@ export const Header = styled.div`
     margin-top: 3vh;
     padding-left: 0vw;
     padding-right: 0vw;
-    width: 98vw;
+    width: 95vw;
         display: flex;
         justify-content: center; /* Alinhar no centro - HORIZONTAL */
         align-content: center; /* Alinhar no centro - VERTICAL */
