@@ -38,7 +38,7 @@ function Forms() {
     return (
         <Form> 
             <Header>
-                <HeaderContainer/>
+                <HeaderContainer firstDiv={false} firstBgc={true} secondDiv={true} secondBgc={false} thirdDiv={false} thirdBgc={false}/>
             </Header>
 
             <Text>

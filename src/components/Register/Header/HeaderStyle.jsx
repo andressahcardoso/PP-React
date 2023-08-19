@@ -1,4 +1,6 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
+
+
 
 export const HeaderContainer = styled.section`
     height: 15vh;
@@ -37,6 +39,7 @@ export const CircleStep = styled.div`
     justify-content: center;
 `
 
+
 export const StepConclued = styled.div`
     position: relative;
     overflow: hidden;
@@ -52,34 +55,56 @@ export const StepConclued = styled.div`
     border-radius: 50%;
     color: rgba(145, 159, 229, 1);
 `
-
-export const AnimatedBackground = styled.div`
-    z-index: 7;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(145, 159, 229, 1);
-    transform: translateX(-100%);
-    animation: fillBackground 1s forwards;
+export const Background = styled.div`
+    ${props =>
+    props.AnimatedBackground &&
+    css`
+       z-index: 7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(145, 159, 229, 1);
+        transform: translateX(-100%);
+        animation: fillBackground 1s forwards;
+        color: white;
     
-  
-  @keyframes fillBackground {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
+        @keyframes fillBackground {
+            0% {
+            transform: translateX(-100%);
+            }
+            100% {
+            transform: translateX(0);
+            }
+        }
+    `}
+
+    ${props =>
+    props.FixedBackground &&
+    css`
+        z-index: 7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(145, 159, 229, 1);
+    `}
 `
+
 
 export const P = styled.p`
     z-index: 10;
-    color: white;
+    color: rgba(145, 159, 229, 1);
     position: relative; 
-    margin-top: 0vh;
+    margin-top: 0.3vh;
+
+    ${props =>
+    (props.AnimeP || props.FixedP) &&
+    css`
+        color: white;
+    `}
 `
 
 export const InformationStep = styled.p`

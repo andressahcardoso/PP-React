@@ -12,7 +12,7 @@ function User() {
     return (
         <Users> 
             <Header>
-                <HeaderContainer/>
+                <HeaderContainer firstDiv={true} firstBgc={false} secondDiv={false} secondBgc={false} thirdDiv={false} thirdBgc={false}/>
             </Header>
            
             <FormItens>

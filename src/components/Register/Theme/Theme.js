@@ -12,7 +12,7 @@ function Theme() {
     return (
         <Themes> 
             <Header>
-                <HeaderContainer/> 
+                <HeaderContainer firstDiv={false} firstBgc={true} secondDiv={false} secondBgc={true} thirdDiv={true} thirdBgc={false}/> 
             </Header>
 
             <SunTheme>
