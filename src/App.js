@@ -8,6 +8,7 @@ import Informations from './components/Register/Informations/Informations';
 import User from './components/Register/UserRegister/User';
 import Form from './components/Register/Forms/Forms';
 import Theme from './components/Register/Theme/Theme';
+import Feed from './components/Feed/Feed';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/Register/User' Component={User} />
         <Route path='/Register/Forms' Component={Form} />
         <Route path='/Register/Theme' Component={Theme} />
+        <Route path='/Feed' Component={Feed}/>
       </Routes>
     </Router>
   );
