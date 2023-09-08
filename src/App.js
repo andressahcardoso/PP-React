@@ -10,6 +10,7 @@ import Form from './components/Register/Forms/Forms';
 import Theme from './components/Register/Theme/Theme';
 import FeedCommerce from './components/FeedCommerce/FeedCommerce';
 import Feed from './components/Feed/Feed';
+import Comment from './components/Comment/Comment';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/Register/Theme' Component={Theme} />
         <Route path='/Feed/Commerce' Component={FeedCommerce} />
         <Route path='/Feed' Component={Feed} />
+        <Route path='/Comment' Component={Comment} />
       </Routes>
     </Router>
   );

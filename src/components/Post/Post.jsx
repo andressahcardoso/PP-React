@@ -86,4 +86,5 @@ export const Text = styled.p`
 export const ImgIcon = styled.img`
     width: 6vw;
     margin-right: 2vw;
+    margin-top: 1vh;
 `
