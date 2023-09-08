@@ -1,24 +1,23 @@
 import { PostContainer, Img, ImgProfile, Profile, PersonName, PersonProfile, Div, Interaction, DivBtn, Text, ImgIcon } from "./Post.jsx";
 
 // Images
-import postImg from '../../assets/postImg.svg'
-import PersonImg from '../../assets/user.svg'
+
 import comment from '../../assets/MenuIcons/comment.svg'
 import like from '../../assets/MenuIcons/like.svg'
 import send from '../../assets/MenuIcons/send.svg'
 import save from '../../assets/MenuIcons/save.svg'
 
-function Post() {
+function Post(props) {
     return (
         <PostContainer>
             <Profile>
-                <ImgProfile src={PersonImg}/>
+                <ImgProfile src={props.person}/>
                 <Div>
-                    <PersonName>Prabhas Raju</PersonName>
-                    <PersonProfile>@Praba_01</PersonProfile>
+                    <PersonName>{props.name}</PersonName>
+                    <PersonProfile>{props.acount}</PersonProfile>
                 </Div>
             </Profile>
-            <Img src={postImg}/>
+            <Img src={props.post}/>
 
             <Interaction>
                     <DivBtn>
