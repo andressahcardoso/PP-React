@@ -65,7 +65,7 @@ function Login() {
 
                     <ForgotPassword>Esqueceu a senha?</ForgotPassword>
 
-                    <LoginButton>Entrar</LoginButton>
+                    <Link to="/Feed"><LoginButton>Entrar</LoginButton></Link>
                 </Form>
             </FormItens>
 
