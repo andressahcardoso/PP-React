@@ -1,11 +1,11 @@
 import { SearchComponent, Input, ImgSearch, DivInput, Div, UserDiv, Img, PersonName, PersonProfile, Btn, DivUser} from "./Search.jsx";
 
 // React Router
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // Components
-import MainHeader from "../MainHeader/MainHeader";
-import Nav from "../Nav/Nav";
+import MainHeader from "../MainHeader/MainHeader.js";
+import Nav from "../Nav/Nav.js";
 
 // Icon
 import searchIcon from '../../assets/Icons/searchIcon.svg'
@@ -32,17 +32,17 @@ function Search() {
     const [filteredUsers, setFilteredUsers] = useState([]);
 
     // Função para filtrar a lista de usuários com base no input de busca
-    const filterUsers = () => {
+    const filterUsers = useCallback(() => {
         const filteredUsers = userList.filter((user) =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredUsers(filteredUsers);
-    };
+    }, [searchTerm]);
 
     // Chama a função de filtro sempre que o input muda
-    React.useEffect(() => {
+    useEffect(() => {
         filterUsers();
-    }, [searchTerm]);
+    }, [searchTerm, filterUsers]);
 
 
     return (
@@ -54,7 +54,7 @@ function Search() {
                     <DivInput>
                         <Input type="text" placeholder="Buscar por usuário" value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)} />
-                        <ImgSearch src={searchIcon}/>
+                        <ImgSearch src={searchIcon} alt="Icone de Pesquisa"/>
                     </DivInput>
 
                     <Div>

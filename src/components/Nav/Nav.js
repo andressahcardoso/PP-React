@@ -27,13 +27,17 @@ function Nav() {
         navigate('/Add/Post')
     }
 
+    function ConfigDirection() {
+        navigate('/Config')
+    }
+
     return (
         <NavContainer>
-            <img onClick={HomeDirection} src={Home}/>
-            <img onClick={SearchDirection} src={Search}/>
-            <img onClick={AddPostDirection} src={AddPost}/>
-            <img src={Config}/>
-            <img src={Profile}/>
+            <img onClick={HomeDirection} src={Home} alt="Feed"/>
+            <img onClick={SearchDirection} src={Search} alt="Pesquisar"/>
+            <img onClick={AddPostDirection} src={AddPost} alt="Adicionar Publicação"/>
+            <img onClick={ConfigDirection} src={Config} alt="Configurações"/>
+            <img src={Profile} alt="Perfil do usuário"/>
         </NavContainer>
     )
 }
