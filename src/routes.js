@@ -13,15 +13,23 @@ import Feed from './components/Feed/Feed';
 import Comment from './components/Comment/Comment';
 import Search from './components/Seacrh/Search';
 import AddPost from './components/AddPost/AddPost';
-import AppRoutes from './routes';
 
-function App() {
+function AppRoutes() {
   return (
-    <Router>
-      <StyledGlobal/>
-      <AppRoutes/>
-    </Router>
+      <Routes>
+        <Route path="/" Component={Main} />
+        <Route path="/Login" Component={Login} />
+        <Route path="/Register/Informations" Component={Informations} />
+        <Route path='/Register/User' Component={User} />
+        <Route path='/Register/Forms' Component={Form} />
+        <Route path='/Register/Theme' Component={Theme} />
+        <Route path='/Feed/Commerce' Component={FeedCommerce} />
+        <Route path='/Feed' Component={Feed} />
+        <Route path='/Comment' Component={Comment} />
+        <Route path='/Search' Component={Search} />
+        <Route path='/Add/Post' Component={AddPost} />
+      </Routes>
   );
 }
 
-export default App;
+export default AppRoutes;
