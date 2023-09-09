@@ -6,11 +6,11 @@ import reportIcon from '../../assets/reportIcon.svg'
 import rankingIcon from '../../assets/rankingIcon.svg'
 
 
-function MainHeader() {
+function MainHeader(props) {
     return (
         <HeaderComponent>
             <img src={reportIcon}></img>
-            <h2>Comércio</h2>
+            <h2>{props.title}</h2>
             <img src={rankingIcon}></img>
         </HeaderComponent>
     )

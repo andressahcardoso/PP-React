@@ -1,7 +1,7 @@
 import MainHeader from "../MainHeader/MainHeader";
 import Nav from "../Nav/Nav";
 import Post from "../Post/Post";
-import { FeedComponent, OptionsComponent, Div, ImgOption, OptionsText, Categorie} from "./Feed.jsx";
+import { FeedComponent, OptionsComponent, Div, ImgOption, OptionsText, Categorie, FinalDiv} from "./Feed.jsx";
 
 import postImg from '../../assets/picture1.svg'
 import PersonImg from '../../assets/user.svg'
@@ -40,7 +40,10 @@ function Feed() {
         <FeedComponent>
             <Post person={PersonImg} post={postImg} name={'Prabhas Raju'} acount={'@Praba_01'}/>
             <Post person={PersonImg2} post={postImg2} name={'Malu'} acount={'@malukitalu'}/>
+
+            <FinalDiv>⠀⠀</FinalDiv>
         </FeedComponent>
+
 
         <Nav/>
         </>

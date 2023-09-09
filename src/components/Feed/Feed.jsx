@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FeedComponent = styled.section`
-    height: 53vh;
+    height: 54vh;
     display: flex;
     justify-content: center;
     align-content: start;
@@ -40,4 +40,8 @@ export const Div = styled.div`
 
 export const ImgOption = styled.img`
     width: 25vw;
+`
+
+export const FinalDiv = styled.div`
+    height: 10vh;
 `

@@ -4,7 +4,7 @@ export const PostContainer = styled.div`
     border: 2px solid #919FE5;
     border-radius: 20px;
     width: 94vw;
-    height: 43vh;
+    height: 45vh;
     padding: 2px;
     margin-bottom: 2vh;
     z-index: 2;
@@ -14,8 +14,8 @@ export const PostContainer = styled.div`
 
 export const Img = styled.img`
     border-radius: 30px;
-    width: 95vw;
-    height: 43vh;
+    width: 97vw;
+    height: 44.5vh;
     margin-top: -7vh;
     z-index: 2;
 `

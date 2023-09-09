@@ -33,7 +33,7 @@ function Post(props) {
                         <Link to='/Comment'><ImgIcon src={save}/></Link>
                     </DivBtn>
 
-                </Interaction>
+            </Interaction>
 
         </PostContainer>
     )

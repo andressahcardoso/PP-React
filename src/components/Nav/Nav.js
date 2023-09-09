@@ -13,8 +13,8 @@ function Nav() {
     return (
         <NavContainer>
            <Link to="/Feed"><img src={Home}/></Link>
-            <img src={Search}/>
-            <img src={AddPost}/>
+           <Link to="/Search"><img src={Search}/></Link>
+           <Link to="/Add/Post"><img src={AddPost}/></Link>
             <img src={Config}/>
             <img src={Profile}/>
         </NavContainer>
