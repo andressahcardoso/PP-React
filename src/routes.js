@@ -1,7 +1,7 @@
 import './App.css';
-// import Main from './components/Main/Main';
-import StyledGlobal from './styledGlobal';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+
+// Components
 import Main from './components/Main/Main';
 import Login from './components/Login/Login';
 import Informations from './components/Register/Informations/Informations';

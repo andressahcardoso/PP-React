@@ -1,12 +1,24 @@
 import {MainContainer, MainVideo, TextDescription, ButtonLoginRegister, Logo, Subtitle, Paragrafo, Login, Register} from "./MainStyle";
 
-import { Link } from 'react-router-dom';
+// React Router
+import { useNavigate } from "react-router"
 
 // Images and video
 import FiniteIntro from '../../assets/Video/Finite_Intro_1.mp4'
 import Finite from '../../assets/Finite_Logo.svg'
 
 function Main() {
+
+    const navigate = useNavigate()
+
+    function goToLogin() {
+        navigate('/Login');
+    }
+
+    function goToRegister() {
+        navigate('/Register/Informations');
+    }
+
     return (
         <MainContainer>
             <MainVideo src={FiniteIntro} type="video/mp4" width="430" autoPlay></MainVideo>
@@ -19,8 +31,8 @@ function Main() {
             </TextDescription>
 
             <ButtonLoginRegister>
-                <Link to="/Login"><Login>Entrar</Login></Link>
-                <Link to='/Register/Informations'><Register>Registre-se</Register></Link>
+                <Login onClick={goToLogin}>Entrar</Login>
+                <Register onClick={goToRegister}>Registre-se</Register>
             </ButtonLoginRegister>
         </MainContainer>  
     )

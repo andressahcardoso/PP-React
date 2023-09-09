@@ -8,6 +8,14 @@ export const SearchComponent = styled.section`
     flex-wrap: wrap;
 `
 
+
+// Start | Input area
+
+export const DivInput = styled.div`
+    display: flex;
+    margin-top: 2vh;
+`
+
 export const Input = styled.input`
     width: 85vw;
     height: 5vh;
@@ -22,19 +30,12 @@ export const Input = styled.input`
     }
 `
 
-export const DivInput = styled.div`
-    display: flex;
-    margin-top: 2vh;
-`
-
-export const ImgPublish = styled.img`
-    width: 12vw;
-    margin-left: -12vw;
-`
-
 export const ImgSearch = styled.img`
     margin-left: -12vw;
 `
+
+
+// Start | Users 
 
 export const Div = styled.div`
     margin-top: 4vh;
@@ -51,16 +52,19 @@ export const UserDiv = styled.div`
     flex-wrap: wrap;
 `
 
+export const DivUser = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+
 export const Img = styled.img`
     width: 10vw;
     margin-right: 3vw;
 `
 
-
 export const PersonName = styled.p`
     font-weight: 600;
 `
-
 
 export const PersonProfile = styled.p`
     margin-top: -1.5vh;
@@ -73,9 +77,4 @@ export const Btn = styled.div`
     height: 2vh;
     padding: 1vw 8vw 2vw 8vw;
     border-radius: 10px;
-`
-
-export const DivUser = styled.div`
-    display: flex;
-    flex-direction: row;
 `

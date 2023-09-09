@@ -1,15 +1,28 @@
 import {Button, NextButton} from "./FooterStyle"
-import { Link } from "react-router-dom"
+
+// React Router
+import { useNavigate } from 'react-router-dom';
 
 // Images
 import NextButtonImg from "../../../assets/next.png"
 
 
 function Footer(props) {
+
+    const navigate = useNavigate();
+
+    function goToBack() {
+        navigate(props.back)
+    }
+
+    function goToNext() {
+        navigate(props.next)
+    }
+
     return (
         <>
-            <Link to={props.back}><Button>Voltar</Button></Link>
-            <Link to={props.next}><NextButton src={NextButtonImg} alt="Próxima etapa"/></Link>
+            <Button onClick={goToBack}>Voltar</Button>
+            <NextButton onClick={goToNext} src={NextButtonImg} alt="Próxima etapa"/>
         </>
     )
 }

@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const CommentComponent = styled.div`
-    
-`
-
 export const Div = styled.div`
     width: 100vw;
     height: 44vh;
@@ -16,6 +12,9 @@ export const Img = styled.img`
     z-index:2;
 `
 
+
+// Start | Comment div
+
 export const CommentDiv = styled.div`
     z-index: 20;
     position: absolute;
@@ -26,6 +25,8 @@ export const CommentDiv = styled.div`
     width: 100vw;
 `
 
+
+// Start | User informations
 
 export const Profile = styled.div`
     z-index: 5;
@@ -41,6 +42,11 @@ export const Profile = styled.div`
     justify-content: space-between;
 `
 
+export const ProfileDiv = styled.div`
+     display: flex;
+    flex-direction: row;
+`
+
 export const ImgProfile = styled.img`
     width: 10vw;
     margin-right: 4vw;
@@ -51,10 +57,6 @@ export const PersonName = styled.p`
     margin-top: 0.6vh;
 `
 
-export const DivProfile = styled.div`
-    
-`
-
 export const PersonProfile = styled.p`
     margin-top: -1.5vh;
 `
@@ -62,11 +64,6 @@ export const PersonProfile = styled.p`
 export const ImgIcon = styled.img`
     height: 4.5vh;
     margin-top: 1vh;
-`
-
-export const ProfileDiv = styled.div`
-     display: flex;
-    flex-direction: row;
 `
 
 
@@ -79,6 +76,7 @@ export const UserComment = styled.div`
 
     border-bottom: 2px solid #5f5a5a46;
 `
+
 
 // Start | Community 
 
@@ -101,6 +99,17 @@ export const CommentPost = styled.div`
     margin-bottom: 2vh;
 `
 
+export const ImgUser = styled.img`
+    width: 8vw;
+    margin-right: 4vw;
+    margin-top: 1vh;
+`
+
+export const CommentText = styled.p`
+    color: grey;
+    margin-top: -1.5vh;
+`
+
 export const CommentMainUser = styled.div`
     background-color: #919fe558;
     width: 60vw;
@@ -117,17 +126,6 @@ export const CommentMainUser = styled.div`
     margin-bottom: 2vh;
 `
 
-export const ImgUser = styled.img`
-    width: 8vw;
-    margin-right: 4vw;
-    margin-top: 1vh;
-`
-
-export const CommentText = styled.p`
-    color: grey;
-    margin-top: -1.5vh;
-`
-
 
 // Start | Add comment
 
@@ -135,7 +133,6 @@ export const AddComment = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-
 `
 
 export const DivImg = styled.div`
@@ -143,7 +140,10 @@ export const DivImg = styled.div`
     border-radius: 40px 0px 0px 40px;
     height: 6vh;
     width: 20vw;
+`
 
+export const ImgComment = styled.img`
+    width: 12vw;
 `
 
 export const DivInput = styled.div`
@@ -162,10 +162,6 @@ export const Input = styled.input`
         border: 0px;
         outline: none;
     }
-`
-
-export const ImgComment = styled.img`
-    width: 12vw;
 `
 
 export const ImgPublish = styled.img`

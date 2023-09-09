@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const AddPostComponent = styled.section`
     height: 80.5vh;
     display: flex;
@@ -8,7 +7,6 @@ export const AddPostComponent = styled.section`
     align-content: start;
     flex-wrap: wrap;
 `
-
 
 export const OptionButton = styled.div`
      grid-area: button-login-register;
@@ -47,11 +45,15 @@ export const Stories = styled.button`
     border-radius: 30px;
 `
 
+
+// Start | Image selection
+
 export const PostDiv = styled.div`
     margin-top: 4vh;
     width: 100vw;
     padding: 4vw;
-    background-color: rgba(173, 185, 243, 0.553);
+    border-top: solid 2px rgb(173, 185, 243);
+    border-bottom: solid 2px rgb(173, 185, 243);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,22 +61,33 @@ export const PostDiv = styled.div`
     cursor: pointer;
 `
 
+export const InputImg = styled.input`
+    display: none;
+`
+
 export const PostImg = styled.img`
     width: 90vw;
     object-Fit: cover;
 `
 
-export const ImgDiv = styled.div`
-
+export const Text = styled.p`
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 2vw;
+    margin-top: 3.5vh;
 `
+
+
+// Start | Post information
 
 export const Input = styled.input`
     width: 85vw;
     height: 5vh;
-    border-radius: 40px;
+    border-radius: 30px;
+    margin-top: -1vh;
     border: 0px;
     border: 1px solid rgb(173, 185, 243);
-    box-shadow: 5px 2px 2px #c7c8c8;
+    box-shadow: 3px 1px 1px #919fe57c;
     padding-left: 4vw;
 
     &:focus{
@@ -82,44 +95,55 @@ export const Input = styled.input`
     }
 `
 
-export const Text = styled.p`
-    font-weight: 600;
-    font-size: 18px;
-    margin-left: 2vw;
-    margin-top: 3.5vh;
-`
-
-
-// Select
-
-
-export const Option = styled.label`
-    padding: 0px 2px 1px;
-    margin-left: 2vw;
-`
-
 export const SelectContainer = styled.div`
    width: 81vw;
     height: 4vh;
-    border-radius: 40px;
+    border-radius: 30px;
+    margin-top: -1vh;
     border: 0px;
     border: 1px solid rgb(173, 185, 243);
-    box-shadow: 5px 2px 2px #c7c8c8;
+    box-shadow: 3px 1px 1px #919fe57c;
     padding-left: 4vw;
     padding-right: 4vw;
     padding-top: 2vh;
 
 `
 
-export const Label = styled.label`
-    margin-left: 4vw;
-    display: block;  /* Manter o label sobre o input */
-    margin-top: 2vh;
-    color: #666161;
-    font-weight: 500;
-    font-size: 16px;
+
+// Start | Publish button
+
+export const DivConclued = styled.div`
+    width: 82vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
 `
 
+export const Conclued = styled.button`
+    z-index: 1;
+    position: relative;
+    color: white;
+    font-size: 18px;
+    
+    margin-right: -18%;
+    margin-top: 3vh;
+    padding: 3.5%;
+    padding-left: 14vw;
+    padding-right: 14vw;
+
+    background-color: rgba(145, 159, 229, 1);
+    border: solid 1px rgba(145, 159, 229, 1);
+    border-radius: 30px;  
+`
+
+export const ImgConclued =styled.img`
+    z-index: 2;
+    margin-top: 3.5vh;
+    margin-left: 2vw;
+`
+
+
+// Start | Final div
 
 export const FinalDiv = styled.div`
     height: 10vh;

@@ -1,6 +1,7 @@
 import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Form, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv} from "./LoginStyle"
 
-import { Link, useNavigate } from 'react-router-dom';
+// React Router
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 
@@ -12,6 +13,17 @@ function Login() {
 
     const [user, setUser] = useState({});
     const navigate = useNavigate();
+
+    function goToBack() {
+        navigate(-1)
+    }
+
+    function goToFeed() {
+        navigate('/Feed')
+    }
+
+
+    // API - Login Google
 
     function handleCallbackResponse(response){
         console.log("Encoded JWT ID token: " + response.credential);
@@ -47,7 +59,7 @@ function Login() {
         <>
             <Header>
                 <ImagemLogo src={Logo}></ImagemLogo>
-                <Link to="/"><PreviousButton src={PreviousImg} alt="Voltar a Página inicial"/></Link>
+                <PreviousButton onClick={goToBack} src={PreviousImg} alt="Voltar a Página inicial"/>
             </Header>
        
             <WelcomeBack>
@@ -65,7 +77,7 @@ function Login() {
 
                     <ForgotPassword>Esqueceu a senha?</ForgotPassword>
 
-                    <Link to="/Feed"><LoginButton>Entrar</LoginButton></Link>
+                    <LoginButton onClick={goToFeed}>Entrar</LoginButton>
                 </Form>
             </FormItens>
 

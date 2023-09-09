@@ -1,12 +1,24 @@
 import {Information, TextDescription, TextWelcome, NextPreviousButtons, Title, Subtitle, Paragrafo, TextTitle, Text, Buttons, PreviousButton} from "./InformationsStyle"
 
-import { Link } from 'react-router-dom';
+// React Router
+import { useNavigate } from 'react-router-dom';
 
 // Images
 import PreviousImg from "../../../assets/previous.png"
 
 
 function Informations() {
+
+    const navigate = useNavigate();
+
+    function goToBack() {
+        navigate('/')
+    }
+
+    function goToRegisterUser() {
+        navigate('/Register/User')
+    }
+
     return (
         <Information>
             <TextDescription>
@@ -22,8 +34,8 @@ function Informations() {
             </TextWelcome>         
 
             <NextPreviousButtons>
-                <Link to='/'><PreviousButton src={PreviousImg} alt="Voltar a Página inicial"/></Link>
-                <Link to='/Register/User'><Buttons>Prosseguir</Buttons></Link>
+                <PreviousButton onClick={goToBack} src={PreviousImg} alt="Voltar a Página inicial"/>
+                <Buttons onClick={goToRegisterUser}>Prosseguir</Buttons>
             </NextPreviousButtons>
         </Information>  
     )

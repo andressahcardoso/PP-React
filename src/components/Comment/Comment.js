@@ -1,11 +1,11 @@
-import { CommentComponent, Div, Img, CommentDiv, Profile, ImgProfile, DivProfile, PersonName, PersonProfile, ImgIcon, ProfileDiv, UserComment, Community, CommentPost, ImgUser,CommentText, CommentMainUser, AddComment, DivImg, DivInput, Input, ImgComment, ImgPublish} from "./Comment.jsx";
+import { Div, Img, CommentDiv, Profile, ImgProfile, PersonName, PersonProfile, ImgIcon, ProfileDiv, UserComment, Community, CommentPost, ImgUser,CommentText, CommentMainUser, AddComment, DivImg, DivInput, Input, ImgComment, ImgPublish} from "./Comment.jsx";
 
+// React Router
 import { useNavigate } from "react-router"
 
 // Images
 import postImg from '../../assets/picture1.svg'
 import PersonImg from '../../assets/user.svg'
-
 import user1 from '../../assets/user1.svg'
 import user2 from '../../assets/user2.svg'
 import user3 from '../../assets/user4.svg'
@@ -13,6 +13,7 @@ import user3 from '../../assets/user4.svg'
 // Icons
 import closeIcon from '../../assets/Icons/closeIcon.svg'
 import publish from '../../assets/Icons/publish.svg'
+
 
 function Comment() {
     const navigate = useNavigate()
@@ -23,7 +24,7 @@ function Comment() {
 
 
     return(
-        <CommentComponent>
+        <>
             <Div>
                 <Img src={postImg}/>
             </Div>
@@ -32,10 +33,10 @@ function Comment() {
                 <Profile>
                     <ProfileDiv>
                         <ImgProfile src={PersonImg}/>
-                        <DivProfile>
+                        <div>
                             <PersonName>Prabhas Raju</PersonName>
-                            <PersonProfile>Comentário usuário 2</PersonProfile>
-                        </DivProfile>
+                            <PersonProfile>@Praba_01</PersonProfile>
+                        </div>
                     </ProfileDiv>
 
                     <ImgIcon onClick={goToPostsPage} src={closeIcon}/>
@@ -48,29 +49,29 @@ function Comment() {
                 <Community>
                     <CommentPost>
                         <ImgUser src={user1}/>
-                        <DivProfile>
+                        <div>
                             <PersonName>Usuário 1</PersonName>
                             <CommentText>Comentário usuário 1</CommentText>
-                        </DivProfile>
+                        </div>
                     </CommentPost>
 
                     <CommentPost>
                         <ImgUser src={user2}/>
-                        <DivProfile>
+                        <div>
                             <PersonName>Usuário 2</PersonName>
                             <CommentText>Comentário usuário 3 texto texto texto 
                                 texto texto texto texto texto texto texto 
                                 texto texto texto texto texto texto texto 
                                 texto texto texto texto texto </CommentText>
-                        </DivProfile>
+                        </div>
                     </CommentPost>
 
                     <CommentMainUser>
                         <ImgUser src={user3}/>
-                        <DivProfile>
+                        <div>
                             <PersonName>Você</PersonName>
                             <CommentText>Seu comentário</CommentText>
-                        </DivProfile>
+                        </div>
                     </CommentMainUser>
 
                 </Community>
@@ -85,7 +86,7 @@ function Comment() {
                     <ImgPublish src={publish}/>
                 </AddComment>
             </CommentDiv>
-        </CommentComponent>
+        </>
     )
 }
 

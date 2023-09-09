@@ -1,4 +1,4 @@
-import { HeaderComponent, Img, P} from "./MainHeader.jsx";
+import { HeaderComponent } from "./MainHeader.jsx";
 
 // Images
 

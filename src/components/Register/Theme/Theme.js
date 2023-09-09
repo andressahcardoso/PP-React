@@ -33,7 +33,7 @@ function Theme() {
             </ButtonTheme>
 
             <NextPreviousButtons>
-                <Footer back="/Register/Forms" next="/"/>
+                <Footer back="/Register/Forms" next="/Feed"/>
             </NextPreviousButtons>
         </Themes>
     )
