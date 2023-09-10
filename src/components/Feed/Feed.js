@@ -2,6 +2,7 @@ import { FeedComponent, OptionsComponent, Div, ImgOption, OptionsText, Categorie
 
 // React Router
 import { useNavigate } from "react-router"
+import { useEffect } from "react";
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -21,6 +22,13 @@ import PersonImg2 from '../../assets/person2.svg'
 function Feed() {
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if(!token) {
+            navigate('/')
+        }
+    }, [navigate])
 
     function goToFeedCommerce() {
         navigate('/Feed/Commerce')
