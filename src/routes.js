@@ -14,6 +14,7 @@ import Comment from './components/Comment/Comment';
 import Search from './components/Search/Search';
 import AddPost from './components/AddPost/AddPost';
 import Config from './components/Config/Config';
+import UserAccount from './components/UserAccount/UserAccount';
 
 function AppRoutes() {
   return (
@@ -30,6 +31,7 @@ function AppRoutes() {
         <Route path='/Search' Component={Search} />
         <Route path='/Add/Post' Component={AddPost} />
         <Route path='/Config' Component={Config} />
+        <Route path='/User/Account' Component={UserAccount} />
       </Routes>
   );
 }
