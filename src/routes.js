@@ -18,6 +18,8 @@ import UserAccount from './components/UserAccount/UserAccount';
 import Stories from './components/Stories/Stories';
 import UserStorie from './components/UserStorie/UserStorie';
 import Categorie from './components/Categories/Categories';
+import Ranking from './components/Ranking/Ranking';
+import Report from './components/Report/Report';
 
 
 function AppRoutes() {
@@ -39,6 +41,8 @@ function AppRoutes() {
         <Route path='/Stories' Component={Stories} />
         <Route path='/User/Storie' Component={UserStorie} />
         <Route path='/Categorie' Component={Categorie} />
+        <Route path='/Ranking' Component={Ranking} />
+        <Route path='/Report' Component={Report} />
       </Routes>
   );
 }
