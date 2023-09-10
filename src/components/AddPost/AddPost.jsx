@@ -51,7 +51,7 @@ export const Stories = styled.button`
 export const PostDiv = styled.div`
     margin-top: 4vh;
     width: 100vw;
-    padding: 4vw;
+    padding: 2vw;
     border-top: solid 2px rgb(173, 185, 243);
     border-bottom: solid 2px rgb(173, 185, 243);
     display: flex;
@@ -74,7 +74,7 @@ export const Text = styled.p`
     font-weight: 500;
     font-size: 18px;
     margin-left: 2vw;
-    margin-top: 3.5vh;
+    margin-top: 3vh;
 `
 
 
@@ -86,8 +86,7 @@ export const Input = styled.input`
     border-radius: 30px;
     margin-top: -1vh;
     border: 0px;
-    border: 1px solid rgb(173, 185, 243);
-    box-shadow: 3px 1px 1px #919fe57c;
+    border: 2px solid rgb(173, 185, 243);
     padding-left: 4vw;
 
     &:focus{
@@ -101,11 +100,10 @@ export const SelectContainer = styled.div`
     border-radius: 30px;
     margin-top: -1vh;
     border: 0px;
-    border: 1px solid rgb(173, 185, 243);
-    box-shadow: 3px 1px 1px #919fe57c;
+    border: 2px solid rgb(173, 185, 243);
     padding-left: 4vw;
     padding-right: 4vw;
-    padding-top: 2vh;
+    padding-top: 1.5vh;
 
 `
 

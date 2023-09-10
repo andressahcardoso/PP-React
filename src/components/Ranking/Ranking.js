@@ -1,7 +1,11 @@
 import { HeaderComponent, AddPostComponent, OptionButton, Publication, Stories, TopSection, UserDiv, ImgDiv2, ImgDiv3, Img, NumberDiv, NumberDiv2, NumberDiv3, NumberImg, Profile, Account, MainUser, MainImg, ImgMain, ListSection, ListSection1, ListSection2, ListSection3, ImgList, Name, AccountUser, TimeDiv, Users, Informations, Num} from "./Ranking.jsx";
 
+// React Router
+import { useNavigate } from "react-router-dom";
+
 // Components
 import Nav from "../Nav/Nav";
+
 // Images
 import user1 from '../../assets/user4.svg'
 import user2 from '../../assets/user2.svg'
@@ -13,7 +17,6 @@ import second from '../../assets/Icons/second.svg'
 import third from '../../assets/Icons/third.svg'
 import reportIcon from '../../assets/reportIcon.svg'
 import previous from '../../assets/Icons/backIcon.svg'
-import { useNavigate } from "react-router-dom";
 
 function Ranking() {
 
