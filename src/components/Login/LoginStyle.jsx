@@ -70,6 +70,10 @@ export const Input = styled.input`
     border-radius: 10px;
     border: solid 1px rgb(223, 228, 254);
     background-color: rgb(223, 228, 254);
+
+    &:focus{
+        outline: none;
+    }
 `
 
 export const ForgotPassword = styled.p`
@@ -160,4 +164,14 @@ export const GoogleText = styled.p`
 
 export const GoogleDiv = styled.div`
     width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const CenterDiv = styled.div`
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
