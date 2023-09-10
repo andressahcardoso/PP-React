@@ -23,6 +23,12 @@ function Config() {
         navigate('/User/Settings')
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem('email')
+        localStorage.removeItem('token')
+        navigate('/')
+    }
+
     return (
         <>
             <MainHeader title='Configurações'/>
@@ -60,7 +66,7 @@ function Config() {
                             <Year>2023</Year>
                        </FiniteDiv>
 
-                       <ConfigDiv>
+                       <ConfigDiv onClick={handleLogout}>
                             <ConfigOption>
                                 <Img src={closeAccountIcon}/>
                                 <Text>Sair</Text>
