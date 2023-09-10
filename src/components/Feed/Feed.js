@@ -26,6 +26,10 @@ function Feed() {
         navigate('/Feed/Commerce')
     }
 
+    function goToCategorie() {
+        navigate('/Categorie')
+    }
+
     function goToStories() {
         navigate('/Stories')
     }
@@ -39,7 +43,7 @@ function Feed() {
                     <ImgOption onClick={goToStories} src={storiesImg}/>
                 </Div>
                 <Div>
-                    <ImgOption src={categories}/>
+                    <ImgOption onClick={goToCategorie} src={categories}/>
                 </Div>
                 <Div>
                     <ImgOption onClick={goToFeedCommerce} src={commerce}/>

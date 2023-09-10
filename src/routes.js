@@ -17,6 +17,8 @@ import Config from './components/Config/Config';
 import UserAccount from './components/UserAccount/UserAccount';
 import Stories from './components/Stories/Stories';
 import UserStorie from './components/UserStorie/UserStorie';
+import Categorie from './components/Categories/Categories';
+
 
 function AppRoutes() {
   return (
@@ -36,6 +38,7 @@ function AppRoutes() {
         <Route path='/User/Account' Component={UserAccount} />
         <Route path='/Stories' Component={Stories} />
         <Route path='/User/Storie' Component={UserStorie} />
+        <Route path='/Categorie' Component={Categorie} />
       </Routes>
   );
 }

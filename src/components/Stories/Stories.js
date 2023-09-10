@@ -17,7 +17,6 @@ import user1 from '../../assets/user1.svg'
 import user2 from '../../assets/user2.svg'
 import user3 from '../../assets/user3.svg'
 import user4 from '../../assets/user4.svg'
-import user5 from '../../assets/picture2.png'
 
 // Icons
 import DateIcon from '../../assets/Icons/line.svg'
