@@ -23,7 +23,11 @@ function Feed() {
     const navigate = useNavigate()
 
     function goToFeedCommerce() {
-        navigate('/Feed/Commerce');
+        navigate('/Feed/Commerce')
+    }
+
+    function goToStories() {
+        navigate('/Stories')
     }
 
     return (
@@ -32,7 +36,7 @@ function Feed() {
 
             <OptionsComponent>
                 <Div>
-                    <ImgOption src={storiesImg}/>
+                    <ImgOption onClick={goToStories} src={storiesImg}/>
                 </Div>
                 <Div>
                     <ImgOption src={categories}/>
