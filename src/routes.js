@@ -20,6 +20,7 @@ import UserStorie from './components/UserStorie/UserStorie';
 import Categorie from './components/Categories/Categories';
 import Ranking from './components/Ranking/Ranking';
 import Report from './components/Report/Report';
+import UserSettings from './components/UserSettings/UserSettings';
 
 
 function AppRoutes() {
@@ -43,6 +44,7 @@ function AppRoutes() {
         <Route path='/Categorie' Component={Categorie} />
         <Route path='/Ranking' Component={Ranking} />
         <Route path='/Report' Component={Report} />
+        <Route path='/User/Settings' Component={UserSettings} />
       </Routes>
   );
 }

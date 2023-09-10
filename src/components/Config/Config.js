@@ -13,8 +13,16 @@ import accountIcon from '../../assets/Icons/accountIcon.svg'
 import themeIcon from '../../assets/Icons/themeIcon.svg'
 import privacyIcon from '../../assets/Icons/privacyIcon.svg'
 import closeAccountIcon from '../../assets/Icons/closeAccountIcon.svg'
+import { useNavigate } from "react-router-dom";
 
 function Config() {
+
+    const navigate = useNavigate();
+
+    function goToUserSettings() {
+        navigate('/User/Settings')
+    }
+
     return (
         <>
             <MainHeader title='Configurações'/>
@@ -27,7 +35,7 @@ function Config() {
                     </DivInput>
 
                     <div>
-                       <ConfigDiv>
+                       <ConfigDiv onClick={goToUserSettings}>
                             <ConfigOption>
                                 <Img src={accountIcon}/>
                                 <Text>Conta</Text>
