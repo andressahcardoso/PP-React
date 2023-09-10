@@ -1,4 +1,4 @@
-import { StorieSection, Storie, Div, StorieImgDiv, StorieImg, TextDiv, Profile, Account, ImgDate, DateText, Month } from "./Stories.jsx";
+import { StorieSection, Storie, Div, StorieImgDiv, StorieImg, TextDiv, Profile, Account, p, ImgDate, DateText, Month } from "./Stories.jsx";
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -30,14 +30,13 @@ function Stories() {
                             <Account>@Praba_01</Account>
                         </TextDiv>
                     </Div>
-                    <div>
-                        
+                    <p>
                         <DateText>26</DateText>
                         <ImgDate>
                             <img src={DateIcon} alt="Line Icon"/>
                         </ImgDate>
                         <Month>11</Month>
-                    </div>
+                    </p>
                 </Storie>
 
                 <Storie>
@@ -50,14 +49,14 @@ function Stories() {
                             <Account>@alice_01</Account>
                         </TextDiv>
                     </Div>
-                    <div>
+                    <p>
                         
                         <DateText>26</DateText>
                         <ImgDate>
                             <img src={DateIcon} alt="Line Icon"/>
                         </ImgDate>
                         <Month>11</Month>
-                    </div>
+                    </p>
                 </Storie>
 
                 <Storie>
@@ -70,14 +69,14 @@ function Stories() {
                             <Account>@vini_02</Account>
                         </TextDiv>
                     </Div>
-                    <div>
+                    <p>
                         
                         <DateText>26</DateText>
                         <ImgDate>
                             <img src={DateIcon} alt="Line Icon"/>
                         </ImgDate>
                         <Month>11</Month>
-                    </div>
+                    </p>
                 </Storie>
 
 
@@ -91,14 +90,14 @@ function Stories() {
                             <Account>@david_04</Account>
                         </TextDiv>
                     </Div>
-                    <div>
+                    <p>
                         
                         <DateText>25</DateText>
                         <ImgDate>
                             <img src={DateIcon} alt="Line Icon"/>
                         </ImgDate>
                         <Month>11</Month>
-                    </div>
+                    </p>
                 </Storie>
 
                 <Storie>
@@ -111,14 +110,14 @@ function Stories() {
                             <Account>@malukitalu</Account>
                         </TextDiv>
                     </Div>
-                    <div>
+                    <p>
                         
                         <DateText>25</DateText>
                         <ImgDate>
                             <img src={DateIcon} alt="Line Icon"/>
                         </ImgDate>
                         <Month>11</Month>
-                    </div>
+                    </p>
                 </Storie>
             </StorieSection>
 

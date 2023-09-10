@@ -50,6 +50,9 @@ export const Account= styled.p`
     margin-top: -1vh;
 `
 
+export const DivDate = styled.div`
+`
+
 export const ImgDate = styled.div`
     margin-top: -3.8vh;
     margin-left: 8vw;
