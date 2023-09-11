@@ -118,7 +118,6 @@ export const CheckBox = styled.input`
   }
 `
 
-
 // Start | Next and previous buttons
 
 export const NextPreviousButtons = styled.div`

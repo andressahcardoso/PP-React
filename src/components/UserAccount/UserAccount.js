@@ -9,8 +9,19 @@ import post1 from '../../assets/post1.png'
 import post2 from '../../assets/post2.png'
 import post3 from '../../assets/post3.png'
 import post4 from '../../assets/post4.png'
+import { useNavigate } from "react-router-dom";
 
 function UserAccount() {
+
+    const navigate = useNavigate();
+
+    function goToUserSettings() {
+        navigate('/User/Settings')
+    }
+
+    function goToReport() {
+        navigate('/Report')
+    }
     return (
         <>
         <Color>⠀⠀</Color>
@@ -36,8 +47,8 @@ function UserAccount() {
             </UserText>
 
             <BtnDiv>
-                <EditBtn>Editar perfil</EditBtn>
-                <ReportBtn>Relatório</ReportBtn>
+                <EditBtn onClick={goToUserSettings}>Editar perfil</EditBtn>
+                <ReportBtn onClick={goToReport}>Relatório</ReportBtn>
             </BtnDiv>
             
             <OptionDiv>
