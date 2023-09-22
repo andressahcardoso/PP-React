@@ -1,4 +1,4 @@
-import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Form, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv} from "./LoginStyle"
+import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Label, FormStyle, FormStyled, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv} from "./LoginStyle"
 
 // React Router
 import { useNavigate } from 'react-router-dom';
@@ -6,13 +6,36 @@ import { useCallback, useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 
 // Axios
-import axios from 'axios';
+import Axios from 'axios';
+import axios from "axios";
+
+// Formik
+import { Formik, ErrorMessage } from 'formik';
+import * as yup from 'yup';
 
 // Images
-import PreviousImg from "../../assets/previous.png"
-import Logo from '../../assets/Finite_Logo.svg'
+import PreviousImg from '../../assets/previous.png';
+import Logo from '../../assets/Finite_Logo.svg';
 
 function Login() {
+
+    // Login BD
+
+    const handleClickLogin = (values) => {
+        Axios.post("http://localhost:3001/login", {
+            email: values.email,
+            password: values.password,
+          }).then((response) => {
+            alert(response.data.msg);
+          });
+    };
+
+    const validationLogin = yup.object().shape({
+        email: yup.string().email().required(),
+        password: yup.string().min(8).required(),
+    });
+
+
 
     const [user, setUser] = useState({});
     const navigate = useNavigate();
@@ -104,19 +127,27 @@ function Login() {
             </WelcomeBack>
 
             <FormItens>
-                <Form onSubmit={handleSubmit}>
-                    <Label for="userName">Nome de usuário ou E-mail</Label>
-                    <Input type="text" id="userName" required placeholder="E-mail" value={email}
-                        onChange={(e) => setEmail(e.target.value)}/>
+                <Formik 
+                    initialValues={{}}
+                    onSubmit={handleClickLogin} 
+                    validationSchema={validationLogin}
+                >
+                    <FormStyled>
+                        
+                        <Label for="email">Nome de usuário ou E-mail</Label>
+                        <Input id="email" name="email" placeholder="E-mail"/>
+                        <ErrorMessage component="span" name="email"/>
 
-                    <Label for="password">Senha</Label>
-                    <Input type="password" id="password" required placeholder="Senha" value={password}
-                        onChange={(e) => setPassword(e.target.value)}/>
+                        <Label for="password">Senha</Label>
+                        <Input id="password" name="password" required placeholder="Senha"/>
+                        <ErrorMessage component="span" name="password"/>
 
-                    <ForgotPassword>Esqueceu a senha?</ForgotPassword>
+                        <ForgotPassword>Esqueceu a senha?</ForgotPassword>
 
-                    <LoginButton type="submit" value="Entrar">Entrar</LoginButton>
-                </Form>
+                        <LoginButton type="submit" value="Entrar">Entrar</LoginButton>
+
+                    </FormStyled>
+                </Formik>
             </FormItens>
 
             <EnterWith>

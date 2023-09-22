@@ -1,3 +1,4 @@
+import { Field, Form } from "formik";
 import styled from "styled-components";
 
 
@@ -50,7 +51,7 @@ export const FormItens = styled.div`
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
 `
 
-export const Form = styled.form`
+export const FormStyled = styled(Form)`
     display: block;
 `
 
@@ -62,7 +63,7 @@ export const Label = styled.label`
     font-size: 18px;
 `
 
-export const Input = styled.input`
+export const Input = styled(Field)`
     width: 80vw;
     height: 2vh;
     margin-top: 1vh;

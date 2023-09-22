@@ -10,6 +10,7 @@ import Nav from "../Nav/Nav";
 import user1 from '../../assets/user4.svg'
 import user2 from '../../assets/user2.svg'
 import user3 from '../../assets/user3.svg'
+import user5 from '../../assets/user.svg'
 
 // Icons
 import first from '../../assets/Icons/first.svg'
@@ -138,9 +139,9 @@ function Ranking() {
 
                 <ListSection>
                     <Informations>
-                        <Num>1</Num>
+                        <Num>4</Num>
                         <Users>
-                            <ImgList src={user3}/>
+                            <ImgList src={user5}/>
                             <div>
                                 <Name>Usuário 1</Name>
                                 <AccountUser>-------</AccountUser>
