@@ -63,7 +63,7 @@ export const Label = styled.label`
     font-size: 18px;
 `
 
-export const Input = styled(Field)`
+export const Input = styled.input`
     width: 80vw;
     height: 2vh;
     margin-top: 1vh;

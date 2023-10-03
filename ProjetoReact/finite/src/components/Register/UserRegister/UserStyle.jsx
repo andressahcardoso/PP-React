@@ -1,4 +1,3 @@
-import { Field, Form } from "formik";
 import styled from "styled-components";
 
 export const Users = styled.section`
@@ -25,7 +24,7 @@ export const Header = styled.div`
 
 // Start | Form itens
 
-export const FormStyled = styled(Form)`
+export const Form = styled.form`
     display: flex;
     flex-direction: column;
 `
@@ -64,7 +63,7 @@ export const Label = styled.label`
     font-size: 16px;
 `
 
-export const Input = styled(Field)`
+export const Input = styled.input`
     width: 76vw;
     height: 2vh;
     margin-left: 2vw;
