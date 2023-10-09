@@ -1,21 +1,25 @@
-import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Label, FormStyle, FormStyled, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv} from "./LoginStyle"
+import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv} from "./LoginStyle"
 
 // React Router
 import { useNavigate, Navigate } from 'react-router-dom';
-
 import { useState } from "react";
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
 
+// AuthContext
+import { AuthContext } from "../../context/AuthContext";
 
 // Images
 import PreviousImg from '../../assets/previous.png';
 import Logo from '../../assets/Finite_Logo.svg';
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [ signIn, signed ] = useContext(AuthContext);
+
+    // Validação de Login API
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [signIn, signed] = useContext(AuthContext);
+
+    console.log(signIn)
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -27,14 +31,13 @@ function Login() {
     };
     console.log(signed);
 
-    // const [user, setUser] = useState({});
+
+    // Navigate
     const navigate = useNavigate();
 
     function goToBack() {
         navigate(-1)
     }
-
-    // Validação de Login API
 
 
     // API - Login Google
@@ -68,6 +71,7 @@ function Login() {
 
     //     google.accounts.id.prompt();
     // }, [handleCallbackResponse]);
+    
     if (!signed) {
         return (
             <>
@@ -83,24 +87,20 @@ function Login() {
 
                 <FormItens>
                     <form onSubmit={handleSubmit} >
-                            
-                            <Label for="email">Nome de usuário ou E-mail</Label>
-                            <Input className={email !== "" ? "has-val input" : "input"}
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}/>
+                          
+                        <Label for="email">Nome de usuário ou E-mail</Label>
+                        <Input type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}/>
 
-                            <Label for="password">Senha</Label>
-                            <Input className={password !== "" ? "has-val input" : "input"}
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}/>      
+                        <Label for="password">Senha</Label>
+                        <Input type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}/>      
 
-                            <ForgotPassword>Esqueceu a senha?</ForgotPassword>
+                        <ForgotPassword>Esqueceu a senha?</ForgotPassword>
 
-                            <LoginButton type="submit" value="Entrar">Entrar</LoginButton>
-
-                        
+                        <LoginButton type="submit" value="Entrar">Entrar</LoginButton>
                     </form>
                 </FormItens>
 

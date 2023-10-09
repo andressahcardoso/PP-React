@@ -2,12 +2,12 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
 // Components
-import Main from './components/Main/Main';
-import Login from './components/Login/Login';
-import Informations from './components/Register/Informations/Informations';
-import User from './components/Register/UserRegister/User';
-import Form from './components/Register/Forms/Forms';
-import Theme from './components/Register/Theme/Theme';
+import Main from './pages/Main/Main';
+import Login from './pages/Login/Login';
+import Informations from './pages/Register/Informations/Informations';
+import User from './pages/Register/UserRegister/User';
+import Form from './pages/Register/Forms/Forms';
+import Theme from './pages/Register/Theme/Theme';
 import FeedCommerce from './components/FeedCommerce/FeedCommerce';
 import Feed from './components/Feed/Feed';
 import Comment from './components/Comment/Comment';

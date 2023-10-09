@@ -1,4 +1,3 @@
-import { Field, Form } from "formik";
 import styled from "styled-components";
 
 
@@ -49,10 +48,6 @@ export const FormItens = styled.div`
         justify-content: center; /* Alinhar no centro - HORIZONTAL */
         align-content: center; /* Alinhar no centro - VERTICAL */
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
-`
-
-export const FormStyled = styled(Form)`
-    display: block;
 `
 
 export const Label = styled.label`

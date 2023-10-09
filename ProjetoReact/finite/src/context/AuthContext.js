@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     };
     loadingStoreData();
   }, []);
-
+console.log(user)
   const signIn = async ({ email, password }) => {
     try {
       const response = await api.post("/auth/login", { email, password });
@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
         alert(response.data.error);
       } else {
         setUser(response.data);
+        console.log(response.data)
         api.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.data.tokenApi}`;
@@ -43,8 +44,10 @@ export const AuthProvider = ({ children }) => {
   const singOut = () => {
     localStorage.clear();
     setUser(null);
-    return <Navigate to="/" />;
+    <Navigate to="/" />;
   };
+
+ 
 
   return (
     <AuthContext.Provider
@@ -52,9 +55,11 @@ export const AuthProvider = ({ children }) => {
         user,
         signIn,
         singOut,
-        signed: !!user,
+        signed: !user,
       }}
     >
+
+
       {children}
     </AuthContext.Provider>
   );

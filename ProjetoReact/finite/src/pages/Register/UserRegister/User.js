@@ -4,10 +4,11 @@ import {Users, Header, FormItens, Option, SelectContainer,Label, Form, Input, En
 import HeaderContainer from "../Header/Header"
 import Footer from "../Footer/Footer"
 
-
+// React
 import { useState } from "react";
-import { api } from "../../../services/api";
 
+// Service Api
+import { api } from "../../../services/api";
 
 // Images
 import GoogleLogo from "../../../assets/google-logo.svg"
@@ -15,6 +16,7 @@ import GoogleLogo from "../../../assets/google-logo.svg"
 
 function User() {
 
+    // Registro de usuário - API
     const [person, setPerson] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -42,7 +44,7 @@ function User() {
                 <Form onSubmit={handleSubmit}>
                         <Option>Escolha uma opção</Option>
                         <SelectContainer>
-                            <select  type="text"
+                            <select type="text"
                                 value={person}
                                 onChange={(e) => setPerson(e.target.value)}> {/* Defina o atributo 'name' para corresponder ao nome no initialValues */}
                                 <option id="mainOption" value="Opções de Perfil">Opções de Perfil</option>
@@ -52,20 +54,17 @@ function User() {
                         </SelectContainer>
                     
                         <Label for="email">Nome de usuário ou E-mail</Label>
-                        <Input 
-                            type="email"
+                        <Input type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}/>
 
                         <Label for="userName">Data Nascimento</Label>
-                        <Input
-                            type="date"
+                        <Input type="date"
                             value={birthDate}
                             onChange={(e) => setBirthDate(e.target.value)}/>
 
                         <Label for="userName">Senha</Label>
-                        <Input
-                            type="password"
+                        <Input type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}/>
 
