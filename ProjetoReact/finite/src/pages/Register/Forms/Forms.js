@@ -5,12 +5,36 @@ import React, { useState } from 'react';
 import HeaderContainer from "../Header/Header"
 import Footer from "../Footer/Footer";
 
+// Service Api
+import { api } from "../../../services/api";
+
 // Images
 import Addition from "../../../assets/Addition.svg"
 import Subtraction from "../../../assets/Subtraction.svg"
 
+import { useLocation } from 'react-router-dom';
 
 function Forms() {
+
+    // Informações do usuário- Primeira tela (UserRegister)
+    const location = useLocation();
+    const userInfo = location.state ? location.state.formData : null;
+    
+    if (!userInfo) {
+        alert('Erro ao salvar os dados');
+    }
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        // Envia as informações preenchidas pelo usuário (data) para o endpoint "/user/create" da API.
+        console.log('--------------userInfo :', userInfo);
+        await api.post("/user/create", userInfo);
+
+    };
+
+
+    // Trecho para lidar com a definição do formulário
 
     const [value, setValue] = useState(0);
         
@@ -69,7 +93,7 @@ function Forms() {
                 </div>
             </TimeComponent>
 
-            <NextPreviousButtons>
+            <NextPreviousButtons onClick={handleFormSubmit}>
                 <Footer back="/Register/User" next="/Register/Theme"/>
             </NextPreviousButtons>
         </Form>

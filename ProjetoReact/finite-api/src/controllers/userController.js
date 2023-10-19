@@ -53,19 +53,18 @@ async function listUsers(request, response) {
 async function storeUser(request, response) {
 
     // Preparar o comando de execução no banco
-    const query = 'INSERT INTO users(name, userName, birthDate, email, password, personTypeId, status) VALUES(?, ?, ?, ?, ?, ?, ?);';
+    const query = 'INSERT INTO users(name, userName, email, userPicture, password, personTypeId, status) VALUES(?, ?, ?, ?, ?, ?, ?);';
 
     // Recuperar os dados enviados na requisição
-    const name = 'NomeUsuário'
-    const userName = 'UserName'
+    const userPicture = 'foto usuário'
     const personTypeId = request.body.person === 'Pessoa Física' ? 1 : 2
     const status = 1
 
     const params = Array(
-        name,
-        userName,
-        request.body.birthDate,
+        request.body.name,
+        request.body.userName,
         request.body.email,
+        userPicture,
         bcrypt.hashSync(request.body.password, 10),
         personTypeId,
         status

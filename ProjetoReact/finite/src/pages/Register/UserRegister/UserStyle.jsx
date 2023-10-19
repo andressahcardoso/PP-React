@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Users = styled.section`
     display: grid;
-    grid-template-rows: 15vh 56vh 17vh 12vh;
+    grid-template-rows: 15vh 59vh 14vh 12vh;
     grid-template-areas: 'header'
                          'form_itens'
                          'enterWith'
@@ -65,7 +65,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
     width: 76vw;
-    height: 2vh;
+    height: 1.5vh;
     margin-left: 2vw;
     margin-top: 1vh;
     padding: 2vh;
@@ -80,7 +80,6 @@ export const Input = styled.input`
 
 export const EnterWith = styled.section`
     grid-area: enterWith;
-
 `
 
 export const TextLine = styled.div`

@@ -16,7 +16,7 @@ function Footer(props) {
     }
 
     function goToNext() {
-        navigate(props.next)
+         navigate(props.next);
     }
 
     return (
