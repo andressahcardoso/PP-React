@@ -14,9 +14,28 @@ import { CheckBoxLabel as LightThemes2} from "./ThemeLight"; // Importe os estil
 import { CheckBoxLabel as DarkThemes2 } from "./ThemeDark"; // Importe os estilos para o tema escuro
 
 import { useState } from "react";
+import { useLocation } from "react-router-dom"
 
+import { api } from "../../../services/api";
 
 function Theme() {
+
+    let theme = 0;
+
+    const location = useLocation();
+    const userInfo = location.state ? location.state.formData : null;
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        console.log('aaaaa', theme)
+
+        const userInfoWithTheme = { ...userInfo, theme: darkMode ? 1 : 0 };
+
+        // Envia as informações preenchidas pelo usuário (data) para o endpoint "/user/create" da API.
+        console.log('userInfoWithTheme:', userInfoWithTheme);
+        await api.post("/user/create", userInfoWithTheme);
+
+    };
 
     const [darkMode, setDarkMode] = useState(false);
 
@@ -45,12 +64,12 @@ function Theme() {
                 
             <ButtonTheme>
                 <CheckBoxWrapper>
-                    <CheckBox id="checkbox" type="checkbox" onChange={toggleDarkMode} />
+                    <CheckBox id="checkbox" type="checkbox" onChange={toggleDarkMode}/>
                     <LabelComponents CheckBoxLabel2={true} htmlFor="checkbox" />
                 </CheckBoxWrapper>
             </ButtonTheme>
 
-            <NextPreviousButtons>
+            <NextPreviousButtons onClick={handleFormSubmit}>
                 <Footer back="/Register/Forms" next="/Feed"/>
             </NextPreviousButtons>
         </ThemeComponents>

@@ -5,59 +5,96 @@ import React, { useState } from 'react';
 import HeaderContainer from "../Header/Header"
 import Footer from "../Footer/Footer";
 
-// Service Api
-import { api } from "../../../services/api";
-
 // Images
 import Addition from "../../../assets/Addition.svg"
 import Subtraction from "../../../assets/Subtraction.svg"
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Forms() {
 
-    // Informações do usuário- Primeira tela (UserRegister)
+    const navigate = useNavigate();
+
     const location = useLocation();
     const userInfo = location.state ? location.state.formData : null;
-    
-    if (!userInfo) {
-        alert('Erro ao salvar os dados');
-    }
 
-    const handleFormSubmit = async (e) => {
+    const [value, setValue] = useState("00:00");
+
+    const handleIncrease = () => {
+        const novoMinuto = (parseInt(value.split(":")[1]) + 30) % 60; // Adiciona 30 aos minutos e faz com que os minutos permaneçam entre 0 e 59
+        let novaHora = 0;
+        if (novoMinuto !== 30) {
+            novaHora = (parseInt(value.split(":")[0]) + 1) % 24; // Adiciona 1 às horas e faz com que as horas permaneçam entre 0 e 23
+        } else {
+            novaHora = (parseInt(value.split(":")[0]))
+        }
+        const novoValor = `${novaHora.toString().padStart(2, '0')}:${novoMinuto.toString().padStart(2, '0')}`;
+        setValue(novoValor);
+    };
+    
+    const handleDecrease = () => {
+        const novoMinuto = (parseInt(value.split(":")[1]) - 30 + 60) % 60; // Subtrai 30 dos minutos e faz com que os minutos permaneçam entre 0 e 59
+        let novaHora = 0;
+        if (novoMinuto === 30) {
+            novaHora = (parseInt(value.split(":")[0]) - 1 + 24) % 24; // Subtrai 1 das horas e faz com que as horas permaneçam entre 0 e 23
+        } else {
+            novaHora = (parseInt(value.split(":")[0]))
+        }
+        const novoValor = `${novaHora.toString().padStart(2, '0')}:${novoMinuto.toString().padStart(2, '0')}`;
+        setValue(novoValor);
+    };
+    
+
+      
+    
+    const [value2, setValue2] = useState("00:00");
+
+    const handleIncrease2 = () => {
+        const novoMinuto = (parseInt(value2.split(":")[1]) + 30) % 60; // Adiciona 30 aos minutos e faz com que os minutos permaneçam entre 0 e 59
+        let novaHora = 0;
+        if (novoMinuto !== 30) {
+            novaHora = (parseInt(value2.split(":")[0]) + 1) % 24; // Adiciona 1 às horas e faz com que as horas permaneçam entre 0 e 23
+        } else {
+            novaHora = (parseInt(value2.split(":")[0]))
+        }
+        const novoValor = `${novaHora.toString().padStart(2, '0')}:${novoMinuto.toString().padStart(2, '0')}`;
+        setValue2(novoValor);
+    };
+    
+    const handleDecrease2 = () => {
+        const novoMinuto = (parseInt(value2.split(":")[1]) - 30 + 60) % 60; // Subtrai 30 dos minutos e faz com que os minutos permaneçam entre 0 e 59
+        let novaHora = 0;
+        if (novoMinuto === 30) {
+            novaHora = (parseInt(value2.split(":")[0]) - 1 + 24) % 24; // Subtrai 1 das horas e faz com que as horas permaneçam entre 0 e 23
+        } else {
+            novaHora = (parseInt(value2.split(":")[0]))
+        }
+        const novoValor = `${novaHora.toString().padStart(2, '0')}:${novoMinuto.toString().padStart(2, '0')}`;
+        setValue2(novoValor);
+    };
+
+
+    const handleSubmit = async (e) => {
+        // Evita que o envio do formulário seja tratado de maneira padrão pelo navegador e faz com que você possa determinar as ações futuras.
         e.preventDefault();
 
-        // Envia as informações preenchidas pelo usuário (data) para o endpoint "/user/create" da API.
-        console.log('--------------userInfo :', userInfo);
-        await api.post("/user/create", userInfo);
+        const { person, name, userName, email, password } = userInfo;
 
-    };
-
-
-    // Trecho para lidar com a definição do formulário
-
-    const [value, setValue] = useState(0);
+        const data = {
+            person,
+            name,
+            userName,
+            email,
+            password,
+            value,
+            value2
+        };
         
-    const handleIncrease = () => {
-        setValue(value + 1);
-    };
-        
-    const handleDecrease = () => {
-        setValue(value - 1);
+        console.log('data :', data);
+        // Navegar para a segunda tela e passar os dados como argumentos
+        navigate('/Register/Theme', { state: { formData: data } });
     };
 
-
-    const [value2, setValue2] = useState(0);
-        
-    const handleIncrease2 = () => {
-        setValue2(value2 + 1);
-    };
-        
-    const handleDecrease2 = () => {
-        setValue2(value2 - 1);
-    };
-
-    
     return (
         <Form> 
             <Header>
@@ -73,7 +110,8 @@ function Forms() {
                 <div>
                     <Time>24h</Time>
                     <Component24h>
-                    <Input type="number" value={value} />
+                    <Input type="time" value={value}
+                                onChange={(e) => setValue(e.target.value)} />
                     <ButtonIncrement>
                         <ButtonNum onClick={handleIncrease}><img src={Addition} alt="Addition"/></ButtonNum>
                         <ButtonNum onClick={handleDecrease}><img src={Subtraction} alt="Subtraction"/></ButtonNum>
@@ -84,7 +122,8 @@ function Forms() {
                 <div>
                     <Week>Semana</Week>
                     <Component24h>
-                    <Input type="number" value={value2} />
+                    <Input type="time" value={value2} 
+                                onChange={(e) => setValue2(e.target.value)}/>
                     <ButtonIncrement>
                         <ButtonNum onClick={handleIncrease2}><img src={Addition} alt="Addition"/></ButtonNum>
                         <ButtonNum onClick={handleDecrease2}><img src={Subtraction}  alt="Subtraction"/></ButtonNum>
@@ -93,7 +132,7 @@ function Forms() {
                 </div>
             </TimeComponent>
 
-            <NextPreviousButtons onClick={handleFormSubmit}>
+            <NextPreviousButtons onClick={handleSubmit}>
                 <Footer back="/Register/User" next="/Register/Theme"/>
             </NextPreviousButtons>
         </Form>

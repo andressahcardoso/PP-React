@@ -49,58 +49,95 @@ async function listUsers(request, response) {
     });
 }
 
-// Função que cria um novo usuário 
+// Função que cria um novo usuário
 async function storeUser(request, response) {
-
     // Preparar o comando de execução no banco
-    const query = 'INSERT INTO users(name, userName, email, userPicture, password, personTypeId, status) VALUES(?, ?, ?, ?, ?, ?, ?);';
+    const query1 = 'INSERT INTO users(name, userName, email, userPicture, password, personTypeId, status, themeDefinition) VALUES(?, ?, ?, ?, ?, ?, ?, ?);';
+    const query2 = 'INSERT INTO timequestion(userId, time_24h, time_week) VALUES(LAST_INSERT_ID(), ?, ?);'
 
     // Recuperar os dados enviados na requisição
-    const userPicture = 'foto usuário'
-    const personTypeId = request.body.person === 'Pessoa Física' ? 1 : 2
-    const status = 1
+    const userPicture = 'foto usuário';
+    const personTypeId = request.body.person === 'Pessoa Física' ? 1 : 2;
+    const status = 1;
 
-    const params = Array(
+    const params1 = [
         request.body.name,
         request.body.userName,
         request.body.email,
         userPicture,
         bcrypt.hashSync(request.body.password, 10),
         personTypeId,
-        status
-    );
+        status,
+        request.body.theme
+    ];
 
-    // Executa a ação no banco e valida os retornos para o client que realizou a solicitação
-    connection.query(query, params, (err, results) => {
-        try {
-            if (results) {
-                response
-                    .status(201)
-                    .json({
-                        success: true,
-                        message: `Sucesso! Usuário cadastrado.`,
-                        data: results
-                    });
-            } else {
-                response
-                    .status(400)
-                    .json({
+    const params2 = [
+        request.body.value,
+        request.body.value2
+    ];
+
+    // Executa as duas ações no banco e valida os retornos para o client que realizou a solicitação
+    connection.beginTransaction(function (err) {
+        if (err) {
+            response.status(400).json({
+                success: false,
+                message: "Ocorreu um erro. Não foi possível cadastrar usuário!",
+                query: err.sql,
+                sqlMessage: err.sqlMessage
+            });
+            return;
+        }
+
+        connection.query(query1, params1, function (err, results1) {
+            if (err) {
+                connection.rollback(function () {
+                    response.status(400).json({
                         success: false,
-                        message: `Não foi possível realizar o cadastro. Verifique os dados informados`,
+                        message: "Não foi possível realizar o cadastro. Verifique os dados informados",
                         query: err.sql,
                         sqlMessage: err.sqlMessage
                     });
-            }
-        } catch (e) { // Caso aconteça algum erro na execução
-            response.status(400).json({
-                    succes: false,
-                    message: "Ocorreu um erro. Não foi possível cadastrar usuário!",
-                    query: err.sql,
-                    sqlMessage: err.sqlMessage
                 });
-        }
+                return;
+            }
+
+            connection.query(query2, params2, function (err, results2) {
+                if (err) {
+                    connection.rollback(function () {
+                        response.status(400).json({
+                            success: false,
+                            message: "Não foi possível realizar o cadastro. Verifique os dados informados",
+                            query: err.sql,
+                            sqlMessage: err.sqlMessage
+                        });
+                    });
+                    return;
+                }
+
+                connection.commit(function (err) {
+                    if (err) {
+                        connection.rollback(function () {
+                            response.status(400).json({
+                                success: false,
+                                message: "Não foi possível realizar o cadastro. Verifique os dados informados",
+                                query: err.sql,
+                                sqlMessage: err.sqlMessage
+                            });
+                        });
+                        return;
+                    }
+
+                    response.status(201).json({
+                        success: true,
+                        message: "Sucesso! Usuário cadastrado.",
+                        data: results1
+                    });
+                });
+            });
+        });
     });
 }
+
 
 // Função que atualiza o usuário no banco
 async function updateUser(request, response) {
