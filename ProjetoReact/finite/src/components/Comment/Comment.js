@@ -13,6 +13,9 @@ import user3 from '../../assets/user4.svg'
 // Icons
 import closeIcon from '../../assets/Icons/closeIcon.svg'
 import publish from '../../assets/Icons/publish.svg'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext.js";
+import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 
 function Comment() {
@@ -23,71 +26,76 @@ function Comment() {
     }
 
 
-    return(
-        <>
-            <Div>
-                <Img src={postImg}/>
-            </Div>
+    const {authenticated} = useContext(AuthContext);
+    useAuthRedirect(authenticated);
 
-            <CommentDiv>
-                <Profile>
-                    <ProfileDiv>
-                        <ImgProfile src={PersonImg}/>
-                        <div>
-                            <PersonName>Prabhas Raju</PersonName>
-                            <PersonProfile>@Praba_01</PersonProfile>
-                        </div>
-                    </ProfileDiv>
+    if (authenticated === true) {
+        return(
+            <>
+                <Div>
+                    <Img src={postImg}/>
+                </Div>
 
-                    <ImgIcon onClick={goToPostsPage} src={closeIcon}/>
-                </Profile>
+                <CommentDiv>
+                    <Profile>
+                        <ProfileDiv>
+                            <ImgProfile src={PersonImg}/>
+                            <div>
+                                <PersonName>Prabhas Raju</PersonName>
+                                <PersonProfile>@Praba_01</PersonProfile>
+                            </div>
+                        </ProfileDiv>
 
-                <UserComment>
-                    <p>#Comentário do autor</p>
-                </UserComment>
+                        <ImgIcon onClick={goToPostsPage} src={closeIcon}/>
+                    </Profile>
 
-                <Community>
-                    <CommentPost>
-                        <ImgUser src={user1}/>
-                        <div>
-                            <PersonName>Usuário 1</PersonName>
-                            <CommentText>Comentário usuário 1</CommentText>
-                        </div>
-                    </CommentPost>
+                    <UserComment>
+                        <p>#Comentário do autor</p>
+                    </UserComment>
 
-                    <CommentPost>
-                        <ImgUser src={user2}/>
-                        <div>
-                            <PersonName>Usuário 2</PersonName>
-                            <CommentText>Comentário usuário 3 texto texto texto 
-                                texto texto texto texto texto texto texto 
-                                texto texto texto texto texto texto texto 
-                                texto texto texto texto texto </CommentText>
-                        </div>
-                    </CommentPost>
+                    <Community>
+                        <CommentPost>
+                            <ImgUser src={user1}/>
+                            <div>
+                                <PersonName>Usuário 1</PersonName>
+                                <CommentText>Comentário usuário 1</CommentText>
+                            </div>
+                        </CommentPost>
 
-                    <CommentMainUser>
-                        <ImgUser src={user3}/>
-                        <div>
-                            <PersonName>Você</PersonName>
-                            <CommentText>Seu comentário</CommentText>
-                        </div>
-                    </CommentMainUser>
+                        <CommentPost>
+                            <ImgUser src={user2}/>
+                            <div>
+                                <PersonName>Usuário 2</PersonName>
+                                <CommentText>Comentário usuário 3 texto texto texto 
+                                    texto texto texto texto texto texto texto 
+                                    texto texto texto texto texto texto texto 
+                                    texto texto texto texto texto </CommentText>
+                            </div>
+                        </CommentPost>
 
-                </Community>
+                        <CommentMainUser>
+                            <ImgUser src={user3}/>
+                            <div>
+                                <PersonName>Você</PersonName>
+                                <CommentText>Seu comentário</CommentText>
+                            </div>
+                        </CommentMainUser>
 
-                <AddComment>
-                    <DivImg>
-                        <ImgComment src={user3}/>
-                    </DivImg>
-                    <DivInput>
-                        <Input></Input>
-                    </DivInput>
-                    <ImgPublish src={publish}/>
-                </AddComment>
-            </CommentDiv>
-        </>
-    )
+                    </Community>
+
+                    <AddComment>
+                        <DivImg>
+                            <ImgComment src={user3}/>
+                        </DivImg>
+                        <DivInput>
+                            <Input></Input>
+                        </DivInput>
+                        <ImgPublish src={publish}/>
+                    </AddComment>
+                </CommentDiv>
+            </>
+        )
+    }
 }
 
 export default Comment;

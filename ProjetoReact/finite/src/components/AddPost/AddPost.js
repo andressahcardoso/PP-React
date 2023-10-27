@@ -1,7 +1,7 @@
 import { AddPostComponent, OptionButton, Publication, Stories, PostDiv, InputImg, PostImg, Text, Input, SelectContainer, DivConclued, Conclued, ImgConclued, FinalDiv} from "./AddPost.jsx";
 
 // React Router
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -10,6 +10,8 @@ import Nav from "../Nav/Nav";
 // Icon
 import imgConclued from '../../assets/Icons/concluedIcon.svg'
 import selectedImage2 from '../../assets/Icons/uploadIcon.svg'
+import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
+import { AuthContext } from "../../context/AuthContext.js";
 
 
 function AddPost() {
@@ -40,59 +42,64 @@ function AddPost() {
         reader.readAsDataURL(file);
       }
     };
-   
-    return (
-        <>
-            <MainHeader title='Nova Publicação'/>
-            
-            <AddPostComponent>
-                <OptionButton>
-                    <Publication>Publicação</Publication>
-                    <Stories>Stories</Stories>
-                </OptionButton>
+
+    const {authenticated} = useContext(AuthContext);
+    useAuthRedirect(authenticated);
+
+    if (authenticated === true) {
+        return (
+            <>
+                <MainHeader title='Nova Publicação'/>
+                
+                <AddPostComponent>
+                    <OptionButton>
+                        <Publication>Publicação</Publication>
+                        <Stories>Stories</Stories>
+                    </OptionButton>
 
 
-                <PostDiv onClick={handleImageClick}>
-                    <InputImg type="file" accept="image/*" onChange={handleImageChange} id="imageInput"/>
-                    {selectedImage && (
-                        <div>
-                            <PostImg src={selectedImage} alt="Imagem selecionada" />
-                        </div>
-                    )}
-                </PostDiv>
+                    <PostDiv onClick={handleImageClick}>
+                        <InputImg type="file" accept="image/*" onChange={handleImageChange} id="imageInput"/>
+                        {selectedImage && (
+                            <div>
+                                <PostImg src={selectedImage} alt="Imagem selecionada" />
+                            </div>
+                        )}
+                    </PostDiv>
 
-                <div>
-                    <Text>Adicionar Localização</Text>
-                    <Input/>
+                    <div>
+                        <Text>Adicionar Localização</Text>
+                        <Input/>
 
-                    <Text>Adicionar Legenda</Text>
-                    <Input/>
+                        <Text>Adicionar Legenda</Text>
+                        <Input/>
 
-                    <Text>Adicionar Categoria</Text>
-                    
-                    <SelectContainer>
-                        <select>
-                            <option id="mainOption">Opções de categoria</option>
-                            <option>Diversos</option>
-                            <option>Músicas</option>
-                            <option>Atividades e Esporte</option>
-                            <option>Natureza e Paisagem</option>
-                            <option>Educação</option>
-                        </select>
-                    </SelectContainer>
+                        <Text>Adicionar Categoria</Text>
+                        
+                        <SelectContainer>
+                            <select>
+                                <option id="mainOption">Opções de categoria</option>
+                                <option>Diversos</option>
+                                <option>Músicas</option>
+                                <option>Atividades e Esporte</option>
+                                <option>Natureza e Paisagem</option>
+                                <option>Educação</option>
+                            </select>
+                        </SelectContainer>
 
-                    <DivConclued>
-                        <Conclued>Publicar⠀</Conclued>
-                        <ImgConclued src={imgConclued}/>
-                    </DivConclued>
+                        <DivConclued>
+                            <Conclued>Publicar⠀</Conclued>
+                            <ImgConclued src={imgConclued}/>
+                        </DivConclued>
 
-                    <FinalDiv>⠀⠀</FinalDiv>
-                </div>
-            </AddPostComponent>
+                        <FinalDiv>⠀⠀</FinalDiv>
+                    </div>
+                </AddPostComponent>
 
-            <Nav/>
-        </>
-    )
+                <Nav/>
+            </>
+        )
+    }
 }
 
 export default AddPost;

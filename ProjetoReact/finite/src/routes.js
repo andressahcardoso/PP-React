@@ -21,10 +21,12 @@ import Categorie from './components/Categories/Categories';
 import Ranking from './components/Ranking/Ranking';
 import Report from './components/Report/Report';
 import UserSettings from './components/UserSettings/UserSettings';
+import { AuthProvider } from './context/AuthContext';
 
 
 function AppRoutes() {
   return (
+    <AuthProvider>
       <Routes>
         <Route path="/" Component={Main} />
         <Route path="/Login" Component={Login} />
@@ -46,6 +48,7 @@ function AppRoutes() {
         <Route path='/Report' Component={Report} />
         <Route path='/User/Settings' Component={UserSettings} />
       </Routes>
+    </AuthProvider>
   );
 }
 

@@ -10,6 +10,9 @@ import post2 from '../../assets/post2.png'
 import post3 from '../../assets/post3.png'
 import post4 from '../../assets/post4.png'
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext.js";
+import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 function UserAccount() {
 
@@ -22,64 +25,70 @@ function UserAccount() {
     function goToReport() {
         navigate('/Report')
     }
-    return (
-        <>
-        <Color>⠀⠀</Color>
 
-        <UserSection>
-            <UserInformations>
-                <TextDiv>
-                    <Num>200</Num>
-                    <Text>seguindo</Text>
-                </TextDiv>
-                <ImgDiv>
-                    <UserImg src={userImage}/>
-                </ImgDiv>
-                <TextDiv>
-                    <Num>325</Num>
-                    <Text>seguidores</Text>
-                </TextDiv>
-            </UserInformations>
+    const {authenticated} = useContext(AuthContext);
+    useAuthRedirect(authenticated);
 
-            <UserText>
-                <Account>@usuario_exemplo</Account>
-                <Description>usuario exemplo texto de descrição do perfil de usuário. Imagem e vídeo.</Description>
-            </UserText>
+    if (authenticated === true) {
+        return (
+            <>
+            <Color>⠀⠀</Color>
 
-            <BtnDiv>
-                <EditBtn onClick={goToUserSettings}>Editar perfil</EditBtn>
-                <ReportBtn onClick={goToReport}>Relatório</ReportBtn>
-            </BtnDiv>
+            <UserSection>
+                <UserInformations>
+                    <TextDiv>
+                        <Num>200</Num>
+                        <Text>seguindo</Text>
+                    </TextDiv>
+                    <ImgDiv>
+                        <UserImg src={userImage}/>
+                    </ImgDiv>
+                    <TextDiv>
+                        <Num>325</Num>
+                        <Text>seguidores</Text>
+                    </TextDiv>
+                </UserInformations>
+
+                <UserText>
+                    <Account>@usuario_exemplo</Account>
+                    <Description>usuario exemplo texto de descrição do perfil de usuário. Imagem e vídeo.</Description>
+                </UserText>
+
+                <BtnDiv>
+                    <EditBtn onClick={goToUserSettings}>Editar perfil</EditBtn>
+                    <ReportBtn onClick={goToReport}>Relatório</ReportBtn>
+                </BtnDiv>
+                
+                <OptionDiv>
+                    <P>Tudo</P>
+                    <P>Fotos</P>
+                    <P>Vídeos</P>
+                </OptionDiv>
+
+                <PostSection>
+                    <DivImage>
+                        <PostImage src={post1}/>
+                    </DivImage>
+
+                    <DivImage>
+                        <PostImage src={post2}/>
+                    </DivImage>
             
-            <OptionDiv>
-                <P>Tudo</P>
-                <P>Fotos</P>
-                <P>Vídeos</P>
-            </OptionDiv>
+                    <DivImage>
+                        <PostImage src={post3}/>
+                    </DivImage>
 
-            <PostSection>
-                <DivImage>
-                    <PostImage src={post1}/>
-                </DivImage>
+                    <DivImage>
+                        <PostImage src={post4}/>
+                    </DivImage>
+                </PostSection>
 
-                <DivImage>
-                    <PostImage src={post2}/>
-                </DivImage>
-        
-                <DivImage>
-                    <PostImage src={post3}/>
-                </DivImage>
+            </UserSection>
 
-                <DivImage>
-                    <PostImage src={post4}/>
-                </DivImage>
-            </PostSection>
-
-        </UserSection>
-
-        <Nav/>
-        </>
-    )
+            <Nav/>
+            </>
+        )
+    }
 }
 
 export default UserAccount;

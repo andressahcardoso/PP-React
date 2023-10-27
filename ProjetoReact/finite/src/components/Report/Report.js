@@ -10,6 +10,9 @@ import Nav from "../Nav/Nav";
 import previous from '../../assets/Icons/backIcon.svg'
 import rankingIcon from '../../assets/rankingIcon.svg'
 import post from '../../assets/Icons/post.svg'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext.js";
+import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 
 function Report() {
@@ -24,42 +27,47 @@ function Report() {
         navigate(-1)
     }
 
-    return (
-        <>
-             <HeaderComponent>
-                <img onClick={goToBack} src={previous} alt="Relatório"></img>
-                <h2>Relatório</h2>
-                <img onClick={goToRanking} src={rankingIcon} alt="Ranking"></img>
-            </HeaderComponent>
-            
-            <AddPostComponent>
-                <OptionButton>
-                    <Publication>Hoje</Publication>
-                    <Stories>Semana</Stories>
-                </OptionButton>
+    const {authenticated} = useContext(AuthContext);
+    useAuthRedirect(authenticated);
 
-                <TimeDiv>
-                    <Time>
-                        <Num>1:15</Num>
-                    </Time>
-                    <Text>Tempo total ativo</Text>
-                </TimeDiv>
+    if (authenticated === true) {
+        return (
+            <>
+                <HeaderComponent>
+                    <img onClick={goToBack} src={previous} alt="Relatório"></img>
+                    <h2>Relatório</h2>
+                    <img onClick={goToRanking} src={rankingIcon} alt="Ranking"></img>
+                </HeaderComponent>
+                
+                <AddPostComponent>
+                    <OptionButton>
+                        <Publication>Hoje</Publication>
+                        <Stories>Semana</Stories>
+                    </OptionButton>
 
-                <TextDiv>
-                    <Text2>Total de publicação visualizadas</Text2>
-                </TextDiv>
+                    <TimeDiv>
+                        <Time>
+                            <Num>1:15</Num>
+                        </Time>
+                        <Text>Tempo total ativo</Text>
+                    </TimeDiv>
 
-                <PostDiv>
-                    <Num2>30</Num2>
-                    <Div>
-                        <Img src={post}/>
-                    </Div>
-                </PostDiv>
-            </AddPostComponent>
+                    <TextDiv>
+                        <Text2>Total de publicação visualizadas</Text2>
+                    </TextDiv>
 
-            <Nav/>
-        </>
-    )
+                    <PostDiv>
+                        <Num2>30</Num2>
+                        <Div>
+                            <Img src={post}/>
+                        </Div>
+                    </PostDiv>
+                </AddPostComponent>
+
+                <Nav/>
+            </>
+        )
+    }
 }
 
 export default Report;

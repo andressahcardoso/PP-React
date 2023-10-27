@@ -1,7 +1,7 @@
 import { SearchComponent, Input, ImgSearch, DivInput, Div, UserDiv, Img, PersonName, PersonProfile, Btn, DivUser} from "./Search.jsx";
 
 // React Router
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 
 // Components
 import MainHeader from "../MainHeader/MainHeader.js";
@@ -14,6 +14,8 @@ import user2 from '../../assets/user2.svg'
 import user3 from '../../assets/user3.svg'
 import user4 from '../../assets/user4.svg'
 import user5 from '../../assets/user1.svg'
+import { AuthContext } from "../../context/AuthContext.js";
+import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 
 // Lista fixa de usuários - APENAS PARA TESTE INICIAL
@@ -45,39 +47,44 @@ function Search() {
     }, [searchTerm, filterUsers]);
 
 
-    return (
-        <>
-            <MainHeader title='Pesquisar'/>
-            
-            <SearchComponent>
-                <div>
-                    <DivInput>
-                        <Input type="text" placeholder="Buscar por usuário" value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)} />
-                        <ImgSearch src={searchIcon} alt="Icone de Pesquisa"/>
-                    </DivInput>
+    const {authenticated} = useContext(AuthContext);
+    useAuthRedirect(authenticated);
 
-                    <Div>
-                        {filteredUsers.map((user) => (
-                            <UserDiv key={user.idus}>
-                                <DivUser>
-                                    <Img src={user.picture}/>
-                                    <div>
-                                        <PersonName>{user.name}</PersonName>
-                                        <PersonProfile>{user.acount}</PersonProfile>
-                                    </div>  
-                                </DivUser>
+    if (authenticated === true) {
+        return (
+            <>
+                <MainHeader title='Pesquisar'/>
+                
+                <SearchComponent>
+                    <div>
+                        <DivInput>
+                            <Input type="text" placeholder="Buscar por usuário" value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)} />
+                            <ImgSearch src={searchIcon} alt="Icone de Pesquisa"/>
+                        </DivInput>
 
-                                <Btn>Seguir</Btn>
-                            </UserDiv>
-                        ))}
-                    </Div>
-                </div>
-            </SearchComponent>
+                        <Div>
+                            {filteredUsers.map((user) => (
+                                <UserDiv key={user.idus}>
+                                    <DivUser>
+                                        <Img src={user.picture}/>
+                                        <div>
+                                            <PersonName>{user.name}</PersonName>
+                                            <PersonProfile>{user.acount}</PersonProfile>
+                                        </div>  
+                                    </DivUser>
 
-            <Nav/>
-        </>
-    )
+                                    <Btn>Seguir</Btn>
+                                </UserDiv>
+                            ))}
+                        </Div>
+                    </div>
+                </SearchComponent>
+
+                <Nav/>
+            </>
+        )
+    }
 }
 
 export default Search;

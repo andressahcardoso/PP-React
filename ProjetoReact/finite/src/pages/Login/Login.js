@@ -1,7 +1,7 @@
 import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv} from "./LoginStyle"
 
 // React Router
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { useContext } from "react";
 
@@ -11,25 +11,46 @@ import { AuthContext } from "../../context/AuthContext";
 // Images
 import PreviousImg from '../../assets/previous.png';
 import Logo from '../../assets/Finite_Logo.svg';
+import { api } from "../../services/api";
+import { useHomeRedirect } from "../../hooks/useHomeRedirect";
 
 function Login() {
 
     // Validação de Login API
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [signIn, signed] = useContext(AuthContext);
-
-    console.log(signIn)
+    const [user, setUser] = useState(null);
+    const [error, setError] = useState('');
   
     const handleSubmit = async (e) => {
       e.preventDefault();
       const data = {
         email,
         password,
-      };
-      await signIn(data);
+      }; 
+      
+      try {
+        const response = await api.post('/auth/login', data);
+
+        if (response.data.success === true) {
+            api.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${response.data.data[0].token}`;
+
+            localStorage.setItem('@Auth:user', JSON.stringify(response.data.data[0].email));
+            localStorage.setItem('@Auth:token', response.data.data[0].token);
+            setUser(response.data.data[0]);
+
+            navigate('/Feed')
+        } else {
+            setError('Erro ao logar usuário!');
+        }
+
+      } catch (error) {
+        console.error("Erro ao fazer login: ", error);
+        setError('Erro ao logar usuário!');
+      }
     };
-    console.log(signed);
 
 
     // Navigate
@@ -72,7 +93,9 @@ function Login() {
     //     google.accounts.id.prompt();
     // }, [handleCallbackResponse]);
     
-    if (!signed) {
+    const {authenticated} = useContext(AuthContext);
+    useHomeRedirect(authenticated)
+
         return (
             <>
                 <Header>
@@ -86,7 +109,7 @@ function Login() {
                 </WelcomeBack>
 
                 <FormItens>
-                    <form onSubmit={handleSubmit} >
+                    <form>
                           
                         <Label for="email">Nome de usuário ou E-mail</Label>
                         <Input type="email"
@@ -100,7 +123,7 @@ function Login() {
 
                         <ForgotPassword>Esqueceu a senha?</ForgotPassword>
 
-                        <LoginButton type="submit" value="Entrar">Entrar</LoginButton>
+                        <LoginButton onClick={handleSubmit} value="Entrar">Entrar</LoginButton>
                     </form>
                 </FormItens>
 
@@ -138,9 +161,6 @@ function Login() {
                 </EnterWith>
             </>
         )
-    } else {
-        return <Navigate to="/Feed" />;
     } 
-}
 
 export default Login;

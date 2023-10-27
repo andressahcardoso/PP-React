@@ -1,7 +1,7 @@
 import { SearchComponent, Input, ImgSearch, DivInput, ConfigDiv, ConfigOption, Img, Text, ImgDiv } from "./Categories.jsx";
 
 // React Router
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -14,6 +14,8 @@ import sport from '../../assets/Icons/sport.svg'
 import nature from '../../assets/Icons/nature.svg'
 import education from '../../assets/Icons/education.svg'
 import searchIcon from '../../assets/Icons/searchIcon.svg'
+import { AuthContext } from "../../context/AuthContext.js";
+import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 // Lista fixa de categorias - APENAS PARA TESTE INICIAL
 const userList = [
@@ -42,38 +44,42 @@ function Categorie() {
         filterUsers();
     }, [searchTerm, filterUsers]);
 
+    const {authenticated} = useContext(AuthContext);
+    useAuthRedirect(authenticated);
 
-    return (
-        <>
-            <MainHeader title='Categorias'/>
-            
-            <SearchComponent>
-                <div>
-                    <DivInput>
-                        <Input type="text" placeholder="Buscar por categoria" value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)} />
-                        <ImgSearch src={searchIcon}/>
-                    </DivInput>
-
+    if (authenticated === true) {
+        return (
+            <>
+                <MainHeader title='Categorias'/>
+                
+                <SearchComponent>
                     <div>
-                    {filteredUsers.map((categorie) => (
-                       <ConfigDiv>
-                            <ConfigOption>
-                                <ImgDiv>
-                                    <Img src={categorie.picture}/>
-                                </ImgDiv>
-                                <Text>{categorie.name}</Text>
-                            </ConfigOption>
-                       </ConfigDiv>
-                    ))}
+                        <DivInput>
+                            <Input type="text" placeholder="Buscar por categoria" value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)} />
+                            <ImgSearch src={searchIcon}/>
+                        </DivInput>
 
+                        <div>
+                        {filteredUsers.map((categorie) => (
+                        <ConfigDiv>
+                                <ConfigOption>
+                                    <ImgDiv>
+                                        <Img src={categorie.picture}/>
+                                    </ImgDiv>
+                                    <Text>{categorie.name}</Text>
+                                </ConfigOption>
+                        </ConfigDiv>
+                        ))}
+
+                        </div>
                     </div>
-                </div>
-            </SearchComponent>
+                </SearchComponent>
 
-            <Nav/>
-        </>
-    )
+                <Nav/>
+            </>
+        )
+    }
 }
 
 export default Categorie;

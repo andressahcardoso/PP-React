@@ -1,65 +1,31 @@
 import { createContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const [authenticated, setAuthenticated] = useState(false);
+  console.log('autheticated :', authenticated);
 
   useEffect(() => {
-    const loadingStoreData = () => {
-      const storageUser = localStorage.getItem("@Auth:user");
-      const storageToken = localStorage.getItem("@Auth:token");
-
-      if (storageUser && storageToken) {
-        setUser(storageUser);
+    const checkUser = () => {
+      if (!localStorage.getItem('@Auth:token')) {
+        setAuthenticated(false);
+      } else {
+        setAuthenticated(true);
       }
     };
-    loadingStoreData();
-  }, []);
-console.log(user)
-  const signIn = async ({ email, password }) => {
-    try {
-      const response = await api.post("/auth/login", { email, password });
-      if (response.data.error) {
-        alert(response.data.error);
-      } else {
-        setUser(response.data);
-        console.log(response.data)
-        api.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.data.tokenApi}`;
-        console.log(response)
-        localStorage.setItem("@Auth:user", JSON.stringify(response.data.data[0].name));
-        localStorage.setItem("@Auth:token", response.data.accessToken);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    
+    checkUser();
 
-  const singOut = () => {
-    localStorage.clear();
-    setUser(null);
-    <Navigate to="/" />;
-  };
-
- 
+  }, [navigate]);
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        signIn,
-        singOut,
-        signed: !user,
-      }}
-    >
-
-
+    <AuthContext.Provider value={{authenticated}}>
       {children}
     </AuthContext.Provider>
   );
