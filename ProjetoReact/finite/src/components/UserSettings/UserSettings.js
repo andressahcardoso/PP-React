@@ -12,9 +12,6 @@ import edit from '../../assets/Icons/editIcon.svg'
 
 // Images
 import user from '../../assets/user4.svg'
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 function UserSettings() {
 
@@ -24,10 +21,6 @@ function UserSettings() {
         navigate(-1)
     }
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
         return (
             <>
                 <HeaderComponent>
@@ -73,7 +66,6 @@ function UserSettings() {
                 <Nav/>
             </>
         )
-    }
 }
 
 export default UserSettings;

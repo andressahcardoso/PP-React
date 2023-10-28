@@ -1,7 +1,7 @@
 import { SearchComponent, Input, ImgSearch, DivInput, ConfigDiv, ConfigOption, Img, Text, ImgDiv } from "./Categories.jsx";
 
 // React Router
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -14,8 +14,6 @@ import sport from '../../assets/Icons/sport.svg'
 import nature from '../../assets/Icons/nature.svg'
 import education from '../../assets/Icons/education.svg'
 import searchIcon from '../../assets/Icons/searchIcon.svg'
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 // Lista fixa de categorias - APENAS PARA TESTE INICIAL
 const userList = [
@@ -44,10 +42,7 @@ function Categorie() {
         filterUsers();
     }, [searchTerm, filterUsers]);
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
+    
         return (
             <>
                 <MainHeader title='Categorias'/>
@@ -79,7 +74,7 @@ function Categorie() {
                 <Nav/>
             </>
         )
-    }
+
 }
 
 export default Categorie;

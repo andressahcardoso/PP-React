@@ -6,14 +6,11 @@ import Footer from "../Footer/Footer"
 
 // React
 import { useState } from "react";
-
-// Service Api
-import { api } from "../../../services/api";
+import { useNavigate } from 'react-router-dom';
 
 // Images
 import GoogleLogo from "../../../assets/google-logo.svg"
 
-import { useNavigate } from 'react-router-dom';
 
 function User() {
 

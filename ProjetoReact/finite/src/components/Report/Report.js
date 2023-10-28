@@ -10,9 +10,6 @@ import Nav from "../Nav/Nav";
 import previous from '../../assets/Icons/backIcon.svg'
 import rankingIcon from '../../assets/rankingIcon.svg'
 import post from '../../assets/Icons/post.svg'
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 
 function Report() {
@@ -27,11 +24,7 @@ function Report() {
         navigate(-1)
     }
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
-        return (
+    return (
             <>
                 <HeaderComponent>
                     <img onClick={goToBack} src={previous} alt="Relatório"></img>
@@ -66,8 +59,7 @@ function Report() {
 
                 <Nav/>
             </>
-        )
-    }
+    )
 }
 
 export default Report;

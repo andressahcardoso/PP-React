@@ -1,7 +1,7 @@
 import { SearchComponent, Input, ImgSearch, DivInput, ConfigDiv, ConfigOption, Img, Text, FiniteDiv, Title, SubText, Year } from "./Config.jsx";
 
 // React Router
-import React, { useContext } from 'react';
+import React from 'react';
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -14,8 +14,6 @@ import themeIcon from '../../assets/Icons/themeIcon.svg'
 import privacyIcon from '../../assets/Icons/privacyIcon.svg'
 import closeAccountIcon from '../../assets/Icons/closeAccountIcon.svg'
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 function Config() {
 
@@ -26,16 +24,12 @@ function Config() {
     }
 
     const handleLogout = () => {
-        localStorage.removeItem('email')
-        localStorage.removeItem('token')
+        localStorage.clear()
         navigate('/')
     }
 
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
+    
         return (
             <>
                 <MainHeader title='Configurações'/>
@@ -92,7 +86,7 @@ function Config() {
                 <Nav/>
             </>
         )
-    }
+   
 }
 
 export default Config;

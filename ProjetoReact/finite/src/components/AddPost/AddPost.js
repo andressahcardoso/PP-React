@@ -1,7 +1,7 @@
 import { AddPostComponent, OptionButton, Publication, Stories, PostDiv, InputImg, PostImg, Text, Input, SelectContainer, DivConclued, Conclued, ImgConclued, FinalDiv} from "./AddPost.jsx";
 
 // React Router
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -10,8 +10,6 @@ import Nav from "../Nav/Nav";
 // Icon
 import imgConclued from '../../assets/Icons/concluedIcon.svg'
 import selectedImage2 from '../../assets/Icons/uploadIcon.svg'
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
-import { AuthContext } from "../../context/AuthContext.js";
 
 
 function AddPost() {
@@ -43,10 +41,6 @@ function AddPost() {
       }
     };
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
         return (
             <>
                 <MainHeader title='Nova Publicação'/>
@@ -99,7 +93,6 @@ function AddPost() {
                 <Nav/>
             </>
         )
-    }
 }
 
 export default AddPost;

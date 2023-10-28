@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 
 // Components
 import Main from './pages/Main/Main';
@@ -21,13 +21,18 @@ import Categorie from './components/Categories/Categories';
 import Ranking from './components/Ranking/Ranking';
 import Report from './components/Report/Report';
 import UserSettings from './components/UserSettings/UserSettings';
-import { AuthProvider } from './context/AuthContext';
 
+const PrivateRoute = ({children}) => {
+  const isAuthenticated = localStorage.getItem("@Auth:token") !== null;
+  return isAuthenticated ? children : <Navigate to='/'/>
+}
 
 function AppRoutes() {
   return (
-    <AuthProvider>
+    <BrowserRouter>
       <Routes>
+
+        {/* Public routes */}
         <Route path="/" Component={Main} />
         <Route path="/Login" Component={Login} />
         <Route path="/Register/Informations" Component={Informations} />
@@ -35,20 +40,22 @@ function AppRoutes() {
         <Route path='/Register/Forms' Component={Form} />
         <Route path='/Register/Theme' Component={Theme} />
         <Route path='/Feed/Commerce' Component={FeedCommerce} />
-        <Route path='/Feed' Component={Feed} />
-        <Route path='/Comment' Component={Comment} />
-        <Route path='/Search' Component={Search} />
-        <Route path='/Add/Post' Component={AddPost} />
-        <Route path='/Config' Component={Config} />
-        <Route path='/User/Account' Component={UserAccount} />
-        <Route path='/Stories' Component={Stories} />
-        <Route path='/User/Storie' Component={UserStorie} />
-        <Route path='/Categorie' Component={Categorie} />
-        <Route path='/Ranking' Component={Ranking} />
-        <Route path='/Report' Component={Report} />
-        <Route path='/User/Settings' Component={UserSettings} />
+
+        {/* Private routes */}
+        <Route path="/Feed" element={<PrivateRoute><Feed/></PrivateRoute>} />
+        <Route path="/Comment" element={<PrivateRoute><Comment/></PrivateRoute>} />
+        <Route path="/Search" element={<PrivateRoute><Search/></PrivateRoute>} />
+        <Route path="/Add/Post" element={<PrivateRoute><AddPost/></PrivateRoute>} />
+        <Route path="/Config" element={<PrivateRoute><Config/></PrivateRoute>} />
+        <Route path="/User/Account" element={<PrivateRoute><UserAccount/></PrivateRoute>} />
+        <Route path="/Stories" element={<PrivateRoute><Stories/></PrivateRoute>} />
+        <Route path="/User/Storie" element={<PrivateRoute><UserStorie/></PrivateRoute>} />
+        <Route path="/Categorie" element={<PrivateRoute><Categorie/></PrivateRoute>} />
+        <Route path="/Ranking" element={<PrivateRoute><Ranking/></PrivateRoute>} />
+        <Route path="/Report" element={<PrivateRoute><Report/></PrivateRoute>} />
+        <Route path="/User/Settings" element={<PrivateRoute><UserSettings/></PrivateRoute>} />
       </Routes>
-    </AuthProvider>
+    </BrowserRouter>
   );
 }
 

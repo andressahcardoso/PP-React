@@ -2,7 +2,6 @@ import { FeedComponent, OptionsComponent, Div, ImgOption, OptionsText, Categorie
 
 // React Router
 import { useNavigate } from "react-router"
-import { useContext } from "react";
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -17,8 +16,6 @@ import postImg from '../../assets/picture1.svg'
 import PersonImg from '../../assets/user.svg'
 import postImg2 from '../../assets/picture2.png'
 import PersonImg2 from '../../assets/person2.svg'
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 
 function Feed() {
@@ -44,10 +41,10 @@ function Feed() {
         navigate('/Stories')
     }
 
-    const { authenticated } = useContext(AuthContext);
-    useAuthRedirect(authenticated);
+    // const { authenticated } = useContext(AuthContext);
+    // useAuthRedirect(authenticated);
 
-    if (authenticated === true) {
+    // if (authenticated === true) {
         return (
             <>
                 <MainHeader title='Finite'/>
@@ -80,7 +77,7 @@ function Feed() {
                 <Nav/>
             </>
         )
-    }
+    // }
 }
 
 export default Feed;

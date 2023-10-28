@@ -1,5 +1,21 @@
 import styled from "styled-components";
 
+export const ErrorMesaage = styled.p`
+    color: rgba(145, 159, 229, 1);
+    font-size: 1em;
+`
+
+export const ErrorDiv = styled.div`
+    border-top: 2px solid rgba(145, 159, 229, 1);
+    border-bottom: 2px solid rgba(145, 159, 229, 1);
+    color: white;
+    height: 6vh;
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+`
 
 // Start | Header
 
@@ -42,17 +58,17 @@ export const Subtitle = styled.h3`
 
 export const FormItens = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    height: 46vh;
+    height: 52vh;
     padding-top: 3vh;
         display: flex;
         justify-content: center; /* Alinhar no centro - HORIZONTAL */
-        align-content: center; /* Alinhar no centro - VERTICAL */
+        align-content: space-around; /* Alinhar no centro - VERTICAL */
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */
 `
 
 export const Label = styled.label`
     display: block; /* Manter o label sobre o input */
-    margin-top: 2vh;
+    margin-top: 4vh;
     color: #666161;
     font-weight: 500;
     font-size: 18px;
@@ -61,7 +77,6 @@ export const Label = styled.label`
 export const Input = styled.input`
     width: 80vw;
     height: 2vh;
-    margin-top: 1vh;
     padding: 2vh;
     border-radius: 10px;
     border: solid 1px rgb(223, 228, 254);
@@ -95,7 +110,7 @@ export const LoginButton  = styled.button`
 // Start | Enter with 
 
 export const EnterWith = styled.section`
-    height: 24vh;
+    height: 14vh;
 `
 
 export const TextLine = styled.div`
@@ -103,7 +118,7 @@ export const TextLine = styled.div`
     width: 80vw;
     text-align: center;
     margin-left: 10vw;
-    padding-top: 2vh;
+    padding-top: 1vh;
     border-bottom: solid 3px rgba(145, 159, 229, 1);
 `
 

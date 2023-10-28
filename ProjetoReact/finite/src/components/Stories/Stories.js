@@ -23,9 +23,6 @@ import DateIcon from '../../assets/Icons/line.svg'
 
 
 import { useUserContext } from './UserContext.js';
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 function Stories() {
 
@@ -38,10 +35,6 @@ function Stories() {
         navigate(`/User/Storie`);
     }
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
         return (
             <>
                 <MainHeader title='Stories'/>
@@ -151,7 +144,6 @@ function Stories() {
                 <Nav/>
             </>
         )
-    }
 }
 
 export default Stories;

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import NextButtonImg from "../../../assets/next.png"
 
 
-function Footer(props) {
+function Footer(props, {onClick}) {
 
     const navigate = useNavigate();
 

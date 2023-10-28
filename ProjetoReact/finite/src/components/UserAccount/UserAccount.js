@@ -10,9 +10,6 @@ import post2 from '../../assets/post2.png'
 import post3 from '../../assets/post3.png'
 import post4 from '../../assets/post4.png'
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 function UserAccount() {
 
@@ -26,10 +23,6 @@ function UserAccount() {
         navigate('/Report')
     }
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
         return (
             <>
             <Color>⠀⠀</Color>
@@ -88,7 +81,6 @@ function UserAccount() {
             <Nav/>
             </>
         )
-    }
 }
 
 export default UserAccount;

@@ -18,9 +18,6 @@ import second from '../../assets/Icons/second.svg'
 import third from '../../assets/Icons/third.svg'
 import reportIcon from '../../assets/reportIcon.svg'
 import previous from '../../assets/Icons/backIcon.svg'
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 function Ranking() {
 
@@ -34,10 +31,6 @@ function Ranking() {
         navigate(-1)
     }
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
         return (
             <>
                 <HeaderComponent>
@@ -166,7 +159,6 @@ function Ranking() {
                 <Nav/>
             </>
         )
-    }
 }
 
 export default Ranking;

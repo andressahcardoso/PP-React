@@ -1,29 +1,46 @@
-import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv} from "./LoginStyle"
+import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv, ErrorMesaage, ErrorDiv} from "./LoginStyle"
 
 // React Router
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
-import { useContext } from "react";
-
-// AuthContext
-import { AuthContext } from "../../context/AuthContext";
 
 // Images
 import PreviousImg from '../../assets/previous.png';
 import Logo from '../../assets/Finite_Logo.svg';
 import { api } from "../../services/api";
-import { useHomeRedirect } from "../../hooks/useHomeRedirect";
+
+// Icons
+import { LuAlertTriangle } from 'react-icons/lu';
 
 function Login() {
 
     // Validação de Login API
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [user, setUser] = useState(null);
-    const [error, setError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [credentialError, setCredential] = useState('');
+    // const [user, setUser] = useState(null);
+    // const [error, setError] = useState('');
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+
+    if (!email) {
+        setEmailError('O E-mail é obrigatório!');
+        setCredential('')
+    } else {
+        setEmailError('');
+    }
+
+    if (!password) {
+        setPasswordError('A Senha é obrigatória!');
+        setCredential('')
+    } else {
+        setPasswordError('');
+    }
+
+    if (email && password) {
       const data = {
         email,
         password,
@@ -31,6 +48,7 @@ function Login() {
       
       try {
         const response = await api.post('/auth/login', data);
+        setCredential('')
 
         if (response.data.success === true) {
             api.defaults.headers.common[
@@ -39,17 +57,18 @@ function Login() {
 
             localStorage.setItem('@Auth:user', JSON.stringify(response.data.data[0].email));
             localStorage.setItem('@Auth:token', response.data.data[0].token);
-            setUser(response.data.data[0]);
+            // setUser(response.data.data[0]);
 
             navigate('/Feed')
         } else {
-            setError('Erro ao logar usuário!');
+            console.log('Erro ao logar usuário!');
         }
 
       } catch (error) {
         console.error("Erro ao fazer login: ", error);
-        setError('Erro ao logar usuário!');
+        setCredential('As credenciais informadas estão incorretas!');
       }
+    }
     };
 
 
@@ -93,9 +112,6 @@ function Login() {
     //     google.accounts.id.prompt();
     // }, [handleCallbackResponse]);
     
-    const {authenticated} = useContext(AuthContext);
-    useHomeRedirect(authenticated)
-
         return (
             <>
                 <Header>
@@ -110,16 +126,24 @@ function Login() {
 
                 <FormItens>
                     <form>
+                        {credentialError && 
+                            <ErrorDiv>
+                                <ErrorMesaage><LuAlertTriangle/> {credentialError}</ErrorMesaage>
+                            </ErrorDiv>
+                        }
                           
                         <Label for="email">Nome de usuário ou E-mail</Label>
                         <Input type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}/>
+                        {emailError && <ErrorMesaage><LuAlertTriangle/> {emailError}</ErrorMesaage>}
 
                         <Label for="password">Senha</Label>
                         <Input type="password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}/>      
+                            onChange={(e) => setPassword(e.target.value)}/>   
+                        {passwordError && <ErrorMesaage><LuAlertTriangle/> {passwordError}</ErrorMesaage>}
+   
 
                         <ForgotPassword>Esqueceu a senha?</ForgotPassword>
 

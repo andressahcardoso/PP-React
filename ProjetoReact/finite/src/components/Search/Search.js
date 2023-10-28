@@ -1,7 +1,7 @@
 import { SearchComponent, Input, ImgSearch, DivInput, Div, UserDiv, Img, PersonName, PersonProfile, Btn, DivUser} from "./Search.jsx";
 
 // React Router
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // Components
 import MainHeader from "../MainHeader/MainHeader.js";
@@ -14,8 +14,6 @@ import user2 from '../../assets/user2.svg'
 import user3 from '../../assets/user3.svg'
 import user4 from '../../assets/user4.svg'
 import user5 from '../../assets/user1.svg'
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 
 // Lista fixa de usuários - APENAS PARA TESTE INICIAL
@@ -47,10 +45,6 @@ function Search() {
     }, [searchTerm, filterUsers]);
 
 
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
         return (
             <>
                 <MainHeader title='Pesquisar'/>
@@ -84,7 +78,6 @@ function Search() {
                 <Nav/>
             </>
         )
-    }
 }
 
 export default Search;

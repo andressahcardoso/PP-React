@@ -13,9 +13,6 @@ import user3 from '../../assets/user4.svg'
 // Icons
 import closeIcon from '../../assets/Icons/closeIcon.svg'
 import publish from '../../assets/Icons/publish.svg'
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext.js";
-import { useAuthRedirect } from "../../hooks/useAuthRedirect.js";
 
 
 function Comment() {
@@ -25,11 +22,6 @@ function Comment() {
         navigate(-1);
     }
 
-
-    const {authenticated} = useContext(AuthContext);
-    useAuthRedirect(authenticated);
-
-    if (authenticated === true) {
         return(
             <>
                 <Div>
@@ -95,7 +87,6 @@ function Comment() {
                 </CommentDiv>
             </>
         )
-    }
 }
 
 export default Comment;
