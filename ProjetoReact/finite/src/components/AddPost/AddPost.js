@@ -11,9 +11,44 @@ import Nav from "../Nav/Nav";
 import imgConclued from '../../assets/Icons/concluedIcon.svg'
 import selectedImage2 from '../../assets/Icons/uploadIcon.svg'
 
+// API
+import { api } from "../../services/api.js";
+import axios from "axios";
 
 function AddPost() {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [location, setLocation] = useState('');
+    const [category, setCategory] = useState('');
+    const [content, setContent] = useState('');
+
+    const handleSubmit = async (e) => {
+        // Evita que o envio do formulário seja tratado de maneira padrão pelo navegador e faz com que você possa determinar as ações futuras.
+        e.preventDefault();
+        
+        const userId = parseInt(localStorage.getItem('userId'))
+
+        // const data = {
+        //     selectedImage,
+        //     content,
+        //     location,
+        //     userId
+        // };
+
+        try {
+            const response = await axios.post('http://localhost:3001/api/createPost', {
+              image: selectedImage,
+              content: content,
+              location: location,
+              userId: userId,
+              category: category
+            });
+      
+      
+            console.log('Post criado com sucesso:', response.data);
+          } catch (error) {
+            console.error('Erro ao criar o post:', error);
+          }
+    };
 
      // Definir imagem padrão de início
      useEffect(() => {
@@ -32,11 +67,11 @@ function AddPost() {
   
       if (file) {
         const reader = new FileReader();
-  
+
         reader.onload = (event) => {
-          setSelectedImage(event.target.result);
-        };
-  
+            setSelectedImage(event.target.result);
+          };
+      
         reader.readAsDataURL(file);
       }
     };
@@ -63,25 +98,31 @@ function AddPost() {
 
                     <div>
                         <Text>Adicionar Localização</Text>
-                        <Input/>
+                        <Input type="text"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}/>
 
                         <Text>Adicionar Legenda</Text>
-                        <Input/>
+                        <Input type="text"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}/>
 
                         <Text>Adicionar Categoria</Text>
                         
                         <SelectContainer>
-                            <select>
-                                <option id="mainOption">Opções de categoria</option>
-                                <option>Diversos</option>
-                                <option>Músicas</option>
-                                <option>Atividades e Esporte</option>
-                                <option>Natureza e Paisagem</option>
-                                <option>Educação</option>
+                            <select type="text"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}>
+                                <option id="mainOption" value="Opções de categoria">Opções de categoria</option>
+                                <option value="Diversos">Diversos</option>
+                                <option value="Músicas">Músicas</option>
+                                <option value="Atividades e Esporte">Atividades e Esporte</option>
+                                <option value="Natureza e Paisagem">Natureza e Paisagem</option>
+                                <option value="Educação">Educação</option>
                             </select>
                         </SelectContainer>
 
-                        <DivConclued>
+                        <DivConclued onClick={handleSubmit}>
                             <Conclued>Publicar⠀</Conclued>
                             <ImgConclued src={imgConclued}/>
                         </DivConclued>
