@@ -2,6 +2,7 @@ import { AddPostComponent, OptionButton, Publication, Stories, PostDiv, InputImg
 
 // React Router
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -15,6 +16,9 @@ import selectedImage2 from '../../assets/Icons/uploadIcon.svg'
 import { api } from "../../services/api";
 
 function AddPost() {
+    const navigate = useNavigate();
+
+    // Hooks
     const [image, setImage] = useState(null);
     const [location, setLocation] = useState('');
     const [category, setCategory] = useState('');
@@ -43,6 +47,7 @@ function AddPost() {
         
         try {
             const response = await api.post('/createPost', formData);
+            navigate('/Feed')
       
             console.log('Post criado com sucesso:', response.data);
         } catch (error) {

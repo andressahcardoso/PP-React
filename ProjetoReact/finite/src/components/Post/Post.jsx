@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const PostContainer = styled.div`
     width: 94vw;
-    height: 45vh;
     margin-bottom: 2vh;
     z-index: 2;
     border: 2px solid #919FE5;
@@ -48,7 +47,7 @@ export const Img = styled.img`
     height: 100%;
     margin-top: -7vh;
     z-index: 2;
-    border-radius: 20px;
+    border-radius: 10px;
 `
 
 
@@ -57,9 +56,9 @@ export const Img = styled.img`
 export const Interaction = styled.div`
     width: 100%;
     height: 6vh;
-    margin-top: -6.5vh;
-    margin-right: 1vw;
-    margin-left: 1vw;
+    margin-top: -6.0vh;
+    margin-right: 0vw;
+    margin-left: 0vw;
     padding-right: 3vw;
     padding-left: 5vw;
     z-index: 8;
