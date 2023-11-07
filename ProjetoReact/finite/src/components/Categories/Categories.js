@@ -2,6 +2,7 @@ import { SearchComponent, Input, ImgSearch, DivInput, ConfigDiv, ConfigOption, I
 
 // React Router
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from "react-router"
 
 // Components
 import MainHeader from "../MainHeader/MainHeader";
@@ -14,6 +15,7 @@ import sport from '../../assets/Icons/sport.svg'
 import nature from '../../assets/Icons/nature.svg'
 import education from '../../assets/Icons/education.svg'
 import searchIcon from '../../assets/Icons/searchIcon.svg'
+import { Navigate } from "react-router-dom";
 
 // Lista fixa de categorias - APENAS PARA TESTE INICIAL
 const userList = [
@@ -42,7 +44,12 @@ function Categorie() {
         filterUsers();
     }, [searchTerm, filterUsers]);
 
-    
+    const navigate = useNavigate()
+
+    function goToFeedCommerce(titleFeed) {
+        navigate(`/Feed/Commerce/${titleFeed}`)
+    }
+
         return (
             <>
                 <MainHeader title='Categorias'/>
@@ -57,7 +64,7 @@ function Categorie() {
 
                         <div>
                         {filteredUsers.map((categorie) => (
-                        <ConfigDiv>
+                        <ConfigDiv onClick={(e) => {e.preventDefault(); goToFeedCommerce(categorie.name);}}>
                                 <ConfigOption>
                                     <ImgDiv>
                                         <Img src={categorie.picture}/>

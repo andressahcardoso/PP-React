@@ -14,35 +14,67 @@ import user2 from '../../assets/user2.svg'
 import user3 from '../../assets/user3.svg'
 import user4 from '../../assets/user4.svg'
 import user5 from '../../assets/user1.svg'
+import axios from "axios";
 
 
 // Lista fixa de usuários - APENAS PARA TESTE INICIAL
-const userList = [
-    { id: 1, name: 'Alice', picture:user1, acount:'alice_01'},
-    { id: 2, name: 'Bob', picture:user2, acount:'bob_02' },
-    { id: 3, name: 'Charlie', picture:user3, acount:'charlie_03' },
-    { id: 4, name: 'David', picture:user4, acount:'david_04' },
-    { id: 5, name: 'Eve', picture:user5, acount:'eve_05' },
-];
+// const userList = [
+//     { id: 1, name: 'Alice', picture:user1, acount:'alice_01'},
+//     { id: 2, name: 'Bob', picture:user2, acount:'bob_02' },
+//     { id: 3, name: 'Charlie', picture:user3, acount:'charlie_03' },
+//     { id: 4, name: 'David', picture:user4, acount:'david_04' },
+//     { id: 5, name: 'Eve', picture:user5, acount:'eve_05' },
+// ];
 
 
 function Search() {
-
+    
+    const [userList, setUser] = useState([]); // Estado para armazenar os posts
+    console.log('================user :', userList);
+    
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState(userList);
 
     // Função para filtrar a lista de usuários com base no input de busca
     const filterUsers = useCallback(() => {
+        
         const filteredUsers = userList.filter((user) =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredUsers(filteredUsers);
     }, [searchTerm]);
 
-    // Chama a função de filtro sempre que o input muda
+    
     useEffect(() => {
-        filterUsers();
-    }, [searchTerm, filterUsers]);
+        async function fetchUsers() {
+            
+            try {
+                
+                const response = await axios.get('http://localhost:3001/api/listUser');
+                console.log('response :', response);
+                setUser(response.data); // Armazena os posts no estado
+                console.log('aaa')
+                if (userList == 0 ){
+                    setFilteredUsers(response.data)
+                }
+                
+            } catch (error) {
+                console.error('Erro ao recuperar usuários:', error);
+            }
+        }
+
+        filterUsers()
+        fetchUsers();
+    }, [filterUsers]);
+    
+
+
+    // Chama a função de filtro sempre que o input muda
+    // useEffect(() => {
+    //     if (userList.length > 0) {
+    //         filterUsers();
+    //     }
+    // }, [filterUsers]);
 
 
         return (
@@ -61,10 +93,10 @@ function Search() {
                             {filteredUsers.map((user) => (
                                 <UserDiv key={user.idus}>
                                     <DivUser>
-                                        <Img src={user.picture}/>
+                                        <Img src={user1}/>
                                         <div>
                                             <PersonName>{user.name}</PersonName>
-                                            <PersonProfile>{user.acount}</PersonProfile>
+                                            <PersonProfile>{user.userName}</PersonProfile>
                                         </div>  
                                     </DivUser>
 

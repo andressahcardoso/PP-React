@@ -39,10 +39,10 @@ function AppRoutes() {
         <Route path='/Register/User' Component={User} />
         <Route path='/Register/Forms' Component={Form} />
         <Route path='/Register/Theme' Component={Theme} />
-        <Route path='/Feed/Commerce' Component={FeedCommerce} />
 
         {/* Private routes */}
         <Route path="/Feed" element={<PrivateRoute><Feed/></PrivateRoute>} />
+        <Route path='/Feed/Commerce/:titleFeed' element={<PrivateRoute><FeedCommerce/></PrivateRoute>} />
         <Route path="/Comment" element={<PrivateRoute><Comment/></PrivateRoute>} />
         <Route path="/Search" element={<PrivateRoute><Search/></PrivateRoute>} />
         <Route path="/Add/Post" element={<PrivateRoute><AddPost/></PrivateRoute>} />

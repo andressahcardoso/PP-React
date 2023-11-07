@@ -57,6 +57,7 @@ function Login() {
 
             localStorage.setItem('@Auth:user', JSON.stringify(response.data.data[0].email));
             localStorage.setItem('@Auth:token', response.data.data[0].token);
+            localStorage.setItem('@Auth:id', response.data.data[0].id);
             // setUser(response.data.data[0]);
 
             navigate('/Feed')

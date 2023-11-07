@@ -11,12 +11,11 @@ import Nav from "../Nav/Nav";
 import imgConclued from '../../assets/Icons/concluedIcon.svg'
 import selectedImage2 from '../../assets/Icons/uploadIcon.svg'
 
-// API
-import { api } from "../../services/api.js";
+// Axios
 import axios from "axios";
 
 function AddPost() {
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [image, setImage] = useState(null);
     const [location, setLocation] = useState('');
     const [category, setCategory] = useState('');
     const [content, setContent] = useState('');
@@ -25,24 +24,17 @@ function AddPost() {
         // Evita que o envio do formulário seja tratado de maneira padrão pelo navegador e faz com que você possa determinar as ações futuras.
         e.preventDefault();
         
-        const userId = parseInt(localStorage.getItem('userId'))
-
-        // const data = {
-        //     selectedImage,
-        //     content,
-        //     location,
-        //     userId
-        // };
-
+        // Pega o valor do userId para enviar para o Back.
+        const userId = parseInt(localStorage.getItem('@Auth:id'))
+        
         try {
             const response = await axios.post('http://localhost:3001/api/createPost', {
-              image: selectedImage,
+              image: image,
               content: content,
               location: location,
               userId: userId,
               category: category
             });
-      
       
             console.log('Post criado com sucesso:', response.data);
           } catch (error) {
@@ -50,30 +42,34 @@ function AddPost() {
           }
     };
 
-     // Definir imagem padrão de início
+    //  Definir imagem padrão de início.
      useEffect(() => {
-        // URL da imagem inicial
+        // URL da imagem inicial.
         const initialImageUrl = selectedImage2;
-        setSelectedImage(initialImageUrl);
+        setImage(initialImageUrl);
       }, []);
 
     const handleImageClick = () => {
-        // Ativar click no input que está oculto
-        document.getElementById('imageInput').click();
+        // Ativar click no input que está oculto.
+        document.getElementById('imageInput').click();        
     };
   
     const handleImageChange = (e) => {
-      const file = e.target.files[0];
-  
-      if (file) {
-        const reader = new FileReader();
+        // Extrai o primeiro arquivo selecionado pelo usuário.
+        const file = e.target.files[0];
+    
+        if (file) {
+            //  Instância do objeto FileReader, que é usada para ler os dados do arquivo selecionado.
+            const reader = new FileReader();
 
-        reader.onload = (event) => {
-            setSelectedImage(event.target.result);
-          };
-      
-        reader.readAsDataURL(file);
-      }
+            // Quando a leitura do arquivo for concluída, um evento (chamado event) será passado e conterá os dados da imagem.
+            reader.onload = (event) => {
+                setImage(event.target.result);
+            };
+        
+            //  A leitura do arquivo/imagem selecionada é iniciada como uma URL de dados.
+            reader.readAsDataURL(file);
+        }
     };
 
         return (
@@ -87,11 +83,11 @@ function AddPost() {
                     </OptionButton>
 
 
-                    <PostDiv onClick={handleImageClick}>
+                    <PostDiv onClick={handleImageClick} >
                         <InputImg type="file" accept="image/*" onChange={handleImageChange} id="imageInput"/>
-                        {selectedImage && (
+                        {image && (
                             <div>
-                                <PostImg src={selectedImage} alt="Imagem selecionada" />
+                                <PostImg src={image} alt="Imagem selecionada" />
                             </div>
                         )}
                     </PostDiv>

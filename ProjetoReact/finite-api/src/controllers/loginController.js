@@ -27,9 +27,10 @@ async function login(request, response) {
                           msg: 'Email or password is incorrect!'
                         });
                     } else if(result) {
-                        const id = results[0].id_user;
+                        const id = results[0].id;
                         const token = jwt.sign({ userId: id },'the-super-strong-secrect',{ expiresIn: 300 });
                         results[0]['token'] = token; 
+
                         
                         response
                         .status(200)
