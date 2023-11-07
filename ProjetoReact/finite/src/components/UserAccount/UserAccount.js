@@ -1,5 +1,8 @@
 import { Color, UserSection, UserInformations, TextDiv, Num, Text, ImgDiv, UserImg, UserText, Account, Description, BtnDiv, EditBtn, ReportBtn, OptionDiv, P, PostSection, DivImage, PostImage } from "./UserAccount.jsx";
 
+// React
+import { useNavigate } from "react-router-dom";
+
 // Components
 import Nav from '../Nav/Nav.js'
 
@@ -9,12 +12,11 @@ import post1 from '../../assets/post1.png'
 import post2 from '../../assets/post2.png'
 import post3 from '../../assets/post3.png'
 import post4 from '../../assets/post4.png'
-import { useNavigate } from "react-router-dom";
 
 function UserAccount() {
-
     const navigate = useNavigate();
 
+    // Navigate functions
     function goToUserSettings() {
         navigate('/User/Settings')
     }
@@ -23,8 +25,8 @@ function UserAccount() {
         navigate('/Report')
     }
 
-        return (
-            <>
+    return (
+        <>
             <Color>⠀⠀</Color>
 
             <UserSection>
@@ -32,13 +34,13 @@ function UserAccount() {
                     <TextDiv>
                         <Num>200</Num>
                         <Text>seguindo</Text>
-                    </TextDiv>
-                    <ImgDiv>
-                        <UserImg src={userImage}/>
-                    </ImgDiv>
-                    <TextDiv>
-                        <Num>325</Num>
-                        <Text>seguidores</Text>
+                        </TextDiv>
+                        <ImgDiv>
+                            <UserImg src={userImage}/>
+                        </ImgDiv>
+                        <TextDiv>
+                            <Num>325</Num>
+                            <Text>seguidores</Text>
                     </TextDiv>
                 </UserInformations>
 
@@ -79,8 +81,8 @@ function UserAccount() {
             </UserSection>
 
             <Nav/>
-            </>
-        )
+        </>
+    )
 }
 
 export default UserAccount;

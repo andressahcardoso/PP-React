@@ -17,21 +17,21 @@ export const Settings = styled.div`
 `
 
 export const User = styled.div`
-    display: flex;
-    flex-direction: row;
-    padding: 8vw;
-    padding-bottom: 0vw;
     width: 40vw;
     margin-left: 20vw;
-    border-bottom: 1px solid #d0cdcd;
     margin-bottom: 6vh;
+    padding: 8vw;
+    padding-bottom: 0vw;
+    border-bottom: 1px solid #d0cdcd;
+    display: flex;
+    flex-direction: row;
 `
 
 export const ImgDiv = styled.div`
-    background-color: #d0cdcd;
     width: 22vw;
     margin-left: -20vw;
     padding: 1vw;
+    background-color: #d0cdcd;
     border-radius: 100px;
 `
 
@@ -62,11 +62,11 @@ export const Text = styled.p`
 // Start | Settings option
 
 export const Div = styled.div`
-    border-bottom: 1px solid #d0cdcd;
     padding: 0vh;
     padding-bottom: 1vh;
     padding-left: 6vw;
     padding-right: 6vw;
+    border-bottom: 1px solid #d0cdcd;
 `
 
 export const Title = styled.p`

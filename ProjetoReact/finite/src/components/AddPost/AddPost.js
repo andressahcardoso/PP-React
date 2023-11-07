@@ -11,8 +11,8 @@ import Nav from "../Nav/Nav";
 import imgConclued from '../../assets/Icons/concluedIcon.svg'
 import selectedImage2 from '../../assets/Icons/uploadIcon.svg'
 
-// Axios
-import axios from "axios";
+// Api
+import { api } from "../../services/api";
 
 function AddPost() {
     const [image, setImage] = useState(null);
@@ -27,8 +27,9 @@ function AddPost() {
         // Pega o valor do userId para enviar para o Back.
         const userId = parseInt(localStorage.getItem('@Auth:id'))
         
+        
         try {
-            const response = await axios.post('http://localhost:3001/api/createPost', {
+            const response = await api.post('/createPost', {
               image: image,
               content: content,
               location: location,
@@ -37,9 +38,9 @@ function AddPost() {
             });
       
             console.log('Post criado com sucesso:', response.data);
-          } catch (error) {
+        } catch (error) {
             console.error('Erro ao criar o post:', error);
-          }
+        }
     };
 
     //  Definir imagem padrão de início.
@@ -72,64 +73,63 @@ function AddPost() {
         }
     };
 
-        return (
-            <>
-                <MainHeader title='Nova Publicação'/>
+    return (
+        <>
+            <MainHeader title='Nova Publicação'/>
                 
-                <AddPostComponent>
-                    <OptionButton>
-                        <Publication>Publicação</Publication>
-                        <Stories>Stories</Stories>
-                    </OptionButton>
+            <AddPostComponent>
+                <OptionButton>
+                    <Publication>Publicação</Publication>
+                    <Stories>Stories</Stories>
+                </OptionButton>
 
+                <PostDiv onClick={handleImageClick} >
+                    <InputImg type="file" accept="image/*" onChange={handleImageChange} id="imageInput"/>
+                    {image && (
+                        <div>
+                            <PostImg src={image} alt="Imagem selecionada" />
+                        </div>
+                    )}
+                </PostDiv>
 
-                    <PostDiv onClick={handleImageClick} >
-                        <InputImg type="file" accept="image/*" onChange={handleImageChange} id="imageInput"/>
-                        {image && (
-                            <div>
-                                <PostImg src={image} alt="Imagem selecionada" />
-                            </div>
-                        )}
-                    </PostDiv>
+                <div>
+                    <Text>Adicionar Localização</Text>
+                    <Input type="text"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}/>
 
-                    <div>
-                        <Text>Adicionar Localização</Text>
-                        <Input type="text"
-                            value={location}
-                            onChange={(e) => setLocation(e.target.value)}/>
+                    <Text>Adicionar Legenda</Text>
+                    <Input type="text"
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}/>
 
-                        <Text>Adicionar Legenda</Text>
-                        <Input type="text"
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}/>
-
-                        <Text>Adicionar Categoria</Text>
+                    <Text>Adicionar Categoria</Text>
                         
-                        <SelectContainer>
-                            <select type="text"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}>
-                                <option id="mainOption" value="Opções de categoria">Opções de categoria</option>
-                                <option value="Diversos">Diversos</option>
-                                <option value="Músicas">Músicas</option>
-                                <option value="Atividades e Esporte">Atividades e Esporte</option>
-                                <option value="Natureza e Paisagem">Natureza e Paisagem</option>
-                                <option value="Educação">Educação</option>
-                            </select>
-                        </SelectContainer>
+                    <SelectContainer>
+                        <select type="text"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}>
+                            <option id="mainOption" value="Opções de categoria">Opções de categoria</option>
+                            <option value="Diversos">Diversos</option>
+                            <option value="Músicas">Músicas</option>
+                            <option value="Atividades e Esporte">Atividades e Esporte</option>
+                            <option value="Natureza e Paisagem">Natureza e Paisagem</option>
+                            <option value="Educação">Educação</option>
+                        </select>
+                    </SelectContainer>
 
-                        <DivConclued onClick={handleSubmit}>
-                            <Conclued>Publicar⠀</Conclued>
-                            <ImgConclued src={imgConclued}/>
-                        </DivConclued>
+                    <DivConclued onClick={handleSubmit}>
+                        <Conclued>Publicar⠀</Conclued>
+                        <ImgConclued src={imgConclued}/>
+                    </DivConclued>
 
-                        <FinalDiv>⠀⠀</FinalDiv>
-                    </div>
-                </AddPostComponent>
+                    <FinalDiv>⠀⠀</FinalDiv>
+                </div>
+            </AddPostComponent>
 
-                <Nav/>
-            </>
-        )
+            <Nav/>
+        </>
+    )
 }
 
 export default AddPost;

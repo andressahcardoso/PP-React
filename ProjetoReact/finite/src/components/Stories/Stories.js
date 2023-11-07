@@ -21,12 +21,12 @@ import user4 from '../../assets/user4.svg'
 // Icons
 import DateIcon from '../../assets/Icons/line.svg'
 
-
+// Use context
 import { useUserContext } from './UserContext.js';
 
 function Stories() {
-
     const navigate = useNavigate();
+
     const { setUserData } = useUserContext();
 
     function goToUserStorie(personVar, accountVar, userVar, storieVar, nextVar) {
@@ -35,115 +35,115 @@ function Stories() {
         navigate(`/User/Storie`);
     }
 
-        return (
-            <>
-                <MainHeader title='Stories'/>
+    return (
+        <>
+            <MainHeader title='Stories'/>
 
-                <StorieSection>
-                    <Storie>
-                        <Div>
-                            <StorieImgDiv>
-                                <StorieImg onClick={() => goToUserStorie('Prahabas Raju', '@Praba_01', user1, storie1, storie2)} src={storie1} alt="Imagem storie"/>
-                            </StorieImgDiv>
-                            <TextDiv>
-                                <Profile>Prabhas Raju</Profile>
-                                <Account>@Praba_01</Account>
-                            </TextDiv>
-                        </Div>
-                        <p>
-                            <DateText>26</DateText>
-                            <ImgDate>
-                                <img src={DateIcon} alt="Line Icon"/>
-                            </ImgDate>
-                            <Month>11</Month>
-                        </p>
-                    </Storie>
+            <StorieSection>
+                <Storie>
+                    <Div>
+                        <StorieImgDiv>
+                            <StorieImg onClick={() => goToUserStorie('Prahabas Raju', '@Praba_01', user1, storie1, storie2)} src={storie1} alt="Imagem storie"/>
+                        </StorieImgDiv>
+                        <TextDiv>
+                            <Profile>Prabhas Raju</Profile>
+                            <Account>@Praba_01</Account>
+                        </TextDiv>
+                    </Div>
+                    <p>
+                        <DateText>26</DateText>
+                        <ImgDate>
+                            <img src={DateIcon} alt="Line Icon"/>
+                        </ImgDate>
+                        <Month>11</Month>
+                    </p>
+                </Storie>
 
-                    <Storie>
-                        <Div>
-                            <StorieImgDiv>
-                                <StorieImg onClick={() => goToUserStorie('Alice', '@alice_01', user3, storie2, storie3)} src={storie2} alt="Imagem storie"/>
-                            </StorieImgDiv>
-                            <TextDiv>
-                                <Profile>Alice</Profile>
-                                <Account>@alice_01</Account>
-                            </TextDiv>
-                        </Div>
-                        <p>
-                            
-                            <DateText>26</DateText>
-                            <ImgDate>
-                                <img src={DateIcon} alt="Line Icon"/>
-                            </ImgDate>
-                            <Month>11</Month>
-                        </p>
-                    </Storie>
+                <Storie>
+                    <Div>
+                        <StorieImgDiv>
+                            <StorieImg onClick={() => goToUserStorie('Alice', '@alice_01', user3, storie2, storie3)} src={storie2} alt="Imagem storie"/>
+                        </StorieImgDiv>
+                        <TextDiv>
+                            <Profile>Alice</Profile>
+                            <Account>@alice_01</Account>
+                        </TextDiv>
+                    </Div>
 
-                    <Storie>
-                        <Div>
-                            <StorieImgDiv>
-                                <StorieImg onClick={() => goToUserStorie('Vini Souza', '@vini_02', user2, storie3, storie4)} src={storie3} alt="Imagem storie"/>
-                            </StorieImgDiv>
-                            <TextDiv>
-                                <Profile>Vini Souza</Profile>
-                                <Account>@vini_02</Account>
-                            </TextDiv>
-                        </Div>
-                        <p>
-                            
-                            <DateText>26</DateText>
-                            <ImgDate>
-                                <img src={DateIcon} alt="Line Icon"/>
-                            </ImgDate>
-                            <Month>11</Month>
-                        </p>
-                    </Storie>
+                    <p>
+                        <DateText>26</DateText>
+                        <ImgDate>
+                            <img src={DateIcon} alt="Line Icon"/>
+                        </ImgDate>
+                        <Month>11</Month>
+                     </p>
+                </Storie>
+
+                <Storie>
+                    <Div>
+                        <StorieImgDiv>
+                            <StorieImg onClick={() => goToUserStorie('Vini Souza', '@vini_02', user2, storie3, storie4)} src={storie3} alt="Imagem storie"/>
+                        </StorieImgDiv>
+                        <TextDiv>
+                            <Profile>Vini Souza</Profile>
+                            <Account>@vini_02</Account>
+                        </TextDiv>
+                    </Div>
+        
+                    <p>                    
+                        <DateText>26</DateText>
+                        <ImgDate>
+                            <img src={DateIcon} alt="Line Icon"/>
+                        </ImgDate>
+                        <Month>11</Month>
+                    </p>
+                </Storie>
 
 
-                    <Storie>
-                        <Div>
-                            <StorieImgDiv>
-                                <StorieImg onClick={() => goToUserStorie('David', '@david_04', user2, storie4, storie5)}  src={storie4} alt="Imagem storie"/>
-                            </StorieImgDiv>
-                            <TextDiv>
-                                <Profile>David</Profile>
-                                <Account>@david_04</Account>
-                            </TextDiv>
-                        </Div>
-                        <p>
-                            
-                            <DateText>25</DateText>
-                            <ImgDate>
-                                <img src={DateIcon} alt="Line Icon"/>
-                            </ImgDate>
-                            <Month>11</Month>
-                        </p>
-                    </Storie>
+                <Storie>
+                    <Div>
+                        <StorieImgDiv>
+                            <StorieImg onClick={() => goToUserStorie('David', '@david_04', user2, storie4, storie5)}  src={storie4} alt="Imagem storie"/>
+                        </StorieImgDiv>
+                        <TextDiv>
+                            <Profile>David</Profile>
+                            <Account>@david_04</Account>
+                        </TextDiv>
+                    </Div>
+            
+                    <p>               
+                        <DateText>25</DateText>
+                        <ImgDate>
+                            <img src={DateIcon} alt="Line Icon"/>
+                        </ImgDate>
+                        <Month>11</Month>
+                    </p>
+                </Storie>
 
-                    <Storie>
-                        <Div>
-                            <StorieImgDiv>
-                                <StorieImg onClick={() => goToUserStorie('Malu', '@malukitalu', user4, storie5, storie5)} src={storie5} alt="Imagem storie"/>
-                            </StorieImgDiv>
-                            <TextDiv>
-                                <Profile>Malu</Profile>
-                                <Account>@malukitalu</Account>
-                            </TextDiv>
-                        </Div>
-                        <p>
-                            
-                            <DateText>25</DateText>
-                            <ImgDate>
-                                <img src={DateIcon} alt="Line Icon"/>
-                            </ImgDate>
-                            <Month>11</Month>
-                        </p>
-                    </Storie>
-                </StorieSection>
+                <Storie>
+                    <Div>
+                        <StorieImgDiv>
+                            <StorieImg onClick={() => goToUserStorie('Malu', '@malukitalu', user4, storie5, storie5)} src={storie5} alt="Imagem storie"/>
+                        </StorieImgDiv>
+                        <TextDiv>
+                            <Profile>Malu</Profile>
+                            <Account>@malukitalu</Account>
+                        </TextDiv>
+                    </Div>
+            
+                    <p>
+                        <DateText>25</DateText>
+                        <ImgDate>
+                            <img src={DateIcon} alt="Line Icon"/>
+                        </ImgDate>
+                        <Month>11</Month>
+                    </p>
+                </Storie>
+            </StorieSection>
 
-                <Nav/>
-            </>
-        )
+            <Nav/>
+        </>
+    )
 }
 
 export default Stories;

@@ -9,9 +9,9 @@ import rankingIcon from '../../assets/rankingIcon.svg'
 
 
 function MainHeader(props) {
-
     const navigate = useNavigate();
 
+    // Navigate functions
     function goToReport() {
         navigate('/Report')
     }

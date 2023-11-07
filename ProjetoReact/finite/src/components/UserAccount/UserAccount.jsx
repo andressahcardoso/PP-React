@@ -13,8 +13,8 @@ export const UserSection = styled.section`
     height: 77vh;
     border-radius: 50px;
     margin-top: -5vh;
-    background-color: white;
     z-index: 5;
+    background-color: white;
     position: sticky;
 `
 
@@ -25,11 +25,11 @@ export const UserInformations = styled.div`
 `
 
 export const TextDiv =styled.div`
+    padding-left: 4vw;
+    padding-right: 4vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 4vw;
-    padding-right: 4vw;
 `
 
 export const Num = styled.p`
@@ -43,12 +43,12 @@ export const Text = styled.p`
 `
 
 export const ImgDiv = styled.div`
-    background-color: white;
-    border-radius: 100px;
     height: 14vh;
     width: 30vw;
-    padding: 2vw;
     margin-top: -7vh;
+    padding: 2vw;
+    background-color: white;
+    border-radius: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,12 +64,12 @@ export const UserImg = styled.img`
 // Start | User description
 
 export const UserText = styled.div`
+    width: 70vw;
+    margin-left: 14vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70vw;
-    margin-left: 14vw;
 `
 
 export const Account = styled.p`
@@ -93,37 +93,36 @@ export const BtnDiv = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 1vh;
-    
 `
 
 export const EditBtn = styled.button`
-    background-color: #919FE5;
-    border: 0px;
-    padding: 2vw 8vw;
-    border-radius: 15px;
-    margin-right: 2vw;
     font-size: 18px;
     color: white;
+    margin-right: 2vw;
+    padding: 2vw 8vw;
+    background-color: #919FE5;
+    border: 0px;
+    border-radius: 15px;
 `
 
 export const ReportBtn = styled.button`
-    background-color: white;
-    border: 1px solid #919FE5;
-    padding: 2vw 8vw;
-    border-radius: 15px;
     font-size: 18px;
     color: #919FE5;
+    padding: 2vw 8vw;
+    background-color: white;
+    border: 1px solid #919FE5;
+    border-radius: 15px;
 `
 
 
 // Start | Options
 
 export const OptionDiv = styled.div`
+    width: 95vw;
+    margin-top: 2vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 2vh;
-    width: 95vw;
 `
 
 export const P = styled.p`
@@ -135,11 +134,11 @@ export const P = styled.p`
 // Start | Post section
 
 export const PostSection = styled.section`
+    width: 100vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100vw;
 `
 
 export const DivImage = styled.div`

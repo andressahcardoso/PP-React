@@ -12,9 +12,9 @@ import Profile from '../../assets/MenuIcons/User_icon.svg'
 
 
 function Nav() {
-
     const navigate = useNavigate();
 
+    // Navigate functions
     function HomeDirection() {
         navigate('/Feed')
     }

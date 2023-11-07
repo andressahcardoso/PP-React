@@ -16,26 +16,26 @@ export const Img = styled.img`
 // Start | Comment div
 
 export const CommentDiv = styled.div`
+    height: 72h;
+    width: 100vw;
+    margin-top: -8vh;
+    background-color: white;
     z-index: 20;
     position: absolute;
     border-radius: 40px 40px 0px 0px;
-    margin-top: -8vh;
-    background-color: white;
-    height: 72h;
-    width: 100vw;
 `
 
 
 // Start | User informations
 
 export const Profile = styled.div`
-    z-index: 5;
-    display: flex;
-    flex-direction: row;
     width: 89.2vw;
     height: 6vh;
     padding: 2vh;
     padding-left: 6vw;
+    z-index: 5;
+    display: flex;
+    flex-direction: row;
 
     border-bottom: 2px solid #5f5a5a46;
     display: flex;
@@ -43,7 +43,7 @@ export const Profile = styled.div`
 `
 
 export const ProfileDiv = styled.div`
-     display: flex;
+    display: flex;
     flex-direction: row;
 `
 
@@ -73,7 +73,6 @@ export const UserComment = styled.div`
     width: 91.7vw;
     padding: 1vh;
     padding-left: 6vw;
-
     border-bottom: 2px solid #5f5a5a46;
 `
 
@@ -85,18 +84,18 @@ export const Community = styled.section`
 `
 
 export const CommentPost = styled.div`
-    background-color: #919fe558;
     width: 60vw;
     padding: 1vw;
     padding-top: 1vh;
     padding-left: 4vw;
     padding-right: 4vw;
+    margin-bottom: 2vh;
+    background-color: #919fe558;
     border-radius: 40px 40px 40px 0px;
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: start;
-    margin-bottom: 2vh;
 `
 
 export const ImgUser = styled.img`
@@ -111,19 +110,19 @@ export const CommentText = styled.p`
 `
 
 export const CommentMainUser = styled.div`
-    background-color: #919fe558;
     width: 60vw;
-    padding: 1vw;
     margin-left: 25vw;
+    margin-bottom: 2vh;
+    padding: 1vw;
     padding-top: 1vh;
     padding-left: 4vw;
     padding-right: 4vw;
+    background-color: #919fe558;
     border-radius: 40px 40px 0px 40px;
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: start;
-    margin-bottom: 2vh;
 `
 
 
@@ -136,10 +135,10 @@ export const AddComment = styled.div`
 `
 
 export const DivImg = styled.div`
-    background-color: #056F91;
-    border-radius: 40px 0px 0px 40px;
     height: 6vh;
     width: 20vw;
+    background-color: #056F91;
+    border-radius: 40px 0px 0px 40px;
 `
 
 export const ImgComment = styled.img`

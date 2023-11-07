@@ -71,10 +71,10 @@ export const PersonProfile = styled.p`
 `
 
 export const Btn = styled.div`
-    border: 0px;
-    background-color: #919FE5;
-    color: white;
     height: 2vh;
     padding: 1vw 8vw 2vw 8vw;
+    color: white;
+    background-color: #919FE5;
+    border: 0px;
     border-radius: 10px;
 `

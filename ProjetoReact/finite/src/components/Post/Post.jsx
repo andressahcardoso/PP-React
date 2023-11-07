@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
-    border: 2px solid #919FE5;
-    border-radius: 10px;
     width: 94vw;
     height: 45vh;
     margin-bottom: 2vh;
     z-index: 2;
+    border: 2px solid #919FE5;
+    border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
 `
@@ -15,16 +15,16 @@ export const PostContainer = styled.div`
 // Start | Profile informations
 
 export const Profile = styled.div`
-    z-index: 5;
-    background-color: #5f5a5a46;
-    display: flex;
-    flex-direction: row;
-    border-radius: 20px;
     width: 45vw;
     height: 6vh;
     margin-top: 1vh;
     margin-left: 2vw;
     padding-left: 2vw;
+    z-index: 5;
+    background-color:#5f5a5a46;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
 `
 
 export const ImgProfile = styled.img`
@@ -44,27 +44,27 @@ export const PersonProfile = styled.p`
 `
 
 export const Img = styled.img`
-    border-radius: 20px;
     width: 100%;
     height: 100%;
     margin-top: -7vh;
     z-index: 2;
+    border-radius: 20px;
 `
 
 
 // Start | Interaction area
 
 export const Interaction = styled.div`
-    margin-top: -6.5vh;
-    padding-right: 3vw;
-    padding-left: 5vw;
     width: 100%;
     height: 6vh;
-    margin-left: 1vw;
+    margin-top: -6.5vh;
     margin-right: 1vw;
+    margin-left: 1vw;
+    padding-right: 3vw;
+    padding-left: 5vw;
     z-index: 8;
-    border-radius: 0px 0px 10px 10px;
     background-color: #5f5a5ac8;
+    border-radius: 0px 0px 10px 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

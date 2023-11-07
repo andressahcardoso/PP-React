@@ -18,10 +18,10 @@ export const AddPostComponent = styled.section`
 `
 
 export const OptionButton = styled.div`
-     grid-area: button-login-register;
-        display: inline-block;
-        text-align: center;
-        margin-top: 2%;
+    grid-area: button-login-register;
+    display: inline-block;
+    text-align: center;
+    margin-top: 2%;
 `
 
 export const Publication = styled.button`
@@ -70,8 +70,8 @@ export const TimeDiv = styled.div`
 export const Time = styled.div`
     width: 40vw;
     height: 18vh;
-    border-radius: 200px;
     border: 8px solid rgb(173, 185, 243);
+    border-radius: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,22 +91,21 @@ export const Text2 = styled.p`
     font-size: 18px;
     text-align: center;
     margin-top: 0.8vh;
-
 `
 
 export const TextDiv = styled.div`
-    border-radius: 50px;
-    border: 2px solid rgb(173, 185, 243);
-    height: 4vh;
-    padding: 1vw;
     width: 80vw;
+    height: 4vh;
     margin-top: 2vh;
+    padding: 1vw;
+    border: 2px solid rgb(173, 185, 243);
+    border-radius: 50px;
 `
 
 export const PostDiv = styled.div`
-    margin-top: 0vh;
     width: 100vw;
     height: 30vh;
+    margin-top: 0vh;
     display: flex;
     justify-content: center;
     align-items: center;

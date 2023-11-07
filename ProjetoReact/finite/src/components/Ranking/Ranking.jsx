@@ -18,10 +18,10 @@ export const AddPostComponent = styled.section`
 `
 
 export const OptionButton = styled.div`
-     grid-area: button-login-register;
-        display: inline-block;
-        text-align: center;
-        margin-top: 2%;
+    grid-area: button-login-register;
+    display: inline-block;
+    text-align: center;
+    margin-top: 2%;
 `
 
 export const Publication = styled.button`
@@ -72,18 +72,18 @@ export const UserDiv = styled.div`
 `
 
 export const ImgDiv2 =styled.div`
-    background-color: rgb(181, 190, 236);
     width: 15vw;
     padding: 1.5vw;
+    background-color: rgb(181, 190, 236);
     border-radius: 50px;
     display: flex;
     justify-content: center;
 `
 
 export const ImgDiv3 =styled.div`
-    background-color: rgb(210, 217, 242);
     width: 15vw;
     padding: 1.5vw;
+    background-color: rgb(210, 217, 242);
     border-radius: 50px;
     display: flex;
     justify-content: center;
@@ -94,43 +94,42 @@ export const Img = styled.img`
 `
 
 export const NumberDiv = styled.div`
-    background-color: rgba(145, 159, 229, 1);
+    width: 7vw;
+    margin-top: -2vh;
     padding: 1vw;
+    z-index: 10;
+    background-color: rgba(145, 159, 229, 1);
     border-radius: 50px;
     display: flex;
     justify-content: center;
-    margin-top: -2vh;
-    width: 7vw;
-    z-index: 10;
     position: sticky;
 `
 
 export const NumberDiv2 = styled.div`
-    background-color: rgb(181, 190, 236);
+    width: 7vw;
+    margin-top: -2vh;
     padding: 1vw;
+    z-index: 10;
+    background-color: rgb(181, 190, 236);
     border-radius: 50px;
     display: flex;
     justify-content: center;
-    margin-top: -2vh;
-    width: 7vw;
-    z-index: 10;
     position: sticky;
 `
 
 export const NumberDiv3 = styled.div`
-    background-color: rgb(210, 217, 242);
+    width: 7vw;
+    margin-top: -2vh;
     padding: 1vw;
+    z-index: 10;
+    background-color: rgb(210, 217, 242);
     border-radius: 50px;
     display: flex;
     justify-content: center;
-    margin-top: -2vh;
-    width: 7vw;
-    z-index: 10;
     position: sticky;
 `
 
 export const NumberImg = styled.img`
-    
 `
 
 export const Profile = styled.p`
@@ -152,13 +151,13 @@ export const MainUser = styled.div`
 `
 
 export const MainImg = styled.div`
-    background-color: rgba(145, 159, 229, 1);
+    width: 24vw;
     padding: 1.5vw;
+    z-index: 2;
+    background-color: rgba(145, 159, 229, 1);
     border-radius: 100px;
     display: flex;
-    width: 24vw;
     justify-content: center;
-    z-index: 2;
 `
 
 export const ImgMain = styled.img`
@@ -170,70 +169,70 @@ export const ImgMain = styled.img`
 // Start | User List
 
 export const ListSection = styled.section`
+    width: 80vw;
+    height: 3vh;
+    margin-top: 1vh;
+    padding: 4vw;
     background-color: rgb(242, 243, 249);
+    border-radius: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 4vw;
-    width: 80vw;
-    height: 3vh;
-    border-radius: 50px;
-    margin-top: 1vh;
 `
 
 export const ListSection1 = styled.section`
+    width: 80vw;
+    height: 3vh;
+    margin-top: 1vh;
+    padding: 4vw;
     background-color: #919FE5;
+    border-radius: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 4vw;
-    width: 80vw;
-    height: 3vh;
-    border-radius: 50px;
-    margin-top: 1vh;
 `
 
 export const ListSection2 = styled.section`
+    width: 80vw;
+    height: 3vh;
+    margin-top: 1vh;
+    padding: 4vw;
     background-color: rgb(181, 190, 236);
+    border-radius: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 4vw;
-    width: 80vw;
-    height: 3vh;
-    border-radius: 50px;
-    margin-top: 1vh;
 `
 
 export const ListSection3 = styled.section`
+    width: 80vw;
+    height: 3vh;
+    margin-top: 1vh;
+    padding: 4vw;
     background-color: rgb(210, 217, 242);
+    border-radius: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 4vw;
-    width: 80vw;
-    height: 3vh;
-    border-radius: 50px;
-    margin-top: 1vh;
 `
 
 export const Informations = styled.div`
+    width: 50vw;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 50vw;
 `
 
 export const Users = styled.div`
-    display: flex;
-    flex-direction: row;
     width: 40vw;
     height: 8vh;
+    display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
 `
@@ -254,11 +253,11 @@ export const AccountUser = styled.p`
 `
 
 export const TimeDiv = styled.p`
+    width: 25vw;
+    padding-right: 2vw;
     display: flex;
     flex-direction: row;
-    width: 25vw;
     justify-content: end;
-    padding-right: 2vw;
     align-items: center;
 `
 

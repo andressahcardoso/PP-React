@@ -1,6 +1,7 @@
 import { PostContainer, Img, ImgProfile, Profile, PersonName, PersonProfile, Interaction, DivBtn, Text, ImgIcon, ImgIconRight } from "./Post.jsx";
 
-// React Router
+// React 
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 // Images
@@ -9,19 +10,20 @@ import like from '../../assets/MenuIcons/like.svg'
 import send from '../../assets/MenuIcons/send.svg'
 import save from '../../assets/MenuIcons/save.svg'
 import PersonImg from '../../assets/user.svg'
-import { useEffect, useState } from "react";
 
 
 
 function Post({posts}) {
-
     const navigate = useNavigate();
-    const [cardsViewed, setCardsViewed] = useState(0); // Estado para armazenar o número de cards visualizados
-    console.log('-------------------cardsViewed :', cardsViewed);
-  
+
+    // Navigate functions
     function goToComment() {
       navigate('/Comment');
     }
+
+    // Hooks
+    const [cardsViewed, setCardsViewed] = useState(0); 
+  
   
     useEffect(() => {
       // Configurar o IntersectionObserver para rastrear os cards

@@ -6,10 +6,10 @@ export const StorieSection = styled.section`
 `
 
 export const StorieImgDiv = styled.div`
-    background-color: white;
-    width: 22vw;
     height: 9vh;
+    width: 22vw;
     padding: 0.2vw;
+    background-color: white;
     border-radius: 10px;
     border: 2px solid #5790DF;
 `
@@ -21,13 +21,13 @@ export const Storie = styled.div`
 `
 
 export const Div = styled.div`
+    height: 21vw;
+    width: 68vw;
+    margin-right: 2vw;
+    border-radius: 10px;
     background-color: #8080803d;
     display: flex;
     flex-direction: row;
-    border-radius: 10px;
-    width: 68vw;
-    margin-right: 2vw;
-    height: 21vw;
 `
 
 export const StorieImg = styled.img`

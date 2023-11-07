@@ -24,16 +24,16 @@ export const Img = styled.img`
 // Start | Profile informations
 
 export const Profile = styled.div`
-    z-index: 5;
-    background-color: #5f5a5a46;
-    display: flex;
-    flex-direction: row;
-    border-radius: 20px;
-    width: 45vw;
     height: 6vh;
+    width: 45vw;
     margin-top: 2vh;
     margin-left: 4vw;
     padding-left: 2vw;
+    z-index: 5;
+    background-color: #5f5a5a46;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
     position: sticky;
 `
 
@@ -56,12 +56,12 @@ export const PersonProfile = styled.p`
 export const NextImage = styled.div`
     width: 30vw;
     height: 22vh;
-    border-radius: 20px;
     margin-top: -25vh;
     margin-left: 65vw;
     padding: 1vw;
-    position: sticky;
     background-color: #80808071;
+    border-radius: 20px;
+    position: sticky;
 `
 
 export const ImgNext = styled.img`

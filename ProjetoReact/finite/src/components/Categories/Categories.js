@@ -15,9 +15,10 @@ import sport from '../../assets/Icons/sport.svg'
 import nature from '../../assets/Icons/nature.svg'
 import education from '../../assets/Icons/education.svg'
 import searchIcon from '../../assets/Icons/searchIcon.svg'
-import { Navigate } from "react-router-dom";
 
-// Lista fixa de categorias - APENAS PARA TESTE INICIAL
+
+
+// Lista fixa de categorias | Iguais as do BD.
 const userList = [
     { id: 1, name: 'Diversos', picture: all},
     { id: 2, name: 'Músicas', picture: music},
@@ -27,14 +28,21 @@ const userList = [
 ];
 
 function Categorie() {
+    const navigate = useNavigate()
+    
+    // Navigate functions
+    function goToFeedCommerce(titleFeed) {
+        navigate(`/Feed/Commerce/${titleFeed}`)
+    }
 
+    // Hooks
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
 
     // Função para filtrar a lista de usuários com base no input de busca
     const filterUsers = useCallback(() => {
         const filteredUsers = userList.filter((categorie) =>
-        categorie.name.toLowerCase().includes(searchTerm.toLowerCase())
+            categorie.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredUsers(filteredUsers);
     }, [searchTerm]);
@@ -44,44 +52,37 @@ function Categorie() {
         filterUsers();
     }, [searchTerm, filterUsers]);
 
-    const navigate = useNavigate()
 
-    function goToFeedCommerce(titleFeed) {
-        navigate(`/Feed/Commerce/${titleFeed}`)
-    }
-
-        return (
-            <>
-                <MainHeader title='Categorias'/>
+    return (
+        <>
+            <MainHeader title='Categorias'/>
                 
-                <SearchComponent>
-                    <div>
-                        <DivInput>
-                            <Input type="text" placeholder="Buscar por categoria" value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)} />
-                            <ImgSearch src={searchIcon}/>
-                        </DivInput>
+            <SearchComponent>
+                <div>
+                    <DivInput>
+                        <Input type="text" placeholder="Buscar por categoria" value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)} />
+                        <ImgSearch src={searchIcon}/>
+                    </DivInput>
 
-                        <div>
+                    <div>
                         {filteredUsers.map((categorie) => (
-                        <ConfigDiv onClick={(e) => {e.preventDefault(); goToFeedCommerce(categorie.name);}}>
+                            <ConfigDiv onClick={(e) => {e.preventDefault(); goToFeedCommerce(categorie.name);}}>
                                 <ConfigOption>
                                     <ImgDiv>
                                         <Img src={categorie.picture}/>
                                     </ImgDiv>
                                     <Text>{categorie.name}</Text>
                                 </ConfigOption>
-                        </ConfigDiv>
+                            </ConfigDiv>
                         ))}
-
-                        </div>
                     </div>
-                </SearchComponent>
+                </div>
+            </SearchComponent>
 
-                <Nav/>
-            </>
-        )
-
+            <Nav/>
+        </>
+    )
 }
 
 export default Categorie;

@@ -9,10 +9,10 @@ export const AddPostComponent = styled.section`
 `
 
 export const OptionButton = styled.div`
-     grid-area: button-login-register;
-        display: inline-block;
-        text-align: center;
-        margin-top: 2%;
+    grid-area: button-login-register;
+    margin-top: 2%;
+    text-align: center;
+    display: inline-block;
 `
 
 export const Publication = styled.button`
@@ -95,16 +95,15 @@ export const Input = styled.input`
 `
 
 export const SelectContainer = styled.div`
-   width: 81vw;
+    width: 81vw;
     height: 4vh;
-    border-radius: 30px;
     margin-top: -1vh;
-    border: 0px;
-    border: 2px solid rgb(173, 185, 243);
     padding-left: 4vw;
     padding-right: 4vw;
     padding-top: 1.5vh;
-
+    border-radius: 30px;
+    border: 0px;
+    border: 2px solid rgb(173, 185, 243);
 `
 
 

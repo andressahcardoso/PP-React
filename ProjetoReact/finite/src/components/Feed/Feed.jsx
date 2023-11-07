@@ -20,10 +20,10 @@ export const OptionsComponent = styled.section`
 `
 
 export const Div = styled.div`
-    border: 2px solid #919FE5;
-    border-radius: 10px;
     width: 25vw;
     height: 18vh;
+    border: 2px solid #919FE5;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -38,10 +38,10 @@ export const OptionsText = styled.div`
     padding-right: 7vw;
     padding-left: 8vw;
     margin-top: -2vh;
+    margin-bottom: 2vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 2vh;
 `
 
 export const Categorie = styled.h3`
