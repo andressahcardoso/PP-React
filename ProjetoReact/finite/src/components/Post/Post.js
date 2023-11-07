@@ -16,6 +16,8 @@ import PersonImg from '../../assets/user.svg'
 function Post({posts}) {
     const navigate = useNavigate();
 
+    const images = 'http://localhost:3001/uploads/';
+
     // Navigate functions
     function goToComment() {
       navigate('/Comment');
@@ -64,7 +66,7 @@ function Post({posts}) {
                   <PersonProfile>{item.post_content}</PersonProfile>
                 </div>
               </Profile>
-              <Img src={item.post_image} />
+              <Img src={images + item.post_image} />
   
               <Interaction>
                 <DivBtn>

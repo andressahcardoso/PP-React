@@ -31,11 +31,12 @@ async function createPost(request, response) {
       // Retorna o primeiro resultado (supondo que haverá apenas um resultado)
       const categoryId = results[0].Id 
       console.log('categoryId :', categoryId);
+      console.log('------------image :', request.file.filename);
 
       const params = [
         categoryId,
         request.body.userId,
-        request.body.image,
+        request.file.filename,
         request.body.content,
         request.body.location
     ];
