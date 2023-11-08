@@ -86,6 +86,7 @@ async function getAllPosts(req, res) {
       posts
     JOIN
       users ON posts.userId = users.ID and users.personTypeId = 1
+    ORDER BY posts.PublishDate DESC
   `;
 
   connection.query(query, (error, results) => {

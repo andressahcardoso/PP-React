@@ -19,31 +19,44 @@ function AddPost() {
     const navigate = useNavigate();
 
     // Hooks
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState('');
+    const [preview, setPreview] = useState('');
     const [location, setLocation] = useState('');
     const [category, setCategory] = useState('');
     const [content, setContent] = useState('');
-    const [preview, setPreview] = useState('');
+
+    useEffect(() => {
+        // Define a imagem inicial.
+        const initialImageUrl = selectedImage2;
+        setPreview(initialImageUrl);
+      }, []); 
+    
+      function handleImageChange(e) {
+        setImage(e.target.files[0]);
+        setPreview(URL.createObjectURL(e.target.files[0]));
+      }
+    
+      useEffect(() => {
+        console.log('image', image);
+      }, [image]);
+    
+      useEffect(() => {
+        console.log('preview', preview);
+      }, [preview]);
+
 
     const handleSubmit = async (e) => {
         // Evita que o envio do formulário seja tratado de maneira padrão pelo navegador e faz com que você possa determinar as ações futuras.
         e.preventDefault();
         console.log(image)
-        //setImage(image[0]);
-        //setPreview(URL.createObjectURL(image[0]))
         
         let formData = new FormData();
         formData.append('location', location);
         formData.append('content', content);
         formData.append('category', category)
         formData.append('userId', localStorage.getItem('@Auth:id'));
-        formData.append('file', image[0]);
+        formData.append('file', image);
 
-        
-
-        // Pega o valor do userId para enviar para o Back.
-        // const userId = parseInt(localStorage.getItem('@Auth:id'))
-        
         
         try {
             const response = await api.post('/createPost', formData);
@@ -55,53 +68,9 @@ function AddPost() {
         }
     };
 
-    // useEffect(() => {
-    //     console.log(image)
-    //     if (image !== null) {
-    //         const p = URL.createObjectURL(image[0]);
-    //         setPreview(p);
-    //     }
-    // }, [])
-
-    //  Definir imagem padrão de início.
-     useEffect(() => {
-        // URL da imagem inicial.
-        const initialImageUrl = selectedImage2;
-        setImage(initialImageUrl);
-
-        function preview() {
-            console.log(image)
-            if (image !== null) {
-                console.log(image)
-                const p = URL.createObjectURL(image[0]);
-                setImage(p);
-            }
-        }
-     preview();
-
-      }, [], [image !== null]);
-
     const handleImageClick = () => {
         // Ativar click no input que está oculto.
         document.getElementById('imageInput').click();        
-    };
-  
-    const handleImageChange = (e) => {
-        // Extrai o primeiro arquivo selecionado pelo usuário.
-        const file = e.target.files[0];
-    
-        if (file) {
-            //  Instância do objeto FileReader, que é usada para ler os dados do arquivo selecionado.
-            const reader = new FileReader();
-
-            // Quando a leitura do arquivo for concluída, um evento (chamado event) será passado e conterá os dados da imagem.
-            reader.onload = (event) => {
-                setImage(event.target.result);
-            };
-        
-            //  A leitura do arquivo/imagem selecionada é iniciada como uma URL de dados.
-            reader.readAsDataURL(file);
-        }
     };
 
     return (
@@ -120,12 +89,12 @@ function AddPost() {
                             accept="image/*" 
                             multiple={false} 
                             // value={image}
-                            onChange={ (e) => setImage(e.target.files) }  id="imageInput"/>
+                            onChange={ handleImageChange }  id="imageInput"/>
                             {/* onChange={ (e) => setImage(e.target.files[0]) }  id="imageInput"/> */}
                             {/* onChange={ (e) => setImage(URL.createObjectURL(e.target.files[0])) }  id="imageInput"/> */}
-                    {image && (
+                    {preview && (
                         <div>
-                            <PostImg src={image} alt="Imagem selecionada" />
+                            <PostImg src={preview} alt="Imagem selecionada" />
                             {/* <img src={image} width="50px" height="50px"/> */}
                         </div>
                     )}
