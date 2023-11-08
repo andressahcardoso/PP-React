@@ -14,7 +14,7 @@ export const PostContainer = styled.div`
 // Start | Profile informations
 
 export const Profile = styled.div`
-    width: 45vw;
+    padding-right: 4vw;
     height: 6vh;
     margin-top: 1vh;
     margin-left: 2vw;

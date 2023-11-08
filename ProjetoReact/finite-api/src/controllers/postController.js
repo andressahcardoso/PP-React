@@ -78,15 +78,19 @@ function base64_decode(base64str,fileName){
 // Consultar todos os posts com JOIN para obter informações do autor
 async function getAllPosts(req, res) {
   const query = `
-    SELECT
-      posts.ID AS post_id,
-      posts.image AS post_image,
-      posts.content AS post_content
-    FROM
-      posts
-    JOIN
-      users ON posts.userId = users.ID and users.personTypeId = 1
-    ORDER BY posts.PublishDate DESC
+  SELECT
+    posts.ID AS post_id,
+    posts.image AS post_image,
+    posts.content AS post_content,
+    posts.userID,
+    posts.location,
+    users.userName as name,
+    users.email as email
+  FROM
+    posts
+  JOIN
+    users ON posts.userId = users.ID and users.personTypeId = 1
+  ORDER BY posts.PublishDate DESC
   `;
 
   connection.query(query, (error, results) => {
@@ -115,7 +119,11 @@ async function getCommercePost(req, res) {
     SELECT
       posts.ID AS post_id,
       posts.image AS post_image,
-      posts.content AS post_content
+      posts.content AS post_content,
+      posts.userID,
+      posts.location,
+      users.userName as name,
+      users.email as email
     FROM
       posts
     JOIN

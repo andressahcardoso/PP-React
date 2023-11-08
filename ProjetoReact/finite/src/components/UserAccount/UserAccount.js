@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Nav from '../Nav/Nav.js'
 
 // Images
-import userImage from '../../assets/picture2.png'
+import userImage from '../../assets/Icons/user.svg'
 import post1 from '../../assets/post1.png'
 import post2 from '../../assets/post2.png'
 import post3 from '../../assets/post3.png'

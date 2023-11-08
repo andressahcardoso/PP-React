@@ -9,7 +9,7 @@ import comment from '../../assets/MenuIcons/comment.svg'
 import like from '../../assets/MenuIcons/like.svg'
 import send from '../../assets/MenuIcons/send.svg'
 import save from '../../assets/MenuIcons/save.svg'
-import PersonImg from '../../assets/user.svg'
+import PersonImg from '../../assets/Icons/user.svg'
 
 
 
@@ -57,13 +57,14 @@ function Post({posts}) {
     return (
       <>
         {posts.map((item, index) => {
+        console.log('item :', item);
           return (
             <PostContainer key={index} className="card">
               <Profile>
                 <ImgProfile src={PersonImg} />
                 <div>
-                  <PersonName>exemplo</PersonName>
-                  <PersonProfile>{item.post_content}</PersonProfile>
+                  <PersonName>{item.name}</PersonName>
+                  <PersonProfile>{item.location}</PersonProfile>
                 </div>
               </Profile>
               <Img src={images + item.post_image} />
