@@ -35,11 +35,16 @@ async function getCategory(req, res) {
       SELECT
         posts.ID AS post_id,
         posts.image AS post_image,
-        posts.content AS post_content
+        posts.content AS post_content,
+        posts.userID,
+        posts.location,
+        users.userName as name,
+        users.email as email
       FROM
         posts
       JOIN
         users ON posts.userId = users.ID and posts.category = ?
+      ORDER BY posts.PublishDate DESC
     `;
   
     connection.query(query, [id], (error, results) => {

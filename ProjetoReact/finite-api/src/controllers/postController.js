@@ -128,6 +128,7 @@ async function getCommercePost(req, res) {
       posts
     JOIN
       users ON posts.userId = users.ID and users.personTypeId = 2
+    ORDER BY posts.PublishDate DESC
   `;
 
   connection.query(query, (error, results) => {
