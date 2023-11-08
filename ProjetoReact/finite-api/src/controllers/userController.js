@@ -49,6 +49,31 @@ async function listUsers(request, response) {
     });
 }
 
+
+// Função que retorna todos usuários no banco de dados
+async function listUsersById(request, response) {
+    // Preparar o comando de execução no banco
+    const id = 55
+    console.log('==========id :', id);
+
+    const query2 = `SELECT 
+        users.name AS name,
+        users.userName AS userName,
+        users.userPicture AS userPicture
+    FROM users WHERE users.id = ?`
+
+    connection.query(query2, [id], (error, results) => {
+      if (error) {
+        console.error('Erro ao recuperar categoria: ' + error.message);
+        return res.status(500).json({ error: 'Erro ao recuperar categoria' });
+      }
+  
+      if (results.length === 0) {
+        return response.status(404).json({ error: 'Categoria não encontrada' });
+      }})
+}
+
+
 // Função que cria um novo usuário
 async function storeUser(request, response) {
     // Preparar o comando de execução no banco
@@ -142,14 +167,12 @@ async function storeUser(request, response) {
 // Função que atualiza o usuário no banco
 async function updateUser(request, response) {
     // Preparar o comando de execução no banco
-    const query = "UPDATE users SET `ds_nome` = ?, `ds_password` = ?, `fl_status` = ? WHERE `id_user` = ?";
+    const query = "UPDATE users SET `userPicture` = ? WHERE `id` = ?";
 
     // Recuperar os dados enviados na requisição respectivamente
     const params = Array(
-        request.body.ds_nome,
-        bcrypt.hashSync(request.body.ds_password, 10),
-        request.body.fl_status,
-        request.params.id  // Recebimento de parametro da rota
+        request.file.filename,
+        request.body.userId  // Recebimento de parametro da rota
     );
 
     // Executa a ação no banco e valida os retornos para o client que realizou a solicitação
@@ -226,9 +249,13 @@ async function deleteUser(request, response) {
     });
 }
 
+
+
+
 module.exports = {
     listUsers,
     storeUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    listUsersById
 }

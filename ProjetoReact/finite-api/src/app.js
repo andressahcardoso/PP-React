@@ -10,6 +10,7 @@ const loginRouter = require('./routes/loginRouter');
 const postRouter = require('./routes/postRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const listUserRouter = require('./routes/listUserRouter')
+
 // Importar o pacote dotenv, gerenciador de variáveis de ambiente
 const dotenv = require('dotenv').config();
 
@@ -37,7 +38,6 @@ app.use('/api', categoryRouter);
 
 // List User
 app.use('/api', listUserRouter)
-
 // Setar a porta do servidor, a parir do arquivo .env
 app.set('port', process.env.PORT || 1903);
 

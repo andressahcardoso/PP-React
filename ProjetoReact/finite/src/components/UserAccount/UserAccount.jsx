@@ -54,10 +54,18 @@ export const ImgDiv = styled.div`
     align-items: center;
 `
 
-export const UserImg = styled.img`
+export const UserImg = styled.input`
     height: 14vh;
     width: 30vw;
     border-radius: 200px;
+    display: none;
+`
+
+export const PostImg = styled.img`
+    height: 14vh;
+    width: 30vw;
+    border-radius: 60px;
+    object-Fit: cover;
 `
 
 

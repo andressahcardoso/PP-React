@@ -8,19 +8,22 @@
 const { Router } = require('express');
 // Instanciar o Router na variável router
 const router = Router();
+const upload = require('../config/multer');
 
 // Importar as funções (processamento da requisição) do controller
 const { 
     listUsers,
     storeUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    listUsersById
 } = require('../controllers/userController')
 
 // Criar os endpoints (rotas) que serão acessados a partir dos métodos HTTP (get,post,put,delete)
 router.get('/users', listUsers);
 router.post('/user/create', storeUser);
-router.put('/user/:id', updateUser);
+router.post('/user', upload.single('file'), updateUser);
 router.delete('/user/:id', deleteUser);
+router.get('/userUpdate', listUsersById)
 
 module.exports = router;
