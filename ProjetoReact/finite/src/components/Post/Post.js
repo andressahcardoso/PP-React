@@ -11,9 +11,37 @@ import send from '../../assets/MenuIcons/send.svg'
 import save from '../../assets/MenuIcons/save.svg'
 import PersonImg from '../../assets/Icons/user.svg'
 
-
+import ImagePopup from './popUp.js'
 
 function Post({posts}) {
+
+
+  const [showImagePopup, setShowImagePopup] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+
+  // Função para abrir o pop-up
+  const openImagePopup = (imageUrl) => {
+  console.log('imageUrl :', imageUrl);
+    setSelectedImage(imageUrl);
+    setShowImagePopup(true);
+  };
+
+  // Função para fechar o pop-up
+  const closeImagePopup = () => {
+    setSelectedImage('');
+    setShowImagePopup(false);
+  };
+
+
+
+
+
+
+
+
+
+
+
     const navigate = useNavigate();
 
     const images = 'http://localhost:3001/uploads/';
@@ -35,7 +63,7 @@ function Post({posts}) {
         rootMargin: '0px',
         threshold: 0.5,
       });
-  
+      
       cards.forEach((card) => {
         observer.observe(card);
       });
@@ -44,7 +72,7 @@ function Post({posts}) {
         observer.disconnect(); // Desconectar o observador quando o componente for desmontado
       };
     }, []);
-  
+    
     function handleCardIntersection(entries, observer) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -57,9 +85,9 @@ function Post({posts}) {
     return (
       <>
         {posts.map((item, index) => {
-        console.log('item :', item);
           return (
-            <PostContainer key={index} className="card">
+            <PostContainer key={index} className="card"
+              onClick={() => openImagePopup(images + item.post_image)}>
               <Profile>
                 <ImgProfile src={PersonImg} />
                 <div>
@@ -85,6 +113,10 @@ function Post({posts}) {
             </PostContainer>
           );
         })}
+
+        {showImagePopup && (
+          <ImagePopup imageUrl={selectedImage} onClose={closeImagePopup} />
+          )}
       </>
     );
   }

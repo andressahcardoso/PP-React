@@ -92,3 +92,47 @@ export const ImgIconRight = styled.img`
     margin-right: 2vw;
     margin-top: 0vh;
 `
+
+
+
+
+
+export const PopupBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`;
+
+export const PopupContent = styled.div`
+  padding: 4vw;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  z-index: 1000;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 4vh;
+  right: 4vw;
+  color: white;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+export const Img2  = styled.img`
+    width: 100%;
+    height: 100%;
+    margin-top: -7vh;
+    z-index: 2;
+    border-radius: 10px;
+`
