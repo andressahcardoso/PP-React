@@ -89,22 +89,23 @@ export const CommentPost = styled.div`
     padding-top: 1vh;
     padding-left: 4vw;
     padding-right: 4vw;
-    margin-bottom: 2vh;
+    margin-bottom: -2vh;
     background-color: #919fe558;
     border-radius: 40px 40px 40px 0px;
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: start;
-`
+    `
 
 export const ImgUser = styled.img`
     width: 8vw;
     margin-right: 4vw;
     margin-top: 1vh;
-`
+    `
 
 export const CommentText = styled.p`
+    overflow-wrap: break-word;
     color: grey;
     margin-top: -1.5vh;
 `
@@ -166,4 +167,22 @@ export const Input = styled.input`
 export const ImgPublish = styled.img`
     width: 12vw;
     margin-left: -12vw;
+`
+
+export const CommentSpace = styled.div`
+    display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 52vh;
+`
+
+export const DivSpace = styled.div`
+    height: 42vh;
+    overflow: auto;
+`
+
+export const AlertText = styled.h3`
+    margin: 22vw;
+    text-align: center;
+    color: #c8c8c8;
 `

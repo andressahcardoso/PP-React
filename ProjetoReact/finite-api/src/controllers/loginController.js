@@ -1,23 +1,22 @@
-// Importa as configurações do banco de dados na variável connection
 const connection = require('../config/db');
-// Importar o pacote dotenv, gerenciador de variáveis de ambiente
 require("dotenv").config();
+
 // Pacote para criptografar a senha de usuario
 const bcrypt = require('bcrypt');
+
 // Importar pacote que implementa o protocolo JSON Web Token
 const jwt = require('jsonwebtoken');
 
-// Authentication
+
+// --------------- Login --------------------
+
 async function login(request, response) {
-    // Preparar o comando de execução no banco
     const query = "SELECT * FROM users WHERE `email` = ?";
     
-    // Recuperar credenciais informadas
     const params = Array(
         request.body.email
     );
 
-    // Executa a ação no banco e valida os retornos para o client que realizou a solicitação
     connection.query(query, params, (err, results) => {
         try {            
             if (results.length > 0) {                

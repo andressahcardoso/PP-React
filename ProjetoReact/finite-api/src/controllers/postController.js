@@ -1,14 +1,8 @@
-// Importa as configurações do banco de dados na variável connection
 const connection = require('../config/db');
-// Importar o pacote dotenv, gerenciador de variáveis de ambiente
 require("dotenv").config();
-// Pacote para criptografar a senha de usuario
-const bcrypt = require('bcrypt');
-// Importar pacote que implementa o protocolo JSON Web Token
-const jwt = require('jsonwebtoken');
 
 
-// Create post
+// --------------- Create post -----------------
 
 async function createPost(request, response) {
     const query = "INSERT INTO posts (Category, UserId, PublishDate, Image, Content, Location) VALUES (?, ?, NOW(), ?, ?, ?)"
@@ -30,13 +24,13 @@ async function createPost(request, response) {
 
       // Retorna o primeiro resultado (supondo que haverá apenas um resultado)
       const categoryId = results[0].Id 
-      console.log('categoryId :', categoryId);
       console.log('------------image :', request.file.filename);
 
       const params = [
         categoryId,
         request.body.userId,
-        request.file.filename,
+        // Pega o fileName do arquivo para inserir no BD.
+        request.file.filename, 
         request.body.content,
         request.body.location
     ];
@@ -50,23 +44,18 @@ async function createPost(request, response) {
         response.json({ message: 'Post criado com sucesso', postId: result.insertId });
       });
     });
-
-
 }
+
+
+// -------------- Get posts --------------------
 
 var fs = require('fs');
-const path = require('path');
 
-const outputDirectory = 'src/temp/';
-
-// Certifica-se de que o diretório de saída exista
-if (!fs.existsSync(outputDirectory)) {
-  fs.mkdirSync(outputDirectory, { recursive: true }); // Cria diretórios pai, se necessário.
-}
-
+// Função que rcebe dois argumentos: base64str, que é uma string em formato base64 a ser decodificada, e fileName, que é o nome do arquivo onde a decodificação será salva.
 function base64_decode(base64str,fileName){
   var bitmap = Buffer.from(base64str, 'base64');
 
+  // O conteúdo decodificado é escrito no arquivo especificado por fileName.
   fs.writeFileSync(fileName+'',bitmap, 'binary', function (err){
     if(err){
       console.log('Conversao com erro');
@@ -74,8 +63,7 @@ function base64_decode(base64str,fileName){
   } );
 }
 
-
-// Consultar todos os posts com JOIN para obter informações do autor
+// Função responsável pela conexão com o banco, a fim de retornar as informações do post.
 async function getAllPosts(req, res) {
   const query = `
   SELECT
@@ -99,12 +87,11 @@ async function getAllPosts(req, res) {
       return res.status(500).json({ error: 'Erro ao recuperar os posts' });
     }
 
-
-    // Loop through the results and decode/save the images
     results.forEach((post) => {
       if (post.post_image) {
         const base64Data = post.post_image;
-        const fileName = `post_${post.post_id}.jpeg`; // Define o nome do arquivo, você pode ajustá-lo conforme necessário.
+        // Define o nome do arquivo.
+        const fileName = `post_${post.post_id}.jpeg`; 
         base64_decode(base64Data, fileName);
       }
     });
@@ -112,6 +99,7 @@ async function getAllPosts(req, res) {
     res.json(results);
   });
 }
+
 
 // Consultar todos os posts com JOIN para obter informações do autor
 async function getCommercePost(req, res) {
@@ -140,7 +128,6 @@ async function getCommercePost(req, res) {
     res.json(results);
   });
 }
-
 
 
 module.exports = {

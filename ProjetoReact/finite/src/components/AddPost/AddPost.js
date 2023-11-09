@@ -29,20 +29,20 @@ function AddPost() {
         // Define a imagem inicial.
         const initialImageUrl = selectedImage2;
         setPreview(initialImageUrl);
-      }, []); 
+    }, []); 
     
-      function handleImageChange(e) {
+    function handleImageChange(e) {
         setImage(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]));
-      }
+    }
     
-      useEffect(() => {
+    useEffect(() => {
         console.log('image', image);
-      }, [image]);
+    }, [image]);
     
-      useEffect(() => {
+    useEffect(() => {
         console.log('preview', preview);
-      }, [preview]);
+    }, [preview]);
 
 
     const handleSubmit = async (e) => {
@@ -56,6 +56,7 @@ function AddPost() {
         formData.append('category', category)
         formData.append('userId', localStorage.getItem('@Auth:id'));
         formData.append('file', image);
+        console.log('================image :', image);
 
         
         try {

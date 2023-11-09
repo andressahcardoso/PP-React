@@ -32,23 +32,13 @@ function Post({posts}) {
     setShowImagePopup(false);
   };
 
-
-
-
-
-
-
-
-
-
-
     const navigate = useNavigate();
 
     const images = 'http://localhost:3001/uploads/';
 
     // Navigate functions
-    function goToComment() {
-      navigate('/Comment');
+    function goToComment(id) {
+      navigate(`/Comment/${id}`);
     }
 
     // Hooks
@@ -85,9 +75,9 @@ function Post({posts}) {
     return (
       <>
         {posts.map((item, index) => {
+        console.log('===============item :', item);
           return (
-            <PostContainer key={index} className="card"
-              onClick={() => openImagePopup(images + item.post_image)}>
+            <PostContainer key={item.post_id} className="card">
               <Profile>
                 <ImgProfile src={PersonImg} />
                 <div>
@@ -95,11 +85,11 @@ function Post({posts}) {
                   <PersonProfile>{item.location}</PersonProfile>
                 </div>
               </Profile>
-              <Img src={images + item.post_image} />
+              <Img src={images + item.post_image} onClick={() => openImagePopup(images + item.post_image)}/>
   
               <Interaction>
                 <DivBtn>
-                  <ImgIcon onClick={goToComment} src={comment} />
+                  <ImgIcon onClick={() => goToComment(item.post_id)} postData={item}  src={comment} />
                   <Text>10</Text>
                   <ImgIcon src={like} />
                   <Text>122</Text>

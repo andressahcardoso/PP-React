@@ -1,18 +1,16 @@
-// Módulo de configuração da webapi, módulo de aplicação
-
-// Importar o pacote express (servidor)
 const express = require('express');
 // Responsável por lidar com requisições externas
 const cors = require('cors');
-// Importar as rotas para serem executadas na aplicação
+
+// Rotas utilizadas para execução da aplicação
 const userRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
 const postRouter = require('./routes/postRouter');
 const categoryRouter = require('./routes/categoryRouter');
-const listUserRouter = require('./routes/listUserRouter')
+const listUserRouter = require('./routes/listUserRouter');7
+const postCommentRouter = require('./routes/postCommentRouter');
+const commetRouter = require('./routes/commentRouter');
 
-// Importar o pacote dotenv, gerenciador de variáveis de ambiente
-const dotenv = require('dotenv').config();
 
 // Instanciar o express na variável app
 const app = express();
@@ -20,6 +18,7 @@ const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
+// Torna a pasta public "visível" atrávez da URL, para assim mostrar as imagens
 app.use('/uploads', express.static(__dirname + '\\public'));
 
 // Habilitar o recebimento de requests em formato JSON
@@ -38,6 +37,14 @@ app.use('/api', categoryRouter);
 
 // List User
 app.use('/api', listUserRouter)
+
+// Post Comment
+app.use('/api', postCommentRouter)
+
+// Comment
+app.use('/api', commetRouter)
+
+
 // Setar a porta do servidor, a parir do arquivo .env
 app.set('port', process.env.PORT || 1903);
 

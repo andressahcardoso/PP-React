@@ -43,7 +43,7 @@ function AppRoutes() {
         {/* Private routes */}
         <Route path="/Feed" element={<PrivateRoute><Feed/></PrivateRoute>} />
         <Route path='/Feed/Commerce/:titleFeed' element={<PrivateRoute><FeedCommerce/></PrivateRoute>} />
-        <Route path="/Comment" element={<PrivateRoute><Comment/></PrivateRoute>} />
+        <Route path="/Comment/:post_id" element={<PrivateRoute><Comment/></PrivateRoute>} />
         <Route path="/Search" element={<PrivateRoute><Search/></PrivateRoute>} />
         <Route path="/Add/Post" element={<PrivateRoute><AddPost/></PrivateRoute>} />
         <Route path="/Config" element={<PrivateRoute><Config/></PrivateRoute>} />
