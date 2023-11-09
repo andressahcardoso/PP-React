@@ -43,6 +43,7 @@ function Comment() {
     useEffect(() => {
         const fetchData = async () => {                 
             try{
+                const postData = await api.post("")
                 const response = await api.post("/comment", {post_id: post_id});
                 const commentList = response.data.data;
                 setComments(commentList);
@@ -75,6 +76,7 @@ function Comment() {
             try{
                 const response = await api.post("/comment", {post_id: post_id});
                 const commentList = response.data.data;
+                console.log('===================commentList :', commentList);
                 setComments(commentList);
             } catch (err) {
                 console.error(err);
@@ -117,7 +119,7 @@ function Comment() {
                             <CommentPost>
                                 <ImgUser src={user1}/>
                                 <div>
-                                    <PersonName>Usuário 1</PersonName>
+                                    <PersonName>{comment.name}</PersonName>
                                     <CommentText>{comment.comment_content}</CommentText>
                                 </div>
                             </CommentPost>

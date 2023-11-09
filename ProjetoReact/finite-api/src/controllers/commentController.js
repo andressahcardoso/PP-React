@@ -9,14 +9,20 @@ async function listComment(request, response) {
     console.log('postID :', postID);
 
     const query = `SELECT
-            comments.Id AS comment_id,
-            comments.userId AS comment_userId,
-            comments.content AS comment_content
-        FROM
-            comments
-        JOIN
-        posts ON posts.ID = comments.postId and comments.postId = ?
-        ORDER BY comments.PublishDate DESC`
+    comments.Id AS comment_id,
+    comments.userId AS comment_userId,
+    comments.content AS comment_content,
+    posts.Content,
+    posts.image,
+    U.userPicture,
+    U.name
+FROM
+    comments
+INNER JOIN
+users AS U ON U.id = comments.userId
+JOIN
+posts ON posts.ID = comments.postId and comments.postId = ?
+ORDER BY comments.publishDate DESC`
 
     connection.query(query, [postID], (error, results) => {
         try {
@@ -44,6 +50,51 @@ async function listComment(request, response) {
     });
 }
 
+// Retorno informações do usuário.
+async function userComment(request, response) {
+    const postID = request.body.post_id
+    console.log('postID :', postID);
+
+    const query = `SELECT
+    comments.Id AS comment_id,
+    comments.userId AS comment_userId,
+    comments.content AS comment_content,
+    posts.Content,
+    posts.image,
+    U.userPicture
+FROM
+    comments
+INNER JOIN
+users AS U ON U.id = comments.userId
+JOIN
+posts ON posts.ID = comments.postId and comments.postId = ?
+ORDER BY comments.publishDate DESC`
+
+    connection.query(query, [postID], (error, results) => {
+        try {
+            if (!error) { // Se não houver erro
+                response.status(200).json({
+                    success: true,
+                    message: 'Retorno de usuários com sucesso!',
+                    data: results
+                });
+            } else { // Retorno com informações de erros
+                response.status(400).json({
+                    success: false,
+                    message: `Não foi possível retornar os usuários.`,
+                    query: error.sql,
+                    sqlMessage: error.sqlMessage
+                });
+            }
+        } catch (error) { // Caso aconteça qualquer erro no processo na requisição, retorna uma mensagem amigável
+            response.status(500).json({
+                success: false,
+                message: "Ocorreu um erro. Não foi possível realizar sua requisição!",
+                error: e
+            });
+        }
+    });
+}
 
 // Função que cria um novo usuário 
 async function createComment(request, response) {
@@ -91,5 +142,6 @@ async function createComment(request, response) {
 
 module.exports = {
     listComment,
-    createComment
+    createComment,
+    userComment
 }
