@@ -51,24 +51,20 @@ ORDER BY comments.publishDate DESC`
 }
 
 // Retorno informações do usuário.
-async function userComment(request, response) {
+async function postComment(request, response) {
     const postID = request.body.post_id
     console.log('postID :', postID);
 
     const query = `SELECT
-    comments.Id AS comment_id,
-    comments.userId AS comment_userId,
-    comments.content AS comment_content,
     posts.Content,
     posts.image,
-    U.userPicture
+    U.userPicture,
+    U.name,
+    U.userName
 FROM
-    comments
+    posts
 INNER JOIN
-users AS U ON U.id = comments.userId
-JOIN
-posts ON posts.ID = comments.postId and comments.postId = ?
-ORDER BY comments.publishDate DESC`
+	users AS U ON U.id = posts.userId and posts.Id = ?`
 
     connection.query(query, [postID], (error, results) => {
         try {
@@ -143,5 +139,5 @@ async function createComment(request, response) {
 module.exports = {
     listComment,
     createComment,
-    userComment
+    postComment
 }

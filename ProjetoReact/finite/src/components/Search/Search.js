@@ -22,6 +22,8 @@ function Search() {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredUsers, setFilteredUsers] = useState(userList);
 
+    const userId = localStorage.getItem('@Auth:id')
+
     // Função para filtrar a lista de usuários com base no input de busca.
     const filterUsers = useCallback(() => {
         
@@ -35,10 +37,12 @@ function Search() {
     useEffect(() => {
         async function fetchUsers() { 
             try { 
-                const response = await api.get('/listUser');
+                const response = await api.post('/listUser', {userId: Number(userId)});
+                
                 setUser(response.data); 
                 if (userList == 0 ){
                     setFilteredUsers(response.data)
+                    console.log('response.data :', response.data);
                 }
             } catch (error) {
                 console.error('Erro ao recuperar usuários:', error);

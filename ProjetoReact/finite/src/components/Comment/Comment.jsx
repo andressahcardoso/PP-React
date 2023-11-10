@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Div = styled.div`
     width: 100vw;
     height: 44vh;
-    margin-top: -8vh;
     z-index:2;
 `
 
@@ -16,9 +15,9 @@ export const Img = styled.img`
 // Start | Comment div
 
 export const CommentDiv = styled.div`
-    height: 72h;
+    height: 72vh;
     width: 100vw;
-    margin-top: -8vh;
+    margin-top: -16.5vh;
     background-color: white;
     z-index: 20;
     position: absolute;

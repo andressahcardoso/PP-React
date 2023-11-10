@@ -28,22 +28,25 @@ function Comment() {
     const [ comments, setComments ] = useState([]);
     const [commentTitle, setCommentTitle] = useState('');
     const [comment, setComment] = useState('');
+    const [objectData, setObjectData] = useState({});
     
     const {post_id} = useParams([]);
     console.log('postID :', post_id);
+
+    const images = 'http://localhost:3001/uploads/';
     
     
     // Navigate function
     function goToPostsPage() {
-        navigate('/Feed');
+        navigate(-1);
     }
-    
-
                     
     useEffect(() => {
         const fetchData = async () => {                 
             try{
-                const postData = await api.post("")
+                const postData = await api.post("/postComment", {post_id: post_id})
+                setObjectData(postData.data.data[0]);
+                console.log('postData.data.data[0] :', postData.data.data[0]);
                 const response = await api.post("/comment", {post_id: post_id});
                 const commentList = response.data.data;
                 setComments(commentList);
@@ -77,6 +80,7 @@ function Comment() {
                 const response = await api.post("/comment", {post_id: post_id});
                 const commentList = response.data.data;
                 console.log('===================commentList :', commentList);
+                setComment('');
                 setComments(commentList);
             } catch (err) {
                 console.error(err);
@@ -91,7 +95,7 @@ function Comment() {
     return(
         <>
             <Div>
-                <Img src={postImg}/>
+                <Img src={images + objectData.image}/>
             </Div>
 
             <CommentDiv>
@@ -99,8 +103,8 @@ function Comment() {
                     <ProfileDiv>
                         <ImgProfile src={PersonImg}/>
                         <div>
-                            <PersonName>Prabhas Raju</PersonName>
-                            <PersonProfile>@Praba_01</PersonProfile>
+                            <PersonName>{objectData.name}</PersonName>
+                            <PersonProfile>{'@'+objectData.userName}</PersonProfile>
                         </div>
                     </ProfileDiv>
 
@@ -108,7 +112,7 @@ function Comment() {
                 </Profile>
 
                 <UserComment>
-                    <p>#Comentário do autor</p>
+                    <p>{objectData.Content}</p>
                 </UserComment>
 
             <CommentSpace>

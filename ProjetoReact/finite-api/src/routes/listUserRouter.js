@@ -6,6 +6,6 @@ const router = Router();
 const { listUsers } = require('../controllers/listUserController');
 
 // router.post('/post', post);
-router.get('/listUser', listUsers);
+router.post('/listUser', listUsers);
 
 module.exports = router;
