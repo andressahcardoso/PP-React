@@ -31,7 +31,7 @@ export const ImgDiv = styled.div`
     width: 22vw;
     margin-left: -20vw;
     padding: 1vw;
-    background-color: #d0cdcd;
+    background-color: #919fe5b1;
     border-radius: 100px;
 `
 
@@ -98,4 +98,43 @@ export const Icon3 = styled.img`
     margin-top: 4vh;
     margin-bottom: 1vh;
     margin-right: 3vw;
+`
+
+export const InputText = styled.input`
+    margin-top: 2vh;
+    width: 90vw;
+    margin-bottom: 1vh;
+    border: none;
+    margin-left: 4vw;
+    outline: none;
+    font-size: 16px;
+`
+
+export const BtnDiv = styled.div`
+    height: 5vh;
+    margin-top: 25vh;
+    display: flex;
+    justify-content: end;
+    align-content: space-between;
+    
+`
+
+export const Cancel = styled.button`
+     background-color: #919fe5b1;
+     border: 0px;
+     border-radius: 8px;
+     padding-left: 4vw;
+     padding-right: 4vw;
+     color: white;
+     margin-right: 4vw;
+`
+
+export const Save = styled.button`
+     background-color: #919FE5;
+     border: 0px;
+     border-radius: 8px;
+     padding-left: 4vw;
+     padding-right: 4vw;
+     color: white;
+     margin-right: 6vw;
 `

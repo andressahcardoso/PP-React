@@ -10,7 +10,7 @@ const categoryRouter = require('./routes/categoryRouter');
 const listUserRouter = require('./routes/listUserRouter');7
 const postCommentRouter = require('./routes/postCommentRouter');
 const commetRouter = require('./routes/commentRouter');
-
+const listUserInfo = require('./routes/userInfoRouter')
 
 // Instanciar o express na variável app
 const app = express();
@@ -43,6 +43,9 @@ app.use('/api', postCommentRouter)
 
 // Comment
 app.use('/api', commetRouter)
+
+// User Info
+app.use('/api', listUserInfo)
 
 
 // Setar a porta do servidor, a parir do arquivo .env

@@ -92,7 +92,7 @@ INNER JOIN
     });
 }
 
-// Função que cria um novo usuário 
+// Função que cria um novo comentário 
 async function createComment(request, response) {
     // Preparar o comando de execução no banco
     const query = "INSERT INTO comments(userId, postId, content, publishDate) VALUES (?, ?, ?, NOW());";

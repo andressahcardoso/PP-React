@@ -18,7 +18,10 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { PostImg } from "./UserAccount.jsx";
 
+import ImagePopup from '../Post/popUp.js'
+
 function UserAccount() {
+    const userId = localStorage.getItem('@Auth:id')
     const navigate = useNavigate();
 
     // Navigate functions
@@ -33,17 +36,29 @@ function UserAccount() {
     // Hooks
     const [image, setImage] = useState('');
     const [preview, setPreview] = useState('');
-    const id = localStorage.getItem('@Auth:id')
+    const [objectData, setObjectData] = useState({});
+    const [postsUser, setPostsUser] = useState();
+
+    const images = 'http://localhost:3001/uploads/';
 
     useEffect(() => {
 
-       
-        
-        // Define a imagem inicial.
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-        console.log('==========response.data :', preview);
-        const initialImageUrl = userImage;
-        setPreview(initialImageUrl);
+        const fetchData = async () => {                 
+            try{
+                const postData = await api.post("/userInfo", {userId: userId})
+                const userPost = await api.post("/userPosts", {userId: userId})
+                console.log('userPost :', userPost.data.data);
+                setPostsUser(userPost.data.data)
+                setObjectData(postData.data.data[0]);
+                console.log('postData.data.data[0] :', postData.data.data[0]);
+                
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchData();
+        console.log('objectData :', objectData);
        
       }, []); 
     
@@ -51,9 +66,6 @@ function UserAccount() {
         setPreview(URL.createObjectURL(e.target.files[0]));
 
         e.preventDefault();
-        console.log(image)
-
-        const id = localStorage.getItem('@Auth:id')
         
         let formData = new FormData();
         formData.append('userId', localStorage.getItem('@Auth:id'));
@@ -78,6 +90,21 @@ function UserAccount() {
         console.log('===========preview', preview);
       }, [preview]);
 
+      const [showImagePopup, setShowImagePopup] = useState(false);
+      const [selectedImage, setSelectedImage] = useState('');
+
+      // Função para abrir o pop-up
+  const openImagePopup = (imageUrl) => {
+    console.log('imageUrl :', imageUrl);
+      setSelectedImage(imageUrl);
+      setShowImagePopup(true);
+    };
+  
+    // Função para fechar o pop-up
+    const closeImagePopup = () => {
+      setSelectedImage('');
+      setShowImagePopup(false);
+    };
 
     
 
@@ -106,12 +133,14 @@ function UserAccount() {
                             onChange={ handleImageChange }  id="imageInput"/>
                             {/* onChange={ (e) => setImage(e.target.files[0]) }  id="imageInput"/> */}
                             {/* onChange={ (e) => setImage(URL.createObjectURL(e.target.files[0])) }  id="imageInput"/> */}
-                    {preview && (
+                            <PostImg src={userImage} alt="Imagem selecionada" />
+
+                    {/* {preview && (
                         <div>
                             <PostImg src={preview} alt="Imagem selecionada" />
                             {/* <img src={image} width="50px" height="50px"/> */}
-                        </div>
-                    )}
+                        {/* </div> */}
+                    {/* )}  */}
                         </ImgDiv>
                         <TextDiv>
                             <Num>325</Num>
@@ -120,8 +149,8 @@ function UserAccount() {
                 </UserInformations>
 
                 <UserText>
-                    <Account>@usuario_exemplo</Account>
-                    <Description>usuario exemplo texto de descrição do perfil de usuário. Imagem e vídeo.</Description>
+                    <Account>{'@'+objectData.userName}</Account>
+                    <Description>{objectData.description}</Description>
                 </UserText>
 
                 <BtnDiv>
@@ -136,26 +165,21 @@ function UserAccount() {
                 </OptionDiv>
 
                 <PostSection>
-                    <DivImage>
-                        <PostImage src={post1}/>
-                    </DivImage>
-
-                    <DivImage>
-                        <PostImage src={post2}/>
-                    </DivImage>
-            
-                    <DivImage>
-                        <PostImage src={post3}/>
-                    </DivImage>
-
-                    <DivImage>
-                        <PostImage src={post4}/>
-                    </DivImage>
+                    {postsUser && postsUser.map((item, index) => (
+                        // console.log('item', item)
+                        <DivImage key={index}>
+                            <PostImage src={images + item.image} alt={`Post ${index + 1}`} onClick={() => openImagePopup(images + item.image)} />
+                        </DivImage>
+                    ))}
                 </PostSection>
 
             </UserSection>
 
             <Nav/>
+
+            {showImagePopup && (
+          <ImagePopup imageUrl={selectedImage} onClose={closeImagePopup} />
+          )}
         </>
     )
 }

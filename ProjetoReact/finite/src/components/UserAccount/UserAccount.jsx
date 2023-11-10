@@ -143,17 +143,24 @@ export const P = styled.p`
 
 export const PostSection = styled.section`
     width: 100vw;
+    height: 42vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    overflow: auto;
 `
 
 export const DivImage = styled.div`
     padding: 2vw;
+    width: 40vw; 
+    height: 40vw; 
+    overflow: hidden;
 `
 
 export const PostImage = styled.img`
-    height: 45vw;
-    width: 40vw;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Corta a imagem para preencher a caixa mantendo a proporção original */
+    object-position: center;
 `

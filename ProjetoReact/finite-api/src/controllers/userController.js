@@ -167,44 +167,48 @@ async function storeUser(request, response) {
 // Função que atualiza o usuário no banco
 async function updateUser(request, response) {
     // Preparar o comando de execução no banco
-    const query = "UPDATE users SET `userPicture` = ? WHERE `id` = ?";
+    const query = `UPDATE users
+        SET name = ?, userName = ?, description = ?
+        WHERE id = ?;`;
 
     // Recuperar os dados enviados na requisição respectivamente
+    console.log('request.body.name :', request.body.name);
     const params = Array(
-        request.file.filename,
-        request.body.userId  // Recebimento de parametro da rota
+        request.body.name,
+        request.body.userName,
+        request.body.description, 
+        request.body.userId
     );
 
     // Executa a ação no banco e valida os retornos para o client que realizou a solicitação
     connection.query(query, params, (err, results) => {
+    console.log('params :', params);
+    console.log('query :', query);
         try {
-            if (results) {
-                response
-                    .status(200)
-                    .json({
-                        success: true,
-                        message: `Sucesso! Usuário atualizado.`,
-                        data: results
-                    });
-            } else {
-                response
-                    .status(400)
-                    .json({
-                        success: false,
-                        message: `Não foi possível realizar a atualização. Verifique os dados informados`,
-                        query: err.sql,
-                        sqlMessage: err.sqlMessage
-                    });
-            }
-        } catch (e) { // Caso aconteça algum erro na execução
-            response.status(400).json({
-                    succes: false,
-                    message: "Ocorreu um erro. Não foi possível atualizar usuário!",
-                    query: err.sql,
-                    sqlMessage: err.sqlMessage
+            if (results.affectedRows > 0) {
+                response.status(200).json({
+                    success: true,
+                    message: `Sucesso! Usuário atualizado.`,
+                    data: results
                 });
+            } else {
+                response.status(400).json({
+                    success: false,
+                    message: `Não foi possível realizar a atualização. Verifique os dados informados`,
+                    query: err,
+                    sqlMessage: err
+                });
+            }
+        } catch (e) {
+            response.status(400).json({
+                success: false,
+                message: "Ocorreu um erro. Não foi possível atualizar usuário!",
+                query: err,
+                sqlMessage: err
+            });
         }
     });
+
 }
 
 // Função que remove usuário no banco

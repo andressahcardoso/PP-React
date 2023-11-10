@@ -170,9 +170,9 @@ export const ImgPublish = styled.img`
 
 export const CommentSpace = styled.div`
     display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 52vh;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 52vh;
 `
 
 export const DivSpace = styled.div`
