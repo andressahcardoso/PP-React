@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+export const Div = styled.div`
+    height: 100vh;
+`
 export const ErrorMesaage = styled.p`
     color: rgba(145, 159, 229, 1);
     font-size: 1em;

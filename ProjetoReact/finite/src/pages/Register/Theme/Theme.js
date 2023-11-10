@@ -1,4 +1,4 @@
-import {Header, SunTheme, ImgContainer, ImgSun, Title, Subtitle, ParagrafoImg, ButtonTheme, CheckBoxWrapper, CheckBox, NextPreviousButtons } from "./ThemeStyle"
+import {Header, SunTheme, ImgContainer, ImgSun, Title, Themes, Subtitle, ParagrafoImg, ButtonTheme, CheckBoxWrapper, CheckBox, NextPreviousButtons } from "./ThemeStyle"
 
 // Components
 import HeaderContainer from "../Header/Header"
@@ -8,28 +8,24 @@ import Footer from "../Footer/Footer"
 import SunImg from "../../../assets/Sun.svg"
 import SunImg2 from "../../../assets/Sun2.svg"
 
-import { Themes as LightThemes} from "./ThemeLight"; // Importe os estilos para o tema claro
-import { Themes as DarkThemes } from "./ThemeDark"; // Importe os estilos para o tema escuro
+
 import { CheckBoxLabel as LightThemes2} from "./ThemeLight"; // Importe os estilos para o tema claro
-import { CheckBoxLabel as DarkThemes2 } from "./ThemeDark"; // Importe os estilos para o tema escuro
 
-import { useState } from "react";
-import { useLocation } from "react-router-dom"
-
+import { useTheme } from '../../../hooks/useTheme';
 import { api } from "../../../services/api";
 
 function Theme() {
+    const { theme, toggleTheme } = useTheme();
 
-    let theme = 0;
+    // let theme = 0;
 
-    const location = useLocation();
-    const userInfo = location.state ? location.state.formData : null;
+    // const location = useLocation();
+    // const userInfo = location.state ? location.state.formData : null;
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        console.log('aaaaa', theme)
 
-        const userInfoWithTheme = { ...userInfo, theme: darkMode ? 1 : 0 };
+        const userInfoWithTheme = 1;
 
         // Envia as informações preenchidas pelo usuário (data) para o endpoint "/user/create" da API.
         console.log('userInfoWithTheme:', userInfoWithTheme);
@@ -37,24 +33,23 @@ function Theme() {
 
     };
 
-    const [darkMode, setDarkMode] = useState(false);
+    // const [darkMode, setDarkMode] = useState(false);
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-    };
+    // const toggleDarkMode = () => {
+    //     setDarkMode(!darkMode);
+    // };
 
-    const ThemeComponents = darkMode ? DarkThemes : LightThemes;
-    const LabelComponents = darkMode ? DarkThemes2 : LightThemes2;
+    const LabelComponents = LightThemes2;
 
     return (
-        <ThemeComponents> 
+        <Themes style={{ background: theme.background, color: theme.color }}> 
             <Header>
                 <HeaderContainer firstDiv={false} firstBgc={true} secondDiv={false} secondBgc={true} thirdDiv={true} thirdBgc={false}/> 
             </Header>
 
             <SunTheme>
                 <ImgContainer>
-                    <ImgSun src={darkMode? SunImg2 : SunImg} />
+                    <ImgSun src={SunImg} />
                 </ImgContainer>
 
                 <Title>Escolha um tema</Title>
@@ -64,7 +59,7 @@ function Theme() {
                 
             <ButtonTheme>
                 <CheckBoxWrapper>
-                    <CheckBox id="checkbox" type="checkbox" onChange={toggleDarkMode}/>
+                    <CheckBox id="checkbox" type="checkbox" onChange={toggleTheme}/>
                     <LabelComponents CheckBoxLabel2={true} htmlFor="checkbox" />
                 </CheckBoxWrapper>
             </ButtonTheme>
@@ -72,7 +67,7 @@ function Theme() {
             <NextPreviousButtons onClick={handleFormSubmit}>
                 <Footer back="/Register/Forms" next="/Feed"/>
             </NextPreviousButtons>
-        </ThemeComponents>
+        </Themes>
     )
 }
 

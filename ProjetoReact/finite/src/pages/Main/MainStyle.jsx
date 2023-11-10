@@ -7,7 +7,6 @@ export const MainContainer = styled.section`
                          'text-description'
                          'button-login-register'
                          ;        
-    background-color: white;
 `
 
 export const MainVideo = styled.video`

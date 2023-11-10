@@ -10,9 +10,11 @@ import { useNavigate } from 'react-router-dom';
 
 // Images
 import GoogleLogo from "../../../assets/google-logo.svg"
-
+import { useTheme } from "../../../hooks/useTheme";
 
 function User() {
+
+    const {theme} = useTheme();
 
     const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ function User() {
     };
 
     return (
-        <Users> 
+        <Users style={{ background: theme.background, color: theme.color }}> 
             <Header>
                 <HeaderContainer firstDiv={true} firstBgc={false} secondDiv={false} secondBgc={false} thirdDiv={false} thirdBgc={false}/>
             </Header>

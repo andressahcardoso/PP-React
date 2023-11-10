@@ -28,6 +28,10 @@ function Config() {
         navigate('/')
     }
 
+    function goToTheme() {
+        navigate('/EditTheme')
+    }
+
 
     
     return (
@@ -49,7 +53,7 @@ function Config() {
                             </ConfigOption>
                         </ConfigDiv>
 
-                        <ConfigDiv>
+                        <ConfigDiv onClick={goToTheme}>
                             <ConfigOption>
                                 <Img src={themeIcon}/>
                                 <Text>Tema</Text>

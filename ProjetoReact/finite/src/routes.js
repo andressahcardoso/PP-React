@@ -21,6 +21,7 @@ import Categorie from './components/Categories/Categories';
 import Ranking from './components/Ranking/Ranking';
 import Report from './components/Report/Report';
 import UserSettings from './components/UserSettings/UserSettings';
+import EditTheme from './components/EditTheme/EditTheme';
 
 const PrivateRoute = ({children}) => {
   const isAuthenticated = localStorage.getItem("@Auth:token") !== null;
@@ -54,6 +55,7 @@ function AppRoutes() {
         <Route path="/Ranking" element={<PrivateRoute><Ranking/></PrivateRoute>} />
         <Route path="/Report" element={<PrivateRoute><Report/></PrivateRoute>} />
         <Route path="/User/Settings" element={<PrivateRoute><UserSettings/></PrivateRoute>} />
+        <Route path="/EditTheme" element={<PrivateRoute><EditTheme/></PrivateRoute>} />
       </Routes>
     </BrowserRouter>
   );

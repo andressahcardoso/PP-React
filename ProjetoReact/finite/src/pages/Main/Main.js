@@ -6,9 +6,14 @@ import { useNavigate } from "react-router"
 // Images and video
 import FiniteIntro from '../../assets/Video/Finite_Intro_1.mp4'
 import Finite from '../../assets/Finite_Logo.svg'
+import { useTheme } from "../../hooks/useTheme";
+
 
 function Main() {
 
+    const {theme} = useTheme();
+
+   
     const navigate = useNavigate()
 
     function goToLogin() {
@@ -20,7 +25,7 @@ function Main() {
     }
 
     return (
-        <MainContainer>
+        <MainContainer style={{ background: theme.background, color: theme.color }}>
             <MainVideo src={FiniteIntro} type="video/mp4" width="430" autoPlay></MainVideo>
         
             <TextDescription>

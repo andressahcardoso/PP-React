@@ -1,4 +1,4 @@
-import {Header, ImagemLogo, PreviousButton, WelcomeBack, Subtitle, FormItens, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv, ErrorMesaage, ErrorDiv} from "./LoginStyle"
+import {Header, ImagemLogo, PreviousButton, Div, WelcomeBack, Subtitle, FormItens, Label, Input, ForgotPassword, LoginButton, EnterWith, TextLine, EnterText, GoogleDiv, CenterDiv, ErrorMesaage, ErrorDiv} from "./LoginStyle"
 
 // React Router
 import { useNavigate } from 'react-router-dom';
@@ -11,8 +11,10 @@ import { api } from "../../services/api";
 
 // Icons
 import { LuAlertTriangle } from 'react-icons/lu';
+import { useTheme } from "../../hooks/useTheme";
 
 function Login() {
+    const {theme} = useTheme();
 
     // Validação de Login API
     const [email, setEmail] = useState('');
@@ -114,7 +116,7 @@ function Login() {
     // }, [handleCallbackResponse]);
     
         return (
-            <>
+            <Div style={{ background: theme.background, color: theme.color }}>
                 <Header>
                     <ImagemLogo src={Logo}></ImagemLogo>
                     <PreviousButton onClick={goToBack} src={PreviousImg} alt="Voltar a Página inicial"/>
@@ -184,7 +186,7 @@ function Login() {
 
                     </CenterDiv>
                 </EnterWith>
-            </>
+            </Div>
         )
     } 
 

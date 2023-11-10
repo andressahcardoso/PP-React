@@ -6,9 +6,12 @@ import { useNavigate } from 'react-router-dom';
 // Images
 import PreviousImg from "../../../assets/previous.png"
 
+import { useTheme } from "../../../hooks/useTheme";
+
 
 function Informations() {
 
+    const {theme} = useTheme();
     const navigate = useNavigate();
 
     function goToBack() {
@@ -20,7 +23,7 @@ function Informations() {
     }
 
     return (
-        <Information>
+        <Information style={{ background: theme.background, color: theme.color }}>
             <TextDescription>
                 <Title>Finite</Title>
                 <Subtitle>Rede Social Orgânica</Subtitle>

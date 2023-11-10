@@ -1,6 +1,10 @@
 import {HeaderContainer, Line, Background,  StepsContainer, Div, CircleStep, StepConclued, AnimatedBackground, FixedBackground, FixedP, P, InformationStep} from "./HeaderStyle"
 
+import { useTheme } from "../../../hooks/useTheme";
+
 function Header(props) {
+    const {theme} = useTheme();
+    
     return (
         <HeaderContainer>
             <Line></Line>

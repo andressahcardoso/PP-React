@@ -94,9 +94,6 @@ export const ImgIconRight = styled.img`
 `
 
 
-
-
-
 export const PopupBackground = styled.div`
   position: fixed;
   top: 0;
@@ -135,4 +132,38 @@ export const Img2  = styled.img`
     margin-top: -7vh;
     z-index: 2;
     border-radius: 10px;
+`
+
+export const DivButton = styled.div`
+ background-color: #919FE5;
+    border: solid 1px rgb(173, 185, 243);
+    padding-left: 4vw;
+    padding-right: 4vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    color: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+`
+
+export const MainDiv = styled.div`
+    margin-bottom: 0vh;
+`
+
+export const TitleInfo = styled.p`
+    margin-bottom: -4px;
+    font-weight: 500;
+`
+
+export const TextInfo = styled.p`
+    color: #edebebff;
+`
+
+export const Alert = styled.p`
+    font-size: 50px;
+    margin-right: 6vw;
+    margin-top: 1vh;
+    margin-bottom: 0vh;
+    margin-left: 4vw;
 `

@@ -11,8 +11,11 @@ import Subtraction from "../../../assets/Subtraction.svg"
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { useTheme } from "../../../hooks/useTheme";
+
 function Forms() {
 
+    const {theme} = useTheme();
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -96,7 +99,7 @@ function Forms() {
     };
 
     return (
-        <Form> 
+        <Form style={{ background: theme.background, color: theme.color }}> 
             <Header>
                 <HeaderContainer firstDiv={false} firstBgc={true} secondDiv={true} secondBgc={false} thirdDiv={false} thirdBgc={false}/>
             </Header>
