@@ -11,11 +11,25 @@ import Nav from "../Nav/Nav";
 // Icon
 import imgConclued from '../../assets/Icons/concluedIcon.svg'
 import selectedImage2 from '../../assets/Icons/uploadIcon.svg'
+import selectedImage3 from '../../assets/Icons/addPost.PNG'
 
 // Api
 import { api } from "../../services/api";
+import { useTheme } from "../../hooks/useTheme";
 
 function AddPost() {
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    console.log('darkTheme :', darkTheme);
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
+    const {theme} = useTheme();
+
     const navigate = useNavigate();
 
     // Hooks
@@ -27,7 +41,7 @@ function AddPost() {
 
     useEffect(() => {
         // Define a imagem inicial.
-        const initialImageUrl = selectedImage2;
+        const initialImageUrl = darkMode ? selectedImage3 : selectedImage2;
         setPreview(initialImageUrl);
     }, []); 
     
@@ -75,7 +89,7 @@ function AddPost() {
     };
 
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <MainHeader title='Nova Publicação'/>
                 
             <AddPostComponent>
@@ -137,7 +151,7 @@ function AddPost() {
             </AddPostComponent>
 
             <Nav/>
-        </>
+        </div>
     )
 }
 

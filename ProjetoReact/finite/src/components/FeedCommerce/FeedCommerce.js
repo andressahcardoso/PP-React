@@ -12,8 +12,10 @@ import { useParams } from "react-router-dom";
 // Api
 import { api } from "../../services/api";
 
+import { useTheme } from "../../hooks/useTheme";
 
 function FeedCommerce(props) {
+    const {theme} = useTheme();
 
     const {titleFeed} = useParams()
        
@@ -38,17 +40,17 @@ function FeedCommerce(props) {
     }, [titleFeed]);
 
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}} >
             <MainHeader title={titleFeed}/>
              
-            <FeedComponent>
+            <FeedComponent >
                 <Post posts={posts}/>
 
                 <FinalDiv>⠀⠀</FinalDiv>
             </FeedComponent>
 
             <Nav/>
-        </>
+        </div>
     )
 }
 

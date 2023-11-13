@@ -88,6 +88,7 @@ export const Input = styled.input`
     border: 0px;
     border: 2px solid rgb(173, 185, 243);
     padding-left: 4vw;
+    background-color: #ffffff0f;
 
     &:focus{
         outline: none;
@@ -104,6 +105,7 @@ export const SelectContainer = styled.div`
     border-radius: 30px;
     border: 0px;
     border: 2px solid rgb(173, 185, 243);
+    background-color: #ffffffb;
 `
 
 

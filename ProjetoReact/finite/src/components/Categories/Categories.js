@@ -15,19 +15,39 @@ import sport from '../../assets/Icons/sport.svg'
 import nature from '../../assets/Icons/nature.svg'
 import education from '../../assets/Icons/education.svg'
 import searchIcon from '../../assets/Icons/searchIcon.svg'
+import all2 from '../../assets/Icons/all2.PNG'
+import music2 from '../../assets/Icons/music2.svg'
+import sport2 from '../../assets/Icons/basketball.svg'
+import nature2 from '../../assets/Icons/leaf.svg'
+import education2 from '../../assets/Icons/book.svg'
+import searchIcon2 from '../../assets/Icons/searchIcon.svg'
 
+import { useTheme } from "../../hooks/useTheme";
 
 
 // Lista fixa de categorias | Iguais as do BD.
+let darkMode = false;
+
+const darkTheme = localStorage.getItem('themeColor');
+console.log('darkTheme :', darkTheme);
+if (darkTheme == 'black') {
+    darkMode = true
+} else {
+    darkMode = false
+}
+
 const userList = [
-    { id: 1, name: 'Diversos', picture: all},
-    { id: 2, name: 'Músicas', picture: music},
-    { id: 3, name: 'Atividades e Esportes', picture: sport},
-    { id: 4, name: 'Natureza e Paisagem', picture: nature},
-    { id: 5, name: 'Educação', picture: education},
+    { id: 1, name: 'Diversos', picture:  darkMode ? all2 : all},
+    { id: 2, name: 'Músicas', picture: darkMode ? music2 : music},
+    { id: 3, name: 'Atividades e Esportes', picture: darkMode ? sport2 : sport},
+    { id: 4, name: 'Natureza e Paisagem', picture: darkMode ? nature2 : nature},
+    { id: 5, name: 'Educação', picture: darkMode ? education2 : education},
 ];
 
 function Categorie() {
+    const {theme} = useTheme();
+
+
     const navigate = useNavigate()
     
     // Navigate functions
@@ -54,7 +74,7 @@ function Categorie() {
 
 
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <MainHeader title='Categorias'/>
                 
             <SearchComponent>
@@ -81,7 +101,7 @@ function Categorie() {
             </SearchComponent>
 
             <Nav/>
-        </>
+        </div>
     )
 }
 

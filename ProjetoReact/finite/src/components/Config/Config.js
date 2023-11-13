@@ -11,11 +11,29 @@ import Nav from "../Nav/Nav";
 // Icon
 import searchIcon from '../../assets/Icons/searchIcon.svg'
 import accountIcon from '../../assets/Icons/accountIcon.svg'
+import accountIcon2 from '../../assets/Icons/userremove.svg'
 import themeIcon from '../../assets/Icons/themeIcon.svg'
+import themeIcon2 from '../../assets/Icons/palette.svg'
 import privacyIcon from '../../assets/Icons/privacyIcon.svg'
+import privacyIcon2 from '../../assets/Icons/lock.svg'
 import closeAccountIcon from '../../assets/Icons/closeAccountIcon.svg'
+import closeAccountIcon2 from '../../assets/Icons/Vector.svg'
+
+import { useTheme } from "../../hooks/useTheme";
 
 function Config() {
+    const {theme} = useTheme();
+
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    console.log('darkTheme :', darkTheme);
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
     const navigate = useNavigate();
 
     // Navigate functions
@@ -35,7 +53,7 @@ function Config() {
 
     
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <MainHeader title='Configurações'/>
                 
             <SearchComponent>
@@ -48,21 +66,21 @@ function Config() {
                     <div>
                         <ConfigDiv onClick={goToUserSettings}>
                             <ConfigOption>
-                                <Img src={accountIcon}/>
+                                <Img src={darkMode ? accountIcon2 : accountIcon}/>
                                 <Text>Conta</Text>
                             </ConfigOption>
                         </ConfigDiv>
 
                         <ConfigDiv onClick={goToTheme}>
                             <ConfigOption>
-                                <Img src={themeIcon}/>
+                                <Img src={darkMode ? themeIcon2 : themeIcon}/>
                                 <Text>Tema</Text>
                             </ConfigOption>
                         </ConfigDiv>
 
                         <ConfigDiv>
                             <ConfigOption>
-                                <Img src={privacyIcon}/>
+                                <Img src={darkMode ? privacyIcon2 : privacyIcon}/>
                                 <Text>Privacidade</Text>
                             </ConfigOption>
                         </ConfigDiv>
@@ -75,14 +93,14 @@ function Config() {
 
                         <ConfigDiv onClick={handleLogout}>
                             <ConfigOption>
-                                <Img src={closeAccountIcon}/>
+                                <Img src={darkMode ? closeAccountIcon2 : closeAccountIcon}/>
                                 <Text>Sair</Text>
                             </ConfigOption>
                         </ConfigDiv>
 
                         <ConfigDiv>
                             <ConfigOption>
-                                <Img src={accountIcon}/>
+                                <Img src={darkMode ? accountIcon2 : accountIcon}/>
                                 <Text>Excluir conta</Text>
                             </ConfigOption>
                         </ConfigDiv>
@@ -91,7 +109,7 @@ function Config() {
             </SearchComponent>
 
             <Nav/>
-        </>
+        </div>
     )
 }
 

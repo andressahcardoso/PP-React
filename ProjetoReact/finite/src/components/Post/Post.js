@@ -12,6 +12,7 @@ import save from '../../assets/MenuIcons/save.svg'
 import PersonImg from '../../assets/Icons/user.svg'
 
 import ImagePopup from './popUp.js'
+import { useTheme } from "../../hooks/useTheme";
 
 function Post({posts}) {
 console.log('===============posts :', posts);
@@ -64,7 +65,9 @@ console.log('===============posts :', posts);
    
   
 
+  const {theme} = useTheme();
   return (
+
     <MainDiv>        
       {filteredPost.map((item) => {
         totalPost += 1; 

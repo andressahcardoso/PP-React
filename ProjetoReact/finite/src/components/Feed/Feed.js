@@ -1,4 +1,4 @@
-import { FeedComponent, OptionsComponent, Div, ImgOption, OptionsText, Categorie, FinalDiv} from "./Feed.jsx";
+import { FeedComponent, OptionsComponent, Div, ImgOption, OptionsText, Categorie, FinalDiv, DivArea} from "./Feed.jsx";
 
 // React 
 import { useEffect, useState } from "react";
@@ -17,8 +17,11 @@ import commerce from '../../assets/commerce.svg'
 // Api
 import { api } from "../../services/api";
 
+import { useTheme } from "../../hooks/useTheme";
+
 
 function Feed() {
+    const {theme} = useTheme();
 
     const navigate = useNavigate()
 
@@ -54,7 +57,7 @@ function Feed() {
 
     
     return (
-        <>
+        <DivArea style={{ background: theme.background, color: theme.color}}>
             <MainHeader title='Finite'/>
 
             <OptionsComponent>
@@ -82,7 +85,7 @@ function Feed() {
             </FeedComponent>
                 
             <Nav/>
-        </>
+        </DivArea>
     )
 }
 

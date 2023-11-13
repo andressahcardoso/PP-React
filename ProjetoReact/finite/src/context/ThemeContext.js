@@ -12,6 +12,8 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('theme', JSON.stringify(theme));
+    console.log('---------theme :', theme.background);
+    localStorage.setItem('themeColor', theme.background)
   }, [theme]);
 
   const toggleTheme = () => {

@@ -11,7 +11,7 @@ export const Color = styled.div`
 
 export const UserSection = styled.section`
     height: 77vh;
-    border-radius: 50px;
+    border-radius: 50px 50px 0px 0px;
     margin-top: -5vh;
     z-index: 5;
     background-color: white;

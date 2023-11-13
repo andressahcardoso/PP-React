@@ -20,7 +20,11 @@ import { PostImg } from "./UserAccount.jsx";
 
 import ImagePopup from '../Post/popUp.js'
 
+import { useTheme } from "../../hooks/useTheme";
+
 function UserAccount() {
+    const {theme} = useTheme();
+
     const userId = localStorage.getItem('@Auth:id')
     const navigate = useNavigate();
 
@@ -118,7 +122,7 @@ function UserAccount() {
         <>
             <Color>⠀⠀</Color>
 
-            <UserSection>
+            <UserSection style={{ background: theme.background, color: theme.color}}>
                 <UserInformations>
                     <TextDiv>
                         <Num>200</Num>

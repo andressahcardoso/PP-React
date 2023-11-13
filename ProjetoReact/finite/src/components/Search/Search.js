@@ -13,9 +13,10 @@ import user1 from '../../assets/user1.svg'
 
 // Api
 import { api } from "../../services/api";
-
+import { useTheme } from "../../hooks/useTheme";
 
 function Search() {
+    const {theme} = useTheme();
     
     const [userList, setUser] = useState([]); 
     
@@ -55,7 +56,7 @@ function Search() {
     
 
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <MainHeader title='Pesquisar'/>
                
             <SearchComponent>
@@ -85,7 +86,7 @@ function Search() {
             </SearchComponent>
 
             <Nav/>
-        </>
+        </div>
     )
 }
 

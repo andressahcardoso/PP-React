@@ -7,6 +7,8 @@ export const FeedComponent = styled.section`
     padding-left: 0.5vw;
     align-content: start;
     flex-wrap: wrap;
+    background-color: black;
+    max-height: 100%;
 `
 
 
@@ -53,4 +55,8 @@ export const Categorie = styled.h3`
 
 export const FinalDiv = styled.div`
     height: 10vh;
+`
+
+export const DivArea = styled.div`
+    min-height: 100;
 `

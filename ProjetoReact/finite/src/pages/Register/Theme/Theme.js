@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer"
 
 // Images
 import SunImg from "../../../assets/Sun.svg"
-import SunImg2 from "../../../assets/Sun2.svg"
 
 
 import { CheckBoxLabel as LightThemes2} from "./ThemeLight"; // Importe os estilos para o tema claro

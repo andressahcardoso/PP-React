@@ -17,7 +17,11 @@ import { useEffect, useState } from "react";
 // Api
 import { api } from "../../services/api";
 
+import { useTheme } from "../../hooks/useTheme";
+
 function UserSettings() {
+    const {theme} = useTheme();
+
     const userId = localStorage.getItem('@Auth:id')
 
     const navigate = useNavigate();
@@ -111,7 +115,7 @@ function UserSettings() {
     };
 
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <HeaderComponent>
                 <h2>Configurações do Perfil</h2>
                 <img onClick={goToBack} src={previous} alt="Back"></img>
@@ -184,7 +188,7 @@ function UserSettings() {
                 
             </Settings>
             <Nav/>
-        </>
+        </div>
     )
 }
 
