@@ -14,6 +14,7 @@ import PersonImg from '../../assets/Icons/user.svg'
 import ImagePopup from './popUp.js'
 
 function Post({posts}) {
+console.log('===============posts :', posts);
   const navigate = useNavigate();
   
   // Hooks
@@ -53,11 +54,12 @@ function Post({posts}) {
   
   const [startIndex, setStartIndex] =  useState(0);
   const [endIndex, setEndIndex] = useState(4);
-   
-
+  
+  
   useEffect(() => {
     const filteredPost = posts.filter((item, index) => index >= startIndex && index <= endIndex);
     setFilteredPost(filteredPost);
+    console.log('filteredPost.length :', filteredPost.length);
   }, [startIndex, endIndex, posts]);
    
   
@@ -96,19 +98,20 @@ function Post({posts}) {
           )
       })}
 
-          
-      <DivButton key="continueButton" onClick={handleContinueClick}>
-        <Alert>!</Alert>
-        <div>
-          <TitleInfo>{'Você visualizou ' +  totalPost + ' posts'}</TitleInfo>
-          <TextInfo>Para prosseguir clique aqui</TextInfo>
-        </div>
-      </DivButton>
-    
+      {posts && (posts.length > 5 &&  posts.length > filteredPost.length ) &&(
+        <DivButton key="continueButton" onClick={handleContinueClick}>
+          <Alert>!</Alert>
+          <div>
+            <TitleInfo>{'Você visualizou ' + totalPost + ' posts'}</TitleInfo>
+            <TextInfo>Para prosseguir clique aqui</TextInfo>
+          </div>
+        </DivButton>
+      )}
+
       {showImagePopup && (
         <ImagePopup imageUrl={selectedImage} onClose={closeImagePopup} />
-        )}
-    </MainDiv>
+      )}
+      </MainDiv>
   );
 }
   

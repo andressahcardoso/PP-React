@@ -7,23 +7,25 @@ require("dotenv").config();
 // Consultar todos os posts com JOIN para obter informações do autor
 async function getCategory(req, res) {
   const categoryName = req.body.titleFeed;
+  console.log('----------categoryName :', categoryName);
 
   function categoryId() {
     switch(categoryName){
       case 'Diversos':
-        return 1
+        return 6
       case 'Músicas':
-        return 2
+        return 7
       case 'Atividades e Esportes':
-        return 3
+        return 8
       case 'Natureza e Paisagem':
-        return 4
+        return 9
       case 'Educação':
-        return 5
+        return 10
       }
   }
 
   const id = categoryId();
+  console.log('id :', id);
 
   const query = `
     SELECT
