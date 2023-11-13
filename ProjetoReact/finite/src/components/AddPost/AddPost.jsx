@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const AddPostComponent = styled.section`
-    height: 80.5vh;
+    height: 100;
     display: flex;
     justify-content: center;
     align-content: start;
@@ -105,8 +105,9 @@ export const SelectContainer = styled.div`
     border-radius: 30px;
     border: 0px;
     border: 2px solid rgb(173, 185, 243);
-    background-color: #ffffffb;
+    background-color: #ffffff;
 `
+
 
 
 // Start | Publish button

@@ -7,14 +7,38 @@ import { useState } from "react";
 // Images
 import PreviousImg from '../../assets/previous.png';
 import Logo from '../../assets/Finite_Logo.svg';
+import Logo2 from '../../assets/finite_logo_white.svg'
 import { api } from "../../services/api";
 
 // Icons
 import { LuAlertTriangle } from 'react-icons/lu';
 import { useTheme } from "../../hooks/useTheme";
 
+
+import { EnterText as LightThemes} from "./ThemeLight.jsx"; // Importe os estilos para o tema claro
+import { EnterText as DarkThemes } from "./ThemeDark.jsx"; // Importe os estilos para o tema escuro
+
+import { Label as LightThemes2} from "./ThemeLight.jsx"; // Importe os estilos para o tema claro
+import { Label as DarkThemes2 } from "./ThemeDark.jsx"; // Importe os estilos para o tema escuro
+
+
+
 function Login() {
     const {theme} = useTheme();
+
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    console.log('darkTheme :', darkTheme);
+    if (darkTheme === 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
+    const EnterText = darkMode ? DarkThemes : LightThemes;
+    const Label = darkMode ? DarkThemes2 : LightThemes2;
+    console.log('TextLine :', TextLine);
 
     // Validação de Login API
     const [email, setEmail] = useState('');
@@ -118,7 +142,7 @@ function Login() {
         return (
             <Div style={{ background: theme.background, color: theme.color }}>
                 <Header>
-                    <ImagemLogo src={Logo}></ImagemLogo>
+                    <ImagemLogo src={darkMode ? Logo2 : Logo}></ImagemLogo>
                     <PreviousButton onClick={goToBack} src={PreviousImg} alt="Voltar a Página inicial"/>
                 </Header>
         

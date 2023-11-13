@@ -1,5 +1,5 @@
-import {Header, SunTheme, ImgContainer, ImgSun, Title, Themes, Subtitle, ParagrafoImg, ButtonTheme, CheckBoxWrapper, CheckBox, NextPreviousButtons } from "../../pages/Register/Theme/ThemeStyle"
-import { HeaderComponent  } from "./style";
+import {Header, ImgContainer, ImgSun, SunTheme, Title, Subtitle, ParagrafoImg, ButtonTheme, CheckBoxWrapper, CheckBox, NextPreviousButtons } from "../../pages/Register/Theme/ThemeStyle"
+import { HeaderComponent, DivBtn, Btn, Themes, DivTheme } from "./style";
 
 // Images
 import SunImg from "../../assets/Sun.svg"
@@ -52,6 +52,7 @@ function EditTheme() {
                 <img onClick={goToBack} src={previous} alt="Back"></img>
             </HeaderComponent>
            
+           
             <SunTheme>
                 <ImgContainer>
                     <ImgSun src={SunImg} />
@@ -68,8 +69,11 @@ function EditTheme() {
                     <LabelComponents CheckBoxLabel2={true} htmlFor="checkbox" />
                 </CheckBoxWrapper>
             </ButtonTheme>
+            
 
-            <button onClick={goToUser}>Salvar</button>
+            <DivBtn>
+                <Btn onClick={goToUser}>Salvar</Btn>
+            </DivBtn>
         </Themes>
     )
 }

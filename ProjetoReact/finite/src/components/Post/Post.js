@@ -12,10 +12,8 @@ import save from '../../assets/MenuIcons/save.svg'
 import PersonImg from '../../assets/Icons/user.svg'
 
 import ImagePopup from './popUp.js'
-import { useTheme } from "../../hooks/useTheme";
 
 function Post({posts}) {
-console.log('===============posts :', posts);
   const navigate = useNavigate();
   
   // Hooks
@@ -55,19 +53,16 @@ console.log('===============posts :', posts);
   
   const [startIndex, setStartIndex] =  useState(0);
   const [endIndex, setEndIndex] = useState(4);
-  
-  
+   
+
   useEffect(() => {
     const filteredPost = posts.filter((item, index) => index >= startIndex && index <= endIndex);
     setFilteredPost(filteredPost);
-    console.log('filteredPost.length :', filteredPost.length);
   }, [startIndex, endIndex, posts]);
    
   
 
-  const {theme} = useTheme();
   return (
-
     <MainDiv>        
       {filteredPost.map((item) => {
         totalPost += 1; 
@@ -101,20 +96,19 @@ console.log('===============posts :', posts);
           )
       })}
 
-      {posts && (posts.length > 5 &&  posts.length > filteredPost.length ) &&(
-        <DivButton key="continueButton" onClick={handleContinueClick}>
-          <Alert>!</Alert>
-          <div>
-            <TitleInfo>{'Você visualizou ' + totalPost + ' posts'}</TitleInfo>
-            <TextInfo>Para prosseguir clique aqui</TextInfo>
-          </div>
-        </DivButton>
-      )}
-
+          
+      <DivButton key="continueButton" onClick={handleContinueClick}>
+        <Alert>!</Alert>
+        <div>
+          <TitleInfo>{'Você visualizou ' +  totalPost + ' posts'}</TitleInfo>
+          <TextInfo>Para prosseguir clique aqui</TextInfo>
+        </div>
+      </DivButton>
+    
       {showImagePopup && (
         <ImagePopup imageUrl={selectedImage} onClose={closeImagePopup} />
-      )}
-      </MainDiv>
+        )}
+    </MainDiv>
   );
 }
   

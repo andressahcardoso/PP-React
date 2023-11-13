@@ -73,3 +73,4 @@ export const ImgDiv = styled.div`
     margin-left: -2vw;
     justify-content: center;
 `
+

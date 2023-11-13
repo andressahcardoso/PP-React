@@ -44,7 +44,7 @@ export const Div = styled.div`
 
 export const UserDiv = styled.div`
     height: 8vh;
-    border-bottom: 2px solid #5f5a5a1f;
+    border-bottom: 1px solid #bbb9b9;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

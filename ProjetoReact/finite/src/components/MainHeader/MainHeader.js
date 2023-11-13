@@ -15,12 +15,12 @@ function MainHeader(props) {
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
-    console.log('darkTheme :', darkTheme);
     if (darkTheme == 'black') {
         darkMode = true
     } else {
         darkMode = false
     }
+    console.log('darkTheme:', darkTheme);
 
     const navigate = useNavigate();
 
@@ -35,9 +35,9 @@ function MainHeader(props) {
 
     return (
         <HeaderComponent>
-            <img onClick={goToReport} src={darkTheme ? reportIcon2 : reportIcon} alt="Relatório"></img>
+            <img onClick={goToReport} src={darkMode ? reportIcon2 : reportIcon} alt="Relatório"></img>
             <h2>{props.title}</h2>
-            <img onClick={goToRanking} src={darkTheme ? rankingIcon2 : rankingIcon} alt="Ranking"></img>
+            <img onClick={goToRanking} src={darkMode ? rankingIcon2 : rankingIcon} alt="Ranking"></img>
         </HeaderComponent>
     )
 }

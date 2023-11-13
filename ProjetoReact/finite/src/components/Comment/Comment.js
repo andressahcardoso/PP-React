@@ -1,4 +1,4 @@
-import { Div, Img, CommentDiv, CommentSpace, DivSpace, Profile, AlertText, ImgProfile, PersonName, PersonProfile, ImgIcon, ProfileDiv, UserComment, Community, CommentPost, ImgUser,CommentText, CommentMainUser, AddComment, DivImg, DivInput, Input, ImgComment, ImgPublish} from "./Comment.jsx";
+import { Div, Img, CommentDiv1, CommentDiv2, CommentSpace, DivSpace, Profile, AlertText, ImgProfile, PersonName, PersonProfile, ImgIcon, ProfileDiv, UserComment, Community, CommentPost, ImgUser,CommentText, CommentMainUser, AddComment, DivImg, DivInput, Input, ImgComment, ImgPublish} from "./Comment.jsx";
 
 // React Router
 import { useNavigate } from "react-router"
@@ -20,9 +20,26 @@ import publish from '../../assets/Icons/publish.svg'
 // Api
 import { api } from "../../services/api";
 
+import { useTheme } from "../../hooks/useTheme";
+
 
 function Comment() {
     const navigate = useNavigate()
+
+    const {theme} = useTheme();
+
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    console.log('darkTheme :', darkTheme);
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
+    const CommentDiv = darkMode ? CommentDiv2 : CommentDiv1
+
     
     const [ post, setPost ] = useState([]);
     const [ comments, setComments ] = useState([]);
@@ -93,12 +110,12 @@ function Comment() {
     };
                         
     return(
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <Div>
                 <Img src={images + objectData.image}/>
             </Div>
 
-            <CommentDiv>
+            <CommentDiv >
                 <Profile>
                     <ProfileDiv>
                         <ImgProfile src={PersonImg}/>
@@ -147,7 +164,7 @@ function Comment() {
                 </AddComment>
             </CommentSpace>
             </CommentDiv>
-        </>
+        </div>
     )
 }
 

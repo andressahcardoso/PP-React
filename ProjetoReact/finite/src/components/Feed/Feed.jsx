@@ -6,7 +6,6 @@ export const FeedComponent = styled.section`
     padding-left: 0.5vw;
     align-content: start;
     flex-wrap: wrap;
-    background-color: black;
     /* max-height: 100%; */
     /* position: absolute; */
     z-index: -1;

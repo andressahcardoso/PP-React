@@ -25,26 +25,30 @@ import searchIcon2 from '../../assets/Icons/searchIcon.svg'
 import { useTheme } from "../../hooks/useTheme";
 
 
-// Lista fixa de categorias | Iguais as do BD.
-let darkMode = false;
 
-const darkTheme = localStorage.getItem('themeColor');
-console.log('darkTheme :', darkTheme);
-if (darkTheme == 'black') {
-    darkMode = true
-} else {
-    darkMode = false
-}
 
-const userList = [
-    { id: 1, name: 'Diversos', picture:  darkMode ? all2 : all},
-    { id: 2, name: 'Músicas', picture: darkMode ? music2 : music},
-    { id: 3, name: 'Atividades e Esportes', picture: darkMode ? sport2 : sport},
-    { id: 4, name: 'Natureza e Paisagem', picture: darkMode ? nature2 : nature},
-    { id: 5, name: 'Educação', picture: darkMode ? education2 : education},
-];
 
 function Categorie() {
+    
+    // Lista fixa de categorias | Iguais as do BD.
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    console.log('darkTheme :', darkTheme);
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
+    let userList = [
+        { id: 1, name: 'Diversos', picture:  darkMode ? all2 : all},
+        { id: 2, name: 'Músicas', picture: darkMode ? music2 : music},
+        { id: 3, name: 'Atividades e Esportes', picture: darkMode ? sport2 : sport},
+        { id: 4, name: 'Natureza e Paisagem', picture: darkMode ? nature2 : nature},
+        { id: 5, name: 'Educação', picture: darkMode ? education2 : education},
+    ];
+
     const {theme} = useTheme();
 
 

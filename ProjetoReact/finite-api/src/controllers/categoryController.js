@@ -12,15 +12,15 @@ async function getCategory(req, res) {
   function categoryId() {
     switch(categoryName){
       case 'Diversos':
-        return 6
+        return 1
       case 'Músicas':
-        return 7
+        return 2
       case 'Atividades e Esportes':
-        return 8
+        return 3
       case 'Natureza e Paisagem':
-        return 9
+        return 4
       case 'Educação':
-        return 10
+        return 5
       }
   }
 

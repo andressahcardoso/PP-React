@@ -14,11 +14,21 @@ export const Img = styled.img`
 
 // Start | Comment div
 
-export const CommentDiv = styled.div`
+export const CommentDiv1 = styled.div`
     height: 72vh;
     width: 100vw;
     margin-top: -16.5vh;
     background-color: white;
+    z-index: 20;
+    position: absolute;
+    border-radius: 40px 40px 0px 0px;
+`
+
+export const CommentDiv2 = styled.div`
+    height: 72vh;
+    width: 100vw;
+    margin-top: -16.5vh;
+    background-color: black;
     z-index: 20;
     position: absolute;
     border-radius: 40px 40px 0px 0px;

@@ -117,12 +117,12 @@ function AddPost() {
 
                 <div>
                     <Text>Adicionar Localização</Text>
-                    <Input type="text"
+                    <Input style={{ background: theme.background, color: theme.color}}  type="text"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}/>
 
                     <Text>Adicionar Legenda</Text>
-                    <Input type="text"
+                    <Input style={{ background: theme.background, color: theme.color}}  type="text"
                         value={content}
                         onChange={(e) => setContent(e.target.value)}/>
 

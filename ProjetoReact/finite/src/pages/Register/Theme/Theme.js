@@ -12,6 +12,7 @@ import { CheckBoxLabel as LightThemes2} from "./ThemeLight"; // Importe os estil
 
 import { useTheme } from '../../../hooks/useTheme';
 import { api } from "../../../services/api";
+import { useLocation } from "react-router-dom";
 
 function Theme() {
     const { theme, toggleTheme } = useTheme();
@@ -21,10 +22,24 @@ function Theme() {
     // const location = useLocation();
     // const userInfo = location.state ? location.state.formData : null;
 
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    console.log('darkTheme :', darkTheme);
+    if (darkTheme === 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
+    const location = useLocation();
+    const userInfo = location.state ? location.state.formData : null;
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+        console.log('aaaaa', theme)
 
-        const userInfoWithTheme = 1;
+        const userInfoWithTheme = { ...userInfo, theme: darkMode ? 1 : 0};
 
         // Envia as informações preenchidas pelo usuário (data) para o endpoint "/user/create" da API.
         console.log('userInfoWithTheme:', userInfoWithTheme);
