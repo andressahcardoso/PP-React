@@ -10,9 +10,24 @@ import Nav from "../Nav/Nav";
 import previous from '../../assets/Icons/backIcon.svg'
 import rankingIcon from '../../assets/rankingIcon.svg'
 import post from '../../assets/Icons/post.svg'
+import rankingIcon2 from '../../assets/MenuIcons/medalstar.svg'
+
+import { useTheme } from "../../hooks/useTheme";
 
 
 function Report() {
+    const {theme} = useTheme();
+
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    console.log('darkTheme :', darkTheme);
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
     const navigate = useNavigate();
 
     // Navigate functions 
@@ -25,11 +40,11 @@ function Report() {
     }
 
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <HeaderComponent>
                 <img onClick={goToBack} src={previous} alt="Relatório"></img>
                 <h2>Relatório</h2>
-                <img onClick={goToRanking} src={rankingIcon} alt="Ranking"></img>
+                <img onClick={goToRanking} src={darkMode ? rankingIcon2 : rankingIcon} alt="Ranking"></img>
             </HeaderComponent>
                
             <AddPostComponent>
@@ -58,7 +73,7 @@ function Report() {
             </AddPostComponent>
 
             <Nav/>
-        </>
+        </div>
     )
 }
 

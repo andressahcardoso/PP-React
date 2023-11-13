@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const FeedComponent = styled.section`
-    height: 52vh;
     display: flex;
     justify-content: center;
     padding-left: 0.5vw;
     align-content: start;
     flex-wrap: wrap;
     background-color: black;
-    max-height: 100%;
+    /* max-height: 100%; */
+    /* position: absolute; */
+    z-index: -1;
 `
 
 
@@ -40,7 +41,7 @@ export const OptionsText = styled.div`
     padding-right: 7vw;
     padding-left: 8vw;
     margin-top: -2vh;
-    margin-bottom: 2vh;
+    padding-bottom: 2vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

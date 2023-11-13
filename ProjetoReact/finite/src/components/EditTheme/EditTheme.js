@@ -1,5 +1,5 @@
 import {Header, SunTheme, ImgContainer, ImgSun, Title, Themes, Subtitle, ParagrafoImg, ButtonTheme, CheckBoxWrapper, CheckBox, NextPreviousButtons } from "../../pages/Register/Theme/ThemeStyle"
-
+import { HeaderComponent  } from "./style";
 
 // Images
 import SunImg from "../../assets/Sun.svg"
@@ -11,12 +11,23 @@ import { CheckBoxLabel as LightThemes2} from "../../pages/Register/Theme/ThemeLi
 import { useTheme } from '../../hooks/useTheme';
 import { useNavigate } from "react-router-dom";
 
+// Icons
+import previous from '../../assets/Icons/backIcon.svg'
+
 function EditTheme() {
     const { theme, toggleTheme } = useTheme();
     const navigate = useNavigate();
 
     function goToSettings() {
         navigate('/Config')
+    }
+
+    function goToBack() {
+        navigate(-1)
+    }
+
+    function goToUser() {
+        navigate(-1)
     }
 
     // let theme = 0;
@@ -35,6 +46,11 @@ function EditTheme() {
 
     return (
         <Themes style={{ background: theme.background, color: theme.color }}> 
+        
+         <HeaderComponent>
+                <h2>Alterar tema</h2>
+                <img onClick={goToBack} src={previous} alt="Back"></img>
+            </HeaderComponent>
            
             <SunTheme>
                 <ImgContainer>
@@ -53,7 +69,7 @@ function EditTheme() {
                 </CheckBoxWrapper>
             </ButtonTheme>
 
-            <button onClick={goToSettings}>Voltar</button>
+            <button onClick={goToUser}>Salvar</button>
         </Themes>
     )
 }

@@ -19,7 +19,24 @@ import third from '../../assets/Icons/third.svg'
 import reportIcon from '../../assets/reportIcon.svg'
 import previous from '../../assets/Icons/backIcon.svg'
 
+import reportIcon2 from '../../assets/MenuIcons/clock.svg'
+import rankingIcon2 from '../../assets/MenuIcons/medalstar.svg'
+
+import { useTheme } from "../../hooks/useTheme";
+
 function Ranking() {
+    const {theme} = useTheme();
+
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    console.log('darkTheme :', darkTheme);
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
     const navigate = useNavigate();
 
     // Navigate functions
@@ -32,9 +49,9 @@ function Ranking() {
     }
 
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <HeaderComponent>
-                <img onClick={goToReport} src={reportIcon} alt="Relatório"></img>
+                <img onClick={goToReport} src={darkMode ? reportIcon2 : reportIcon} alt="Relatório"></img>
                 <h2>Ranking</h2>
                 <img onClick={goToBack} src={previous} alt="Ranking"></img>
             </HeaderComponent>
@@ -156,7 +173,7 @@ function Ranking() {
             </AddPostComponent>
 
             <Nav/>
-        </>
+        </div>
     )
 }
 

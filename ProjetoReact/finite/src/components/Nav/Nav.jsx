@@ -11,4 +11,5 @@ export const NavContainer = styled.section`
     /* Fixar no fim da página */
     position: fixed;
     cursor: pointer;
+    top: 92vh;
 `
