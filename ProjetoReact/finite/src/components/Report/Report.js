@@ -59,6 +59,17 @@ function Report() {
             }
         }
 
+        var uma_semana = new Date();
+        uma_semana.setDate(uma_semana.getDate() - 7);
+
+        var um_mes = new Date();
+        um_mes.setMonth(um_mes.getMonth() - 1);
+
+        var um_ano = new Date();
+        um_ano.setFullYear(um_ano.getFullYear() - 1);
+
+        console.log(uma_semana);
+
         fetchPosts();
     }, []);
 
