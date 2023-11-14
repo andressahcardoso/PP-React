@@ -84,7 +84,15 @@ function Login() {
             localStorage.setItem('@Auth:user', JSON.stringify(response.data.data[0].email));
             localStorage.setItem('@Auth:token', response.data.data[0].token);
             localStorage.setItem('@Auth:id', response.data.data[0].id);
-            // setUser(response.data.data[0]);
+
+            
+            const data = new Date();
+            
+            const horas = data.getHours();
+            const minutos = data.getMinutes();
+            const segundos = data.getSeconds();
+            
+            localStorage.setItem('StartTime', `${horas}:${minutos}:${segundos}`);
 
             navigate('/Feed')
         } else {

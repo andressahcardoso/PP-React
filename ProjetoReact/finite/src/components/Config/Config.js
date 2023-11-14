@@ -21,6 +21,10 @@ import closeAccountIcon2 from '../../assets/Icons/Vector.svg'
 
 import { useTheme } from "../../hooks/useTheme";
 
+// Api
+import { api } from "../../services/api";
+
+
 function Config() {
     const {theme} = useTheme();
 
@@ -33,22 +37,75 @@ function Config() {
     } else {
         darkMode = false
     }
-
+    
     const navigate = useNavigate();
-
+    
     // Navigate functions
     function goToUserSettings() {
         navigate('/User/Settings')
     }
+    
+    const id = Number(localStorage.getItem("@Auth:id"))
+    console.log('userId :', id);
 
-    const handleLogout = () => {
-        localStorage.clear()
-        navigate('/')
-    }
+    const handleLogout = async (e) => {
+        e.preventDefault();
+
+        const data = new Date();
+            
+        const horas = data.getHours();
+        const minutos = data.getMinutes();
+        const segundos = data.getSeconds();
+                
+        localStorage.setItem('EndTime', `${horas}:${minutos}:${segundos}`);
+
+
+          const horaInicial = localStorage.getItem('StartTime');
+            const horaFinal = localStorage.getItem('EndTime');
+
+            // Função para converter uma string de hora para segundos
+            function converterParaSegundos(hora) {
+                const partes = hora.split(":");
+                return parseInt(partes[0]) * 3600 + parseInt(partes[1]) * 60 + parseInt(partes[2]);
+            }
+            
+            // Converter horas iniciais e finais para segundos
+            const segundosInicio = converterParaSegundos(horaInicial);
+            const segundosFim = converterParaSegundos(horaFinal);
+            
+            // Calcular a diferença em segundos
+            const diferencaSegundos = segundosFim - segundosInicio;
+            
+            // Converter a diferença de volta para o formato de horas, minutos e segundos
+            const horas2 = Math.floor(diferencaSegundos / 3600);
+            const minutos2 = Math.floor((diferencaSegundos % 3600) / 60);
+            const segundos2 = diferencaSegundos % 60;
+
+            let time = `${horas2}:${minutos2}:${segundos2}`
+            
+            const dataArray = {
+                time: diferencaSegundos,
+                userId: id
+            }; 
+            
+            
+            try {
+            console.log('time :', time);
+            const response = await api.post('/saveTimeSpent', dataArray);
+            
+            localStorage.clear()
+            navigate('/')
+      
+            console.log('Time criado com sucesso:', response.data);
+        } catch (error) {
+            console.error('Erro ao criar o Time:', error);
+        }
+    };
 
     function goToTheme() {
         navigate('/EditTheme')
     }
+
 
 
     
