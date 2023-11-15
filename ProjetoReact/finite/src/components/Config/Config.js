@@ -31,7 +31,6 @@ function Config() {
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
-    console.log('darkTheme :', darkTheme);
     if (darkTheme == 'black') {
         darkMode = true
     } else {
@@ -82,21 +81,38 @@ function Config() {
             const segundos2 = diferencaSegundos % 60;
 
             let time = `${horas2}:${minutos2}:${segundos2}`
+            const totalPost = localStorage.getItem('PostViewed');
+            console.log('totalPost :', totalPost);
             
             const dataArray = {
                 time: diferencaSegundos,
                 userId: id
             }; 
             
+
+            const dataArray2 = {
+                totalPost: totalPost,
+                userId: id
+            }; 
             
             try {
-            console.log('time :', time);
             const response = await api.post('/saveTimeSpent', dataArray);
             
             localStorage.clear()
             navigate('/')
       
             console.log('Time criado com sucesso:', response.data);
+
+            try {
+                const response = await api.post('/saveTotalPost', dataArray2);
+                
+                localStorage.clear()
+                navigate('/')
+          
+                console.log('Time criado com sucesso:', response.data);
+            } catch (error) {
+                console.error('Erro ao criar o Time:', error);
+            }
         } catch (error) {
             console.error('Erro ao criar o Time:', error);
         }

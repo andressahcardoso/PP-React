@@ -23,7 +23,6 @@ function Nav() {
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
-    console.log('darkTheme :', darkTheme);
     if (darkTheme == 'black') {
         darkMode = true
     } else {

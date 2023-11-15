@@ -21,7 +21,6 @@ function AddPost() {
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
-    console.log('darkTheme :', darkTheme);
     if (darkTheme == 'black') {
         darkMode = true
     } else {
@@ -62,7 +61,6 @@ function AddPost() {
     const handleSubmit = async (e) => {
         // Evita que o envio do formulário seja tratado de maneira padrão pelo navegador e faz com que você possa determinar as ações futuras.
         e.preventDefault();
-        console.log(image)
         
         let formData = new FormData();
         formData.append('location', location);

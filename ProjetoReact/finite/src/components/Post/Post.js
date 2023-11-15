@@ -22,11 +22,12 @@ function Post({posts}) {
   const [filteredPost, setFilteredPost] = useState([]);
 
   let totalPost = 0;
+  let PostViewed = [];
+  console.log('PostViewed :', PostViewed);
   const images = 'http://localhost:3001/uploads/';
   
   // Função para abrir o pop-up
   const openImagePopup = (imageUrl) => {
-  console.log('imageUrl :', imageUrl);
     setSelectedImage(imageUrl);
     setShowImagePopup(true);
   };
@@ -59,13 +60,16 @@ function Post({posts}) {
     const filteredPost = posts.filter((item, index) => index >= startIndex && index <= endIndex);
     setFilteredPost(filteredPost);
   }, [startIndex, endIndex, posts]);
-   
   
-
+  
+  
   return (
     <MainDiv>        
       {filteredPost.map((item) => {
         totalPost += 1; 
+        PostViewed.push(item.post_id)
+        console.log('PostViewed :', PostViewed);
+        localStorage.setItem('PostViewed', PostViewed);
 
         return (
           <PostContainer key={item.post_id} className="card">

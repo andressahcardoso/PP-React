@@ -20,7 +20,6 @@ function MainHeader(props) {
     } else {
         darkMode = false
     }
-    console.log('darkTheme:', darkTheme);
 
     const navigate = useNavigate();
 
