@@ -25,6 +25,7 @@ export const ErrorDiv = styled.div`
 export const Header = styled.header`
     height: 10vh;
     padding-right: 8vw;
+    margin-bottom: 4vh;
     border-bottom: solid 1px rgb(201, 201, 201);
         display: flex;
         justify-content: space-between;

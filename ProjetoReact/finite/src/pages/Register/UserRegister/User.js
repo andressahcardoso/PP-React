@@ -1,16 +1,18 @@
-import {Users, Header, FormItens, Option, SelectContainer,Label, Form, Input, EnterWith, TextLine, EnterText, ButtonsContainer, GoogleIcon, GoogleText, NextPreviousButtons} from "./UserStyle"
+import {Users, Header, FormItens, Option, GoogleDiv, SelectContainer,Label, Form, Input, EnterWith, TextLine, EnterText, ButtonsContainer, GoogleIcon, GoogleText, NextPreviousButtons} from "./UserStyle"
 
 // Components
 import HeaderContainer from "../Header/Header"
 import Footer from "../Footer/Footer"
 
 // React
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 // Images
 import GoogleLogo from "../../../assets/google-logo.svg"
 import { useTheme } from "../../../hooks/useTheme";
+
+import jwtDecode from 'jwt-decode';
 
 function User() {
 
@@ -25,6 +27,8 @@ function User() {
     const [person, setPerson] = useState(""); 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [user, setUser] = useState({});
+    const [error, setError] = useState('');
 
     // Função que recebe o E como parâmetro que representa um evento associado ao envio do formulário.
     const handleSubmit = async (e) => {
@@ -42,6 +46,43 @@ function User() {
         // Navegar para a segunda tela e passar os dados como argumentos
         navigate('/Register/Forms', { state: { formData: data } });
     };
+
+
+
+   // API - Login Google
+
+   const handleCallbackResponse = useCallback((response) => {
+    console.log("Encoded JWT ID token: " + response.credential);
+    var userObject = jwtDecode(response.credential);
+    console.log(userObject);
+    setUser(userObject);
+    document.getElementById("signInDiv").hidden = false;
+    setName(userObject.name)
+    setEmail(userObject.email)
+    setUserName(userObject.given_name)
+}, [setUser, navigate]);
+
+
+function handleSignOut(event){
+    setUser({});
+    document.getElementById("signInDiv").hidden = false;
+}
+
+useEffect(() => {
+    /* global google */
+
+    google.accounts.id.initialize({
+    client_id: "845408374529-k458dpa08tteoo3circb9fdlr6mb1b3v.apps.googleusercontent.com",
+    callback: handleCallbackResponse
+    })
+
+    google.accounts.id.renderButton(
+    document.getElementById("signInDiv"),
+    {theme: "outline", size: "large"}
+    )
+
+    google.accounts.id.prompt();
+}, [handleCallbackResponse]);
 
     return (
         <Users style={{ background: theme.background, color: theme.color }}> 
@@ -91,9 +132,17 @@ function User() {
                 </TextLine>
 
                 <ButtonsContainer>
-                    <GoogleIcon src={GoogleLogo}/>
-                    <GoogleText>Google</GoogleText>
+                    {/* <GoogleIcon src={GoogleLogo}/>
+                    <GoogleText>Google</GoogleText> */}
+                    <div>
+
+                <GoogleDiv id="signInDiv"></GoogleDiv>
+
+                </div>
                 </ButtonsContainer>
+
+
+              
             </EnterWith>
 
             <NextPreviousButtons onClick={handleSubmit}>

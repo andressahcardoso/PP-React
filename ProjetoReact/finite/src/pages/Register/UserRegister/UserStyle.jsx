@@ -154,3 +154,41 @@ export const NextPreviousButtons = styled.div`
         align-content: center; /* Alinhar no centro - VERTICAL */
         flex-wrap: wrap;  /* Alinhar no centro - VERTICAL */ 
 `
+
+export const GoogleDiv = styled.div`
+    margin-top: 2vh;
+`
+
+export const CustomGPlusSignIn = styled.div`
+    display: inline-block;
+      background: white;
+      color: #444;
+      width: 190px;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+    
+    &&:hover {
+      cursor: pointer;
+    }
+`
+
+export const Icon = styled.span`
+    background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 42px;
+      height: 42px;
+`
+
+export const ButtonText = styled.span`
+    display: inline-block;
+      vertical-align: middle;
+      padding-left: 42px;
+      padding-right: 42px;
+      font-size: 14px;
+      font-weight: bold;
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Roboto', sans-serif;
+`

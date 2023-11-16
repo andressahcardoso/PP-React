@@ -185,39 +185,6 @@ function Login() {
                         <LoginButton onClick={handleSubmit} value="Entrar">Entrar</LoginButton>
                     </form>
                 </FormItens>
-
-                <EnterWith>
-                    {/* <TextLine>
-                        <EnterText>Entrar com</EnterText>
-                    </TextLine>
-
-                    <ButtonsContainer>
-                        <GoogleIcon src={GoogleLogo}/>
-                        <GoogleText>Google</GoogleText>
-                    </ButtonsContainer> */}
-
-                    <TextLine>
-                        <EnterText>Entrar com</EnterText>
-                    </TextLine>
-
-                    <CenterDiv>
-
-                        <GoogleDiv id="signInDiv"></GoogleDiv>
-
-                        {/* { Object.keys(user).length !== 0 && 
-                        <>   */}
-                            {/* <Navigate to="/Home" UserTest={user}/> */}
-                            {/* <buttonG onClick={(e) => handleSignOut(e)}>Sign Out</buttonG>
-                        </>
-                        } */}
-                        {/* {user && 
-                        <div>
-                        <img src={user.picture}></img>
-                        <h3>{user.name}</h3>
-                        </div>  */}
-
-                    </CenterDiv>
-                </EnterWith>
             </Div>
         )
     } 
