@@ -5,7 +5,7 @@ import { useNavigate } from "react-router"
 
 // Images and video
 import FiniteIntro from '../../assets/Video/Finite_Intro_1.mp4'
-import Finite from '../../assets/Finite_Logo.svg'
+import Finite from '../../assets/finite_logo_white.svg'
 import { useTheme } from "../../hooks/useTheme";
 
 

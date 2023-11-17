@@ -93,9 +93,11 @@ export const TextLine = styled.div`
 
 export const EnterText = styled.p`
     width: 30vw;
+    height: 2vh;
     text-align: center;
     margin-left: 25vw;
     padding-top: 5vh;
+    margin-top: 3vh;
     background-color: white;
 `
 

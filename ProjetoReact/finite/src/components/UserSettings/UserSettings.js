@@ -57,7 +57,7 @@ function UserSettings() {
     };
 
     const handleCancel = () => {
-        window.location.reload();
+        navigate('/User/Account')
     }
   
     const handleInputChange = (e) => {

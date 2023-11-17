@@ -71,11 +71,25 @@ function Report() {
         setTotalPost(finalArray.length)
     }, [postData])
     
-    let teste = localStorage.getItem('PostViewed').split(',')
+    let teste = localStorage.getItem('PostViewed').split(',');
+    let totalPost2 = localStorage.getItem('PostViewed')
     console.log('teste :', teste);
 
     useEffect(() => {
         async function fetchPosts() {
+
+            const dataArray2 = {
+                totalPost: totalPost2,
+                userId: id
+            }; 
+
+            try {
+                const responseSave = await api.post('/saveTotalPost', dataArray2);
+                console.log('Time criado com sucesso:', responseSave.data);
+            
+      
+
+
             try {
                 const response = await api.post('/TimeSpent', {id: id}); 
                 setTimeData(response.data); 
@@ -90,39 +104,38 @@ function Report() {
 
 
                 try {
-                                    const response3 = await api.post('/getTotalPost', {id: id})
-                                    console.log('hhhhhhhhhhhhhhhhhhhhhhhh')
-                                    setPostData(teste)
-                                    setCurrentPost(teste)
-                                    response3.data.map(item => {
-                                        let tempPost = item.totalPost.split(',')
-                                        tempPost.map(f => {
-                                            arrayPosts.push(f)
-                                            setPostData(arrayPosts)
-                                            console.log('ooooooooooooo',postData)
-                                            setCurrentPost(arrayPosts)
-                                        })
-                                    })
-                try {
-                        const response4 = await api.post('/getTotalPost_SevenDays', {id: id})
-                        console.log('------------aaaaaaaaaaa----------', response4.data)
-                        setPostSevenDay(teste)
-                        response4.data.map(item => {
-                            let tempPost = item.totalPost.split(',')
-                            tempPost.map(f => {
-                                arrayPosts2.push(f)
-                                setPostSevenDay(arrayPosts2)
-                            })
+                    const response3 = await api.post('/getTotalPost', {id: id})
+                    console.log('hhhhhhhhhhhhhhhhhhhhhhhh')
+                    setPostData(teste)
+                    setCurrentPost(teste)
+                    response3.data.map(item => {
+                    console.log('item :', item);
+                    if (item.totalPost !== null) {
+                        let tempPost = item.totalPost.split(',')
+                        tempPost.map(f => {
+                            arrayPosts.push(f)
+                            setPostData(arrayPosts)
+                            console.log('ooooooooooooo',postData)
+                            setCurrentPost(arrayPosts)
                         })
-                    } catch (error) {
-                        console.error('Erro ao recuperar os posts:', error);
                     }
+                    })
 
-              
-                
-                    
+                try {
+                    const response4 = await api.post('/getTotalPost_SevenDays', {id: id})
+                    console.log('------------aaaaaaaaaaa----------', response4.data)
+                    setPostSevenDay(teste)
+                    response4.data.map(item => {
+                        let tempPost = item.totalPost.split(',')
+                        tempPost.map(f => {
+                        arrayPosts2.push(f)
+                            setPostSevenDay(arrayPosts2)
+                        })
+                    })
+                } catch (error) {
+                    console.error('Erro ao recuperar os posts:', error);
+                }
 
-                   
                     
                 } catch (error) {
                     console.error('Erro ao recuperar os posts:', error);
@@ -132,6 +145,10 @@ function Report() {
             } catch (error) {
                 console.error('Erro ao recuperar os posts:', error);
             }
+
+        } catch (error) {
+            console.error('Erro ao criar o Time:', error);
+        }
             
         }
 

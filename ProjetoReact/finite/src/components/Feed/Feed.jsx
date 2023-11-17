@@ -23,7 +23,7 @@ export const OptionsComponent = styled.section`
 
 export const Div = styled.div`
     width: 25vw;
-    height: 18vh;
+    height: 19vh;
     border: 2px solid #919FE5;
     border-radius: 10px;
     display: flex;

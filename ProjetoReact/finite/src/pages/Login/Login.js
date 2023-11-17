@@ -7,7 +7,7 @@ import { useState } from "react";
 // Images
 import PreviousImg from '../../assets/previous.png';
 import Logo from '../../assets/Finite_Logo.svg';
-import Logo2 from '../../assets/finite_logo_white.svg'
+import Logo2 from '../../assets/finite_logo_white.png'
 import { api } from "../../services/api";
 
 // Icons

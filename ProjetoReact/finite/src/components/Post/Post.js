@@ -210,15 +210,16 @@ function Post({posts}) {
             </PostContainer>
           )
       })}
-
           
-      <DivButton key="continueButton" onClick={handleContinueClick}>
-        <Alert>!</Alert>
-        <div>
-          <TitleInfo>{'Você visualizou ' +  totalPost + ' posts'}</TitleInfo>
-          <TextInfo>Para prosseguir clique aqui</TextInfo>
-        </div>
-      </DivButton>
+      {filteredPost.length > 4 && (
+        <DivButton key="continueButton" onClick={handleContinueClick}>
+          <Alert>!</Alert>
+          <div>
+            <TitleInfo>{'Você visualizou ' + totalPost + ' posts'}</TitleInfo>
+            <TextInfo>Para prosseguir clique aqui</TextInfo>
+          </div>
+        </DivButton>
+      )}
     
       {showImagePopup && (
         <ImagePopup imageUrl={selectedImage} onClose={closeImagePopup} />
