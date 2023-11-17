@@ -25,7 +25,7 @@ export const OptionButton = styled.div`
 `
 
 export const Publication = styled.button`
-    z-index: 1;
+    z-index: ${({ active }) => (active ? 1 : 2)};
     position: relative;
     color: white;
     font-size: 18px;
@@ -35,13 +35,14 @@ export const Publication = styled.button`
     padding-left: 14vw;
     padding-right: 14vw;
 
-    background-color: rgba(145, 159, 229, 1);
+    background-color: ${({ active }) => (active ? 'rgba(145, 159, 229, 1)' : 'rgb(182, 194, 246)')};
+    border: solid 1px ${({ active }) => (active ? 'rgb(173, 185, 243)' : 'rgba(145, 159, 229, 1)')};
     border: solid 1px rgba(145, 159, 229, 1);
     border-radius: 30px;  
 `
 
 export const Stories = styled.button`
-    z-index: -1;
+    z-index: ${({ active }) => (active ? 1 : -1)};
     color: white;
     font-size: 18px;
 
@@ -49,7 +50,8 @@ export const Stories = styled.button`
     padding-left: 30vw;
     padding-right: 14vw;
 
-    background-color: rgba(173, 185, 243, 0.722);
+    background-color: ${({ active }) => (active ? 'rgba(145, 159, 229, 1)' : 'rgb(182, 194, 246)')};
+    border: solid 1px ${({ active }) => (active ? 'rgba(145, 159, 229, 1)' : 'rgb(173, 185, 243)')};
     border: solid 1px rgb(173, 185, 243);
     border-radius: 30px;
 `
@@ -59,16 +61,35 @@ export const Stories = styled.button`
 
 export const TopSection = styled.section`
     margin-top: 3vh;
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
     margin-bottom: 2vh;
+    /* margin-left: -10vw; */
+    display: grid;
+    grid-template-columns: 35vw 30vw 35vw;
+    grid-template-areas: 'user1 main user2';       
+
 `
 
 export const UserDiv = styled.div`
+    grid-area: user1;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    /* margin-left: -40vw; */
+    /* margin-left: -60vw;
+    margin-right: 35vw; */
+    
+`
+export const UserDiv2 = styled.div`
+    grid-area: user2;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    /* margin-left: -40vw; */
+    
 `
 
 export const ImgDiv2 =styled.div`
@@ -143,7 +164,9 @@ export const Account = styled.p`
 `
 
 export const MainUser = styled.div`
-    width: 40vw;
+    grid-area: main;
+    /* width: 40vw; */
+    /* padding-left: 40vw; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,12 +256,12 @@ export const Users = styled.div`
     height: 8vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
 `
 
 export const ImgList = styled.img`
     height: 4.5vh;
+    margin-right: 3vw;
 `
 
 export const Name = styled.p`
