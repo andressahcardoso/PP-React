@@ -6,16 +6,27 @@ import Footer from "../Footer/Footer"
 
 // Images
 import SunImg from "../../../assets/Sun.svg"
+import SunImg2 from "../../../assets/Sun2.svg"
 
 
 import { CheckBoxLabel as LightThemes2} from "./ThemeLight"; // Importe os estilos para o tema claro
+import { CheckBoxLabel as DarkThemes2 } from "./ThemeDark"
 
 import { useTheme } from '../../../hooks/useTheme';
 import { api } from "../../../services/api";
 import { useLocation } from "react-router-dom";
+import { useState } from "react"
 
 function Theme() {
     const { theme, toggleTheme } = useTheme();
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    const changetoggleTheme = () => {
+        setIsChecked(!isChecked);
+        // Outras ações relacionadas ao toggle podem ser adicionadas aqui
+    };
+
 
     // let theme = 0;
 
@@ -53,7 +64,14 @@ function Theme() {
     //     setDarkMode(!darkMode);
     // };
 
-    const LabelComponents = LightThemes2;
+    let LabelComponents = LightThemes2
+
+    if (theme.color === 'white') {
+        LabelComponents = DarkThemes2;
+    } else {
+        LabelComponents = LightThemes2;
+    }
+
 
     return (
         <Themes style={{ background: theme.background, color: theme.color }}> 
@@ -63,7 +81,7 @@ function Theme() {
 
             <SunTheme>
                 <ImgContainer>
-                    <ImgSun src={SunImg} />
+                    <ImgSun src={theme.color === 'white' ? SunImg2 : SunImg} />
                 </ImgContainer>
 
                 <Title>Escolha um tema</Title>
@@ -72,8 +90,8 @@ function Theme() {
             </SunTheme>
                 
             <ButtonTheme>
-                <CheckBoxWrapper>
-                    <CheckBox id="checkbox" type="checkbox" onChange={toggleTheme}/>
+                <CheckBoxWrapper onChange={changetoggleTheme}>
+                    <CheckBox id="checkbox" type="checkbox" checked={isChecked} onChange={toggleTheme} />
                     <LabelComponents CheckBoxLabel2={true} htmlFor="checkbox" />
                 </CheckBoxWrapper>
             </ButtonTheme>

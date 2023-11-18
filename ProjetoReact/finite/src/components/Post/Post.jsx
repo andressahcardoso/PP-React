@@ -29,6 +29,10 @@ export const Profile = styled.div`
 export const ImgProfile = styled.img`
     width: 10vw;
     margin-right: 4vw;
+    object-fit: cover;
+    height: 5vh;
+    border-radius: 50px;
+    margin-top: 0.5vh;
 `
 
 export const PersonName = styled.p`

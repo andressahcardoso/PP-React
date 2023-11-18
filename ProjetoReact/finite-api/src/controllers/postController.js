@@ -73,7 +73,8 @@ async function getAllPosts(req, res) {
     posts.userID,
     posts.location,
     users.userName as name,
-    users.email as email
+    users.email as email,
+    users.userPicture as picture
   FROM
     posts
   JOIN
@@ -111,7 +112,8 @@ async function getCommercePost(req, res) {
       posts.userID,
       posts.location,
       users.userName as name,
-      users.email as email
+      users.email as email,
+      users.userPicture as picture
     FROM
       posts
     JOIN

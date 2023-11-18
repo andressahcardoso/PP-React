@@ -185,7 +185,7 @@ function Post({posts}) {
         return (
           <PostContainer key={item.post_id} className="card">
             <Profile>
-              <ImgProfile src={PersonImg} />
+              <ImgProfile src={images + item.picture} />
               <div>
                 <PersonName>{item.name}</PersonName>
                 <PersonProfile>{item.location}</PersonProfile>

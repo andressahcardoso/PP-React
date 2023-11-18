@@ -118,7 +118,7 @@ function Comment() {
             <CommentDiv >
                 <Profile>
                     <ProfileDiv>
-                        <ImgProfile src={PersonImg}/>
+                        <ImgProfile src={images + objectData.picture}/>
                         <div>
                             <PersonName>{objectData.name}</PersonName>
                             <PersonProfile>{'@'+objectData.userName}</PersonProfile>
@@ -138,7 +138,7 @@ function Comment() {
                     comments.map((comment, index) => (
                         <Community key={index}>
                             <CommentPost>
-                                <ImgUser src={user1}/>
+                                <ImgUser src={images + comment.userPicture}/>
                                 <div>
                                     <PersonName>{comment.name}</PersonName>
                                     <CommentText>{comment.comment_content}</CommentText>
@@ -154,7 +154,7 @@ function Comment() {
                 </DivSpace>  
                 <AddComment>
                     <DivImg>
-                        <ImgComment src={user3}/>
+                        <ImgComment src={user1}/>
                     </DivImg>
                     <DivInput>
                         <Input value={comment}

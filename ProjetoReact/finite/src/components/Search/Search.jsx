@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SearchComponent = styled.section`
-    height: 80.5vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-content: start;

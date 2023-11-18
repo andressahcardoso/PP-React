@@ -60,7 +60,7 @@ async function listUsersById(request, response) {
         users.name AS name,
         users.userName AS userName,
         users.userPicture AS userPicture
-    FROM users WHERE users.id = ?`
+        FROM users WHERE users.id = ?`
 
     connection.query(query2, [id], (error, results) => {
       if (error) {
@@ -168,7 +168,7 @@ async function storeUser(request, response) {
 async function updateUser(request, response) {
     // Preparar o comando de execução no banco
     const query = `UPDATE users
-        SET name = ?, userName = ?, description = ?
+        SET name = ?, userName = ?, description = ?, userPicture = ?
         WHERE id = ?;`;
 
     // Recuperar os dados enviados na requisição respectivamente
@@ -177,6 +177,7 @@ async function updateUser(request, response) {
         request.body.name,
         request.body.userName,
         request.body.description, 
+        request.file.filename,
         request.body.userId
     );
 

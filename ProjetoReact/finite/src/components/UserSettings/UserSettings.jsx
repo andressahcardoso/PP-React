@@ -29,6 +29,7 @@ export const User = styled.div`
 
 export const ImgDiv = styled.div`
     width: 22vw;
+    height: 10vh;
     margin-left: -20vw;
     padding: 1vw;
     background-color: #919fe5b1;
@@ -37,7 +38,9 @@ export const ImgDiv = styled.div`
 
 export const Img = styled.img`
     width: 100%;
-    height: 100%;
+    height: 10vh;
+    object-fit: cover;
+    border-radius: 50px;
 `
 
 export const TextDiv = styled.div`
@@ -75,15 +78,22 @@ export const Title = styled.p`
     font-weight: 600;
 `
 
-export const Title2 = styled.p`
+export const Title2 = styled.input`
     margin-left: 4vw;
     margin-bottom: 1vh;
     font-weight: 600;
+    display: none;
 `
 
 export const Information = styled.div`
     display: flex;
     flex-direction: row;
+`
+
+export const Pfoto = styled.div`
+    margin-top: 0vh;
+    margin-bottom: 1vh;
+    margin-left: 2vw;
 `
 
 export const Icon2 = styled.img`

@@ -7,6 +7,7 @@ import SunImg2 from "../../assets/Sun2.svg"
 
 
 import { CheckBoxLabel as LightThemes2} from "../../pages/Register/Theme/ThemeLight"; // Importe os estilos para o tema claro
+import { CheckBoxLabel as DarkThemes2 } from "../../pages/Register/Theme/ThemeDark";
 
 import { useTheme } from '../../hooks/useTheme';
 import { useNavigate } from "react-router-dom";
@@ -42,7 +43,14 @@ function EditTheme() {
     //     setDarkMode(!darkMode);
     // };
 
-    const LabelComponents = LightThemes2;
+    let LabelComponents = LightThemes2
+
+    if (theme.color === 'white') {
+        LabelComponents = DarkThemes2;
+    } else {
+        LabelComponents = LightThemes2;
+    }
+
 
     return (
         <Themes style={{ background: theme.background, color: theme.color }}> 
@@ -55,7 +63,7 @@ function EditTheme() {
            
             <SunTheme>
                 <ImgContainer>
-                    <ImgSun src={SunImg} />
+                    <ImgSun src={theme.color === 'white' ? SunImg2 : SunImg} />
                 </ImgContainer>
 
                 <Title>Escolha um tema</Title>

@@ -128,16 +128,12 @@ function UserAccount() {
                         <Num>200</Num>
                         <Text>seguindo</Text>
                         </TextDiv>
-                        <ImgDiv onClick={handleImageClick}>
-                            <UserImg type="file" 
-                            name="image" 
-                            accept="image/*" 
-                            multiple={false} 
-                            // value={image}
-                            onChange={ handleImageChange }  id="imageInput"/>
+                        <ImgDiv >
+                            {/* <UserImg> */}
                             {/* onChange={ (e) => setImage(e.target.files[0]) }  id="imageInput"/> */}
                             {/* onChange={ (e) => setImage(URL.createObjectURL(e.target.files[0])) }  id="imageInput"/> */}
-                            <PostImg src={userImage} alt="Imagem selecionada" />
+                                <PostImg src={images + objectData.userPicture} alt="Imagem selecionada" />
+                            {/* </UserImg> */}
 
                     {/* {preview && (
                         <div>

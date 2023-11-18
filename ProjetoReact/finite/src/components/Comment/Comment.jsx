@@ -57,8 +57,11 @@ export const ProfileDiv = styled.div`
 `
 
 export const ImgProfile = styled.img`
-    width: 10vw;
+    width: 13vw;
     margin-right: 4vw;
+    object-fit: cover;
+    border-radius: 50px;
+    height: 6vh;
 `
 
 export const PersonName = styled.p`
@@ -73,6 +76,7 @@ export const PersonProfile = styled.p`
 export const ImgIcon = styled.img`
     height: 4.5vh;
     margin-top: 1vh;
+
 `
 
 
@@ -108,9 +112,12 @@ export const CommentPost = styled.div`
     `
 
 export const ImgUser = styled.img`
-    width: 8vw;
+    width: 10vw;
     margin-right: 4vw;
     margin-top: 1vh;
+    object-fit: cover;
+    border-radius: 20px;
+    height: 5vh;
     `
 
 export const CommentText = styled.p`
@@ -147,12 +154,16 @@ export const AddComment = styled.div`
 export const DivImg = styled.div`
     height: 6vh;
     width: 20vw;
-    background-color: #056F91;
+    background-color: #919FE5;
     border-radius: 40px 0px 0px 40px;
 `
 
 export const ImgComment = styled.img`
     width: 12vw;
+    object-fit: cover;
+    border-radius: 50px;
+    height: 5vh;
+    margin: 0.5vh;
 `
 
 export const DivInput = styled.div`

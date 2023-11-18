@@ -1,4 +1,4 @@
-import { HeaderComponent, Settings, BtnDiv, Cancel, Save, InputText, User, ImgDiv, Img, TextDiv, Icon, Text, Div, Title, Title2, Information, Icon2, Icon3 } from "./UserSettings.jsx";
+import { HeaderComponent, Settings, BtnDiv, Pfoto, Cancel, FotoDiv, Save, InputText, User, ImgDiv, Img, TextDiv, Icon, Text, Div, Title, Title2, Information, Icon2, Icon3 } from "./UserSettings.jsx";
 
 // React Router
 import { useNavigate } from "react-router-dom";
@@ -72,6 +72,37 @@ function UserSettings() {
         setNewDescription(e.target.value);
     };
 
+    // Hooks
+    const [image, setImage] = useState('');
+    const [preview, setPreview] = useState('');
+
+    useEffect(() => {
+        // Define a imagem inicial.
+        const initialImageUrl = userImage;
+        setPreview(initialImageUrl);
+    }, []); 
+    
+    function handleImageChange(e) {
+        setImage(e.target.files[0]);
+        setPreview(URL.createObjectURL(e.target.files[0]));
+    }
+    
+    useEffect(() => {
+        console.log('image', image);
+    }, [image]);
+    
+    useEffect(() => {
+        console.log('preview', preview);
+    }, [preview]);
+
+    const handleImageClick = () => {
+        // Ativar click no input que está oculto.
+        document.getElementById('imageInput').click();        
+    };
+
+
+
+
     useEffect(() => {
 
         const fetchData = async () => {                 
@@ -96,16 +127,25 @@ function UserSettings() {
         e.preventDefault();
                             
         const userID = parseInt(localStorage.getItem('@Auth:id'));
-                            
-        const data = {
-            userId: userID,
-            name: newName,
-            userName: newUserName,
-            description: newDescription
-        }
+                      
+        let formData = new FormData();
+        formData.append('userId', userID)
+        formData.append('name', newName)
+        formData.append('userName', newUserName)
+        formData.append('description', newDescription)
+        formData.append('file', image)
+
+        // const data = {
+        //     userId: userID,
+        //     name: newName,
+        //     userName: newUserName,
+        //     description: newDescription,
+        //     file: image
+        // }
+       
     
         try{
-            const response = await api.post("/userUpdate", data);
+            const response = await api.post("/userUpdate", formData);
             console.log('Post criado com sucesso:', response.data);
             navigate('/User/Account')
 
@@ -124,11 +164,23 @@ function UserSettings() {
             <Settings>
                 <User>
                     <ImgDiv>
-                        <Img src={userImage}/>
+                        {/* <Img src={userImage}/> */}
+                        {preview && (
+                       
+                            <Img src={preview} alt="Imagem selecionada" />
+                           
+                      
+                    )}
                     </ImgDiv>
-                    <TextDiv>
+                    <TextDiv onClick={handleImageClick}>
+                        <Pfoto>Alterar foto</Pfoto>
                         <Icon src={edit}/>
-                        <Title2>Alterar foto</Title2>
+                        <Title2 type="file" 
+                            name="image" 
+                            accept="image/*" 
+                            multiple={false} 
+                            // value={image}
+                            onChange={ handleImageChange }  id="imageInput"></Title2>
                     </TextDiv>
                 </User>
 

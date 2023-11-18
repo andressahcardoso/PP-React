@@ -60,7 +60,8 @@ async function postComment(request, response) {
     posts.image,
     U.userPicture,
     U.name,
-    U.userName
+    U.userName,
+    U.userPicture as picture
 FROM
     posts
 INNER JOIN
