@@ -26,6 +26,7 @@ function AddPost() {
         navigate('/Add/Stories')
     }
 
+
     // Hooks
     const [image, setImage] = useState('');
     const [preview, setPreview] = useState('');
@@ -45,6 +46,7 @@ function AddPost() {
         darkMode = false
     }
 
+
     // UseEffect Onload
     useEffect(() => {
         // Define a imagem inicial.
@@ -53,16 +55,18 @@ function AddPost() {
     }, []); 
     
     
-    const handleImageClick = () => {
-        // Ativar click no input que está oculto.
-        document.getElementById('imageInput').click();        
-    };
-
     function handleImageChange(e) {
         setImage(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]));
     }
     
+    const handleImageClick = () => {
+        // Ativar click no input que está oculto.
+        document.getElementById('imageInput').click();        
+    };
+
+    
+
     // Form Submit
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -15,9 +15,27 @@ import selectedImage3 from '../../assets/Icons/addPost.PNG'
 
 // Api
 import { api } from "../../services/api";
+
+// Theme
 import { useTheme } from "../../hooks/useTheme";
 
 function AddStories() {
+    const navigate = useNavigate();
+    
+    function goToCreatePost() {
+        navigate('/Add/Post')
+    }
+    
+
+    // Hooks
+    const [image, setImage] = useState('');
+    const [preview, setPreview] = useState('');
+    const [location, setLocation] = useState('');
+    const [time, setTime] = useState('');
+
+
+    // Theme definition
+    const {theme} = useTheme();
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
@@ -27,48 +45,28 @@ function AddStories() {
         darkMode = false
     }
 
-    const {theme} = useTheme();
 
-    const navigate = useNavigate();
-
-    // Hooks
-    const [image, setImage] = useState('');
-    const [preview, setPreview] = useState('');
-    const [location, setLocation] = useState('');
-    const [time, setTime] = useState('');
-    const [content, setContent] = useState('');
-
+    // UseEffect Onload
     useEffect(() => {
         // Define a imagem inicial.
         const initialImageUrl = darkMode ? selectedImage3 : selectedImage2;
         setPreview(initialImageUrl);
     }, []); 
     
+    
     function handleImageChange(e) {
         setImage(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]));
     }
+
+    const handleImageClick = () => {
+        // Ativar click no input que está oculto.
+        document.getElementById('imageInput').click();        
+    };
     
-    useEffect(() => {
-        console.log('image', image);
-    }, [image]);
-    
-    useEffect(() => {
-        console.log('preview', preview);
-    }, [preview]);
-
-
-    function goToCreatePost() {
-        navigate('/Add/Post')
-    }
-
-    function goToCreateStories() {
-        console.log('storiessssssssssss')
-    }
-
-
+  
+    // Form Submit
     const handleSubmit = async (e) => {
-        // Evita que o envio do formulário seja tratado de maneira padrão pelo navegador e faz com que você possa determinar as ações futuras.
         e.preventDefault();
         
         let formData = new FormData();
@@ -76,23 +74,16 @@ function AddStories() {
         formData.append('time', time)
         formData.append('userId', localStorage.getItem('@Auth:id'));
         formData.append('file', image);
-        console.log('================image :', image);
 
-        
         try {
             const response = await api.post('/saveStories', formData);
             navigate('/Feed')
-      
             console.log('Stories criado com sucesso:', response.data);
         } catch (error) {
             console.error('Erro ao criar o stories:', error);
         }
     };
-
-    const handleImageClick = () => {
-        // Ativar click no input que está oculto.
-        document.getElementById('imageInput').click();        
-    };
+    
 
     return (
         <div style={{ background: theme.background, color: theme.color}}>
@@ -101,7 +92,7 @@ function AddStories() {
             <AddPostComponent>
                 <OptionButton>
                     <Publication onClick={goToCreatePost}>Publicação</Publication>
-                    <Stories onClick={goToCreateStories}>Stories</Stories>
+                    <Stories>Stories</Stories>
                 </OptionButton>
 
                 <PostDiv onClick={handleImageClick} >
@@ -109,14 +100,10 @@ function AddStories() {
                             name="image" 
                             accept="image/*" 
                             multiple={false} 
-                            // value={image}
                             onChange={ handleImageChange }  id="imageInput"/>
-                            {/* onChange={ (e) => setImage(e.target.files[0]) }  id="imageInput"/> */}
-                            {/* onChange={ (e) => setImage(URL.createObjectURL(e.target.files[0])) }  id="imageInput"/> */}
                     {preview && (
                         <div>
                             <PostImg src={preview} alt="Imagem selecionada" />
-                            {/* <img src={image} width="50px" height="50px"/> */}
                         </div>
                     )}
                 </PostDiv>
