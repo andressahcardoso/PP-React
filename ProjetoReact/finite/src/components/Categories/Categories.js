@@ -20,27 +20,13 @@ import music2 from '../../assets/Icons/music2.svg'
 import sport2 from '../../assets/Icons/basketball.svg'
 import nature2 from '../../assets/Icons/leaf.svg'
 import education2 from '../../assets/Icons/book.svg'
-import searchIcon2 from '../../assets/Icons/searchIcon.svg'
 
+// Theme
 import { useTheme } from "../../hooks/useTheme";
 
 
-
-
-
 function Categorie() {
-    
     // Lista fixa de categorias | Iguais as do BD.
-    let darkMode = false;
-
-    const darkTheme = localStorage.getItem('themeColor');
-    console.log('darkTheme :', darkTheme);
-    if (darkTheme == 'black') {
-        darkMode = true
-    } else {
-        darkMode = false
-    }
-
     let userList = [
         { id: 1, name: 'Diversos', picture:  darkMode ? all2 : all},
         { id: 2, name: 'Músicas', picture: darkMode ? music2 : music},
@@ -48,20 +34,31 @@ function Categorie() {
         { id: 4, name: 'Natureza e Paisagem', picture: darkMode ? nature2 : nature},
         { id: 5, name: 'Educação', picture: darkMode ? education2 : education},
     ];
-
-    const {theme} = useTheme();
-
+    
 
     const navigate = useNavigate()
-    
-    // Navigate functions
+
     function goToFeedCommerce(titleFeed) {
         navigate(`/Feed/Commerce/${titleFeed}`)
     }
 
+
     // Hooks
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
+    
+
+    // Theme definition
+    const {theme} = useTheme();
+    let darkMode = false;
+    
+    const darkTheme = localStorage.getItem('themeColor');
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
 
     // Função para filtrar a lista de usuários com base no input de busca
     const filterUsers = useCallback(() => {
@@ -70,6 +67,7 @@ function Categorie() {
         );
         setFilteredUsers(filteredUsers);
     }, [searchTerm]);
+
 
     // Chama a função de filtro sempre que o input muda
     useEffect(() => {
