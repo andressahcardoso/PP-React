@@ -14,6 +14,8 @@ const listUserInfo = require('./routes/userInfoRouter')
 const report = require('./routes/reportRouter')
 const like = require('./routes/likeRouter')
 const ranking = require('./routes/rankingRouter')
+const stories = require('./routes/storiesRouter')
+const follow = require('./routes/followRouter')
 
 // Instanciar o express na variável app
 const app = express();
@@ -58,6 +60,12 @@ app.use('/api', like)
 
 // Ranking
 app.use('/api', ranking) 
+
+// Stories
+app.use('/api', stories)
+
+// Follow
+app.use('/api', follow)
 
 // Setar a porta do servidor, a parir do arquivo .env
 app.set('port', process.env.PORT || 1903);

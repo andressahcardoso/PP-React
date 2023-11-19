@@ -35,12 +35,20 @@ async function getCategory(req, res) {
       posts.userID,
       posts.location,
       users.userName as name,
-      users.email as email
+      users.email as email,
+      users.userPicture as picture,
+    COUNT(comments.id) AS comment_count,
+    (SELECT COUNT(LikeID) FROM likes WHERE isEnabled = 1 AND PostID = posts.ID) AS likes_count
     FROM
       posts
-    JOIN
+      JOIN
       users ON posts.userId = users.ID and posts.category = ?
-    ORDER BY posts.PublishDate DESC
+  LEFT JOIN
+      comments ON comments.postId = posts.ID
+  GROUP BY
+      posts.ID
+  ORDER BY
+      posts.PublishDate DESC
   `;
   
   connection.query(query, [id], (error, results) => {

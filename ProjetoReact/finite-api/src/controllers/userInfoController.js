@@ -9,14 +9,16 @@ async function listUserInfo(request, response) {
     console.log('userId :', userId);
 
     const query = `SELECT
-	id,
-    name,
-    userName,
-    userPicture,
-    description
-FROM
-    users
-WHERE id = ?`
+        u.id,
+        u.name,
+        u.userName,
+        u.userPicture,
+        u.description,
+        (SELECT COUNT(f1.user_id) FROM follows f1 WHERE f1.user_id = u.id and f1.isFollowed = 1) as following,
+        (SELECT COUNT(f2.user_id) FROM follows f2 WHERE f2.follower_id = u.id and f2.isFollowed = 1) as followed
+    FROM
+        users u
+    WHERE u.id = ?;`
 
     connection.query(query, [userId], (error, results) => {
         try {

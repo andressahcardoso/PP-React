@@ -57,58 +57,44 @@ async function followUser(request, response) {
   }
 }
 
-async function unfollowUser(request, response) {
-  const values = [
-    request.body.userIdLogin,
-    request.body.contactId
-  ];
 
-  console.log(values);
 
-  try {
-    connection.query(
-      'UPDATE follows SET isFollowed = 0 WHERE user_id = ? AND follower_id = ?', values, (err, results) => {
-        if (err) {
-          response.status(400).json({
-            success: false,
-            message: "An error has occurred. Unable to unfollow user.",
-            query: err.sql,
-            sqlMessage: err.sqlMessage
-          });
-        } else if (results.affectedRows > 0) {
-          response.status(200).json({
-            success: true,
-            message: 'Success in unfollow user.',
-            data: results
-          });
-        } else {
-          response.status(400).json({
-            success: false,
-            message: `Unable to unfollow user.`,
-          });
-        }
-      }
-    );
-  } catch (error) {
-    response.status(500).json({
-      success: false,
-      message: `Internal Server Error.`,
-      error: error.message,
-    });
-  }
+
+
+
+async function unfollowUser(req, res) {
+  const userIdLogin = req.body.userIdLogin;
+  const contactId = req.body.contactId;
+
+  const query = `
+    UPDATE follows SET isFollowed = 0 WHERE user_id = ? AND follower_id = ?`;
+  
+  connection.query(query, [userIdLogin, contactId], (error, results) => {
+    if (error) {
+      console.error('Erro ao recuperar os posts: ' + error.message);
+      return res.status(500).json({ error: 'Erro ao recuperar os posts' });
+    }
+  
+    res.json(results);
+  });
 }
 
+
+
+
+
 async function selectFollowContact(request, response) {
-  const userIdLogin = request.params.contactId;
+  const userIdLogin = request.body.userId;
+  console.log('userIdLogin :', userIdLogin);
 
   try {
-    const [results] = await connection.query('SELECT * FROM follows WHERE follower_id = ?', [userIdLogin]);
+    const [results] = await connection.query('SELECT * FROM follows WHERE user_id = ? and isFollowed = 1', [userIdLogin]);
 
     if (results.length > 0) {
       response.status(200).json({
         success: true,
         message: 'Success in returning follow informations.',
-        data: results[0]
+        data: results
       });
     } else {
       response.status(400).json({

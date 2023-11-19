@@ -3,6 +3,29 @@ const connection = require('../config/db');
 // Importar o pacote dotenv, gerenciador de variáveis de ambiente
 require("dotenv").config();
 
+
+
+
+
+async function getUser(req, res) {
+    const id = req.body.id
+
+    let query = `
+        SELECT userPicture FROM users WHERE id = ?;
+    `;
+  
+    
+  connection.query(query, [id], (error, results) => {
+    if (error) {
+      console.error('Erro ao recuperar os stories: ' + error.message);
+      return res.status(500).json({ error: 'Erro ao recuperar os stories' });
+    }
+  
+    res.json(results);
+  });
+}
+
+
 // Buscar posts
 async function listComment(request, response) {
     const postID = request.body.post_id
@@ -140,5 +163,6 @@ async function createComment(request, response) {
 module.exports = {
     listComment,
     createComment,
-    postComment
+    postComment,
+    getUser
 }

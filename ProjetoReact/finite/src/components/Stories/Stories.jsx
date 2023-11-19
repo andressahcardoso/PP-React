@@ -34,6 +34,7 @@ export const StorieImg = styled.img`
     width: 22vw;
     height: 9vh;
     border-radius: 10px;
+    object-fit: cover;
 `
 
 export const TextDiv = styled.div`

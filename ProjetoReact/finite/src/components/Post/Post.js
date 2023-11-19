@@ -67,39 +67,10 @@ function Post({posts}) {
   }, [startIndex, endIndex, posts]);
   
   
-  
-  
-  
-  // Like functions
 
-  // useEffect(() => {
-  //   // Chama a função de busca ao montar o componente
-  //   // fetchLikeStatus();
-  // }, []);
-  
-  // let postId = 0
   
   const [isLiked, setIsLiked] = useState();
   const userID = parseInt(localStorage.getItem('@Auth:id'))
-  
-  // const fetchLikeStatus = async (postId) => {
-  //   try {
-  //     const formData = {
-  //       UserID: userID,
-  //       PostID: postId,
-  //     };
-      
-  //     const response = await api.post('/isLiked', formData);
-  //     console.log('response :', response);
-      
-  //     const isEnabled = response.data.data[0].isEnabled.data[0];
-  //     console.log('isEnabled :', isEnabled);
-  //     setIsLiked(!!isEnabled);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   
   
   
@@ -110,9 +81,11 @@ function Post({posts}) {
   const [postsLike, setPostsLike] = useState([]);
   let like = false;
   let likePosts = [];
+
   
   // Salva no Banco
   const handleClick = async (postId) => {
+    window.location.reload()
     try {
       const formData = {
         UserID: userID,
@@ -197,9 +170,9 @@ function Post({posts}) {
             <Interaction>
               <DivBtn>
                 <ImgIcon onClick={() => goToComment(item.post_id)} postData={item}  src={comment} />
-                <Text>10</Text>
+                <Text>{item.comment_count}</Text>
                 <ImgIcon src={like ? likeFull : likeSimple} onClick={() => handleClick(item.post_id)} />
-                <Text>122</Text>
+                <Text>{item.likes_count}</Text>
               </DivBtn>
     
               <DivBtn>

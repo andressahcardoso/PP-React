@@ -17,6 +17,7 @@ export const StorieImg = styled.div`
 export const Img = styled.img`
     height: 99.9vh;
     width: 100vw;
+    object-fit: cover;
 `
 
 
@@ -25,7 +26,7 @@ export const Img = styled.img`
 
 export const Profile = styled.div`
     height: 6vh;
-    width: 45vw;
+    width: 66vw;
     margin-top: 2vh;
     margin-left: 4vw;
     padding-left: 2vw;
@@ -38,8 +39,12 @@ export const Profile = styled.div`
 `
 
 export const ImgProfile = styled.img`
-    width: 10vw;
+    width: 12vw;
     margin-right: 4vw;
+    border-radius: 50px;
+    height: 5vh;
+    margin-top: 0.5vh;
+    object-fit: cover;
 `
 
 export const PersonName = styled.p`
@@ -68,4 +73,5 @@ export const ImgNext = styled.img`
     width: 100%;
     height: 100%;
     border-radius: 20px;
+    object-fit: cover;
 `

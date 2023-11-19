@@ -21,128 +21,95 @@ import user4 from '../../assets/user4.svg'
 // Icons
 import DateIcon from '../../assets/Icons/line.svg'
 
-// Use context
+
+// Api
+import { api } from "../../services/api";
+
+
 import { useUserContext } from './UserContext.js';
+import { useEffect, useState } from "react";
+
+import { useTheme } from "../../hooks/useTheme";
 
 function Stories() {
+    const {theme} = useTheme();
+
     const navigate = useNavigate();
 
-    const { setUserData } = useUserContext();
+    const images = 'http://localhost:3001/uploads/';
 
-    function goToUserStorie(personVar, accountVar, userVar, storieVar, nextVar) {
-        const userData = { person: personVar, account: accountVar, user: userVar, imagem: storieVar, next: nextVar }; // Substitua pelos dados que deseja passar
-        setUserData(userData);
-        navigate(`/User/Storie`);
+    const [data, setData] = useState([]);
+    // const { setUserData } = useUserContext();
+
+    // function goToUserStorie(personVar, accountVar, userVar, storieVar, nextVar) {
+    //     const userData = { person: personVar, account: accountVar, user: userVar, imagem: storieVar, next: nextVar }; // Substitua pelos dados que deseja passar
+    //     console.log('userData :', userData);
+    //     // setUserData(userData);
+    //     navigate(`/User/Storie`);
+    // }
+
+    // Navigate functions
+    function goToUserStorie(id) {
+        navigate(`/User/Storie/${id}`);
     }
 
+    useEffect(() => {
+        
+  
+          const fetchData = async () => {
+              try {
+                  const response = await api.get('/getStories');
+                  setData(response.data)
+                  console.log('response :', response.data);
+                  
+              } catch (err) {
+                  console.error(err);
+              }
+          };
+          fetchData();
+      }, []);
+  
+
     return (
-        <>
+        <div style={{ background: theme.background, color: theme.color}}>
             <MainHeader title='Stories'/>
 
             <StorieSection>
+
+            {data.map((item) => {
+
+                const firstName = item.name.split(' ')[0]
+                const month = item.startDate.split('-')[1]
+                const dateTemp = item.startDate.split('-')
+                const date = dateTemp[2].split('T')[0]
+
+                return(
                 <Storie>
-                    <Div>
+                    <Div onClick={() => goToUserStorie(item.id)}>
                         <StorieImgDiv>
-                            <StorieImg onClick={() => goToUserStorie('Prahabas Raju', '@Praba_01', user1, storie1, storie2)} src={storie1} alt="Imagem storie"/>
+                            <StorieImg src={images + item.image} alt="Imagem storie"/>
                         </StorieImgDiv>
                         <TextDiv>
-                            <Profile>Prabhas Raju</Profile>
-                            <Account>@Praba_01</Account>
+                            <Profile>{firstName}</Profile>
+                            <Account>{'@' + item.userName}</Account>
                         </TextDiv>
                     </Div>
                     <p>
-                        <DateText>26</DateText>
+                        <DateText>{date}</DateText>
                         <ImgDate>
                             <img src={DateIcon} alt="Line Icon"/>
                         </ImgDate>
-                        <Month>11</Month>
+                        <Month>{month}</Month>
                     </p>
                 </Storie>
+                )
+            })}
+                
 
-                <Storie>
-                    <Div>
-                        <StorieImgDiv>
-                            <StorieImg onClick={() => goToUserStorie('Alice', '@alice_01', user3, storie2, storie3)} src={storie2} alt="Imagem storie"/>
-                        </StorieImgDiv>
-                        <TextDiv>
-                            <Profile>Alice</Profile>
-                            <Account>@alice_01</Account>
-                        </TextDiv>
-                    </Div>
-
-                    <p>
-                        <DateText>26</DateText>
-                        <ImgDate>
-                            <img src={DateIcon} alt="Line Icon"/>
-                        </ImgDate>
-                        <Month>11</Month>
-                     </p>
-                </Storie>
-
-                <Storie>
-                    <Div>
-                        <StorieImgDiv>
-                            <StorieImg onClick={() => goToUserStorie('Vini Souza', '@vini_02', user2, storie3, storie4)} src={storie3} alt="Imagem storie"/>
-                        </StorieImgDiv>
-                        <TextDiv>
-                            <Profile>Vini Souza</Profile>
-                            <Account>@vini_02</Account>
-                        </TextDiv>
-                    </Div>
-        
-                    <p>                    
-                        <DateText>26</DateText>
-                        <ImgDate>
-                            <img src={DateIcon} alt="Line Icon"/>
-                        </ImgDate>
-                        <Month>11</Month>
-                    </p>
-                </Storie>
-
-
-                <Storie>
-                    <Div>
-                        <StorieImgDiv>
-                            <StorieImg onClick={() => goToUserStorie('David', '@david_04', user2, storie4, storie5)}  src={storie4} alt="Imagem storie"/>
-                        </StorieImgDiv>
-                        <TextDiv>
-                            <Profile>David</Profile>
-                            <Account>@david_04</Account>
-                        </TextDiv>
-                    </Div>
-            
-                    <p>               
-                        <DateText>25</DateText>
-                        <ImgDate>
-                            <img src={DateIcon} alt="Line Icon"/>
-                        </ImgDate>
-                        <Month>11</Month>
-                    </p>
-                </Storie>
-
-                <Storie>
-                    <Div>
-                        <StorieImgDiv>
-                            <StorieImg onClick={() => goToUserStorie('Malu', '@malukitalu', user4, storie5, storie5)} src={storie5} alt="Imagem storie"/>
-                        </StorieImgDiv>
-                        <TextDiv>
-                            <Profile>Malu</Profile>
-                            <Account>@malukitalu</Account>
-                        </TextDiv>
-                    </Div>
-            
-                    <p>
-                        <DateText>25</DateText>
-                        <ImgDate>
-                            <img src={DateIcon} alt="Line Icon"/>
-                        </ImgDate>
-                        <Month>11</Month>
-                    </p>
-                </Storie>
             </StorieSection>
 
             <Nav/>
-        </>
+        </div>
     )
 }
 

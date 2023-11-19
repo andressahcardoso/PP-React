@@ -125,7 +125,7 @@ function UserAccount() {
             <UserSection style={{ background: theme.background, color: theme.color}}>
                 <UserInformations>
                     <TextDiv>
-                        <Num>200</Num>
+                        <Num>{objectData.following}</Num>
                         <Text>seguindo</Text>
                         </TextDiv>
                         <ImgDiv >
@@ -143,7 +143,7 @@ function UserAccount() {
                     {/* )}  */}
                         </ImgDiv>
                         <TextDiv>
-                            <Num>325</Num>
+                            <Num>{objectData.followed}</Num>
                             <Text>seguidores</Text>
                     </TextDiv>
                 </UserInformations>

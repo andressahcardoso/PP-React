@@ -22,6 +22,7 @@ import Ranking from './components/Ranking/Ranking';
 import Report from './components/Report/Report';
 import UserSettings from './components/UserSettings/UserSettings';
 import EditTheme from './components/EditTheme/EditTheme';
+import AddStories from './components/AddStories/AddStories';
 
 const PrivateRoute = ({children}) => {
   const isAuthenticated = localStorage.getItem("@Auth:token") !== null;
@@ -50,12 +51,13 @@ function AppRoutes() {
         <Route path="/Config" element={<PrivateRoute><Config/></PrivateRoute>} />
         <Route path="/User/Account" element={<PrivateRoute><UserAccount/></PrivateRoute>} />
         <Route path="/Stories" element={<PrivateRoute><Stories/></PrivateRoute>} />
-        <Route path="/User/Storie" element={<PrivateRoute><UserStorie/></PrivateRoute>} />
+        <Route path="/User/Storie/:id" element={<PrivateRoute><UserStorie/></PrivateRoute>} />
         <Route path="/Categorie" element={<PrivateRoute><Categorie/></PrivateRoute>} />
         <Route path="/Ranking" element={<PrivateRoute><Ranking/></PrivateRoute>} />
         <Route path="/Report" element={<PrivateRoute><Report/></PrivateRoute>} />
         <Route path="/User/Settings" element={<PrivateRoute><UserSettings/></PrivateRoute>} />
         <Route path="/EditTheme" element={<PrivateRoute><EditTheme/></PrivateRoute>} />
+        <Route path="/Add/Stories" element={<PrivateRoute><AddStories/></PrivateRoute>} />
       </Routes>
     </BrowserRouter>
   );

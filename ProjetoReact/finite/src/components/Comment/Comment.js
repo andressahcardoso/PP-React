@@ -46,6 +46,7 @@ function Comment() {
     const [commentTitle, setCommentTitle] = useState('');
     const [comment, setComment] = useState('');
     const [objectData, setObjectData] = useState({});
+    const [userImg, setUserImg] = useState({userPicture: "1700418589918_Mais Produtora -539.JPG"});
     
     const {post_id} = useParams([]);
     console.log('postID :', post_id);
@@ -57,6 +58,8 @@ function Comment() {
     function goToPostsPage() {
         navigate(-1);
     }
+
+    const userId = localStorage.getItem('@Auth:id')
                     
     useEffect(() => {
         const fetchData = async () => {                 
@@ -67,6 +70,10 @@ function Comment() {
                 const response = await api.post("/comment", {post_id: post_id});
                 const commentList = response.data.data;
                 setComments(commentList);
+
+                const user = await api.post("/getUser", {id: userId});
+                console.log('user :', user.data[0]);
+                setUserImg(user.data[0])
             } catch (err) {
                 console.error(err);
             }
@@ -154,7 +161,7 @@ function Comment() {
                 </DivSpace>  
                 <AddComment>
                     <DivImg>
-                        <ImgComment src={user1}/>
+                        <ImgComment src={images + userImg.userPicture}/>
                     </DivImg>
                     <DivInput>
                         <Input value={comment}

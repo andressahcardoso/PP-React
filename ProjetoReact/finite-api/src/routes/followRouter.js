@@ -9,9 +9,9 @@ const {
     selectAllFollows
 } = require('../controllers/followController')
 
-router.post('/create', followUser);
-router.put('/unfollow', unfollowUser)
-router.get('/informations/contact/:contactId', selectFollowContact)
+router.post('/createFollow', followUser);
+router.post('/unfollow', unfollowUser)
+router.post('/informations/contact', selectFollowContact)
 router.get('/all', selectAllFollows)
 
 

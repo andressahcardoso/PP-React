@@ -1,4 +1,4 @@
-import { AddPostComponent, OptionButton, Publication, Stories, PostDiv, InputImg, PostImg, Text, Input, SelectContainer, DivConclued, Conclued, ImgConclued, FinalDiv} from "./AddPost.jsx";
+import { AddPostComponent, OptionButton, Publication, Stories, PostDiv, InputImg, PostImg, Text, Input, SelectContainer, DivConclued, Conclued, ImgConclued, FinalDiv} from "./AddStories.jsx";
 
 // React Router
 import React, { useState, useEffect } from 'react';
@@ -17,7 +17,7 @@ import selectedImage3 from '../../assets/Icons/addPost.PNG'
 import { api } from "../../services/api";
 import { useTheme } from "../../hooks/useTheme";
 
-function AddPost() {
+function AddStories() {
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
@@ -35,7 +35,7 @@ function AddPost() {
     const [image, setImage] = useState('');
     const [preview, setPreview] = useState('');
     const [location, setLocation] = useState('');
-    const [category, setCategory] = useState('');
+    const [time, setTime] = useState('');
     const [content, setContent] = useState('');
 
     useEffect(() => {
@@ -57,9 +57,13 @@ function AddPost() {
         console.log('preview', preview);
     }, [preview]);
 
+
+    function goToCreatePost() {
+        navigate('/Add/Post')
+    }
+
     function goToCreateStories() {
         console.log('storiessssssssssss')
-        navigate('/Add/Stories')
     }
 
 
@@ -69,20 +73,19 @@ function AddPost() {
         
         let formData = new FormData();
         formData.append('location', location);
-        formData.append('content', content);
-        formData.append('category', category)
+        formData.append('time', time)
         formData.append('userId', localStorage.getItem('@Auth:id'));
         formData.append('file', image);
         console.log('================image :', image);
 
         
         try {
-            const response = await api.post('/createPost', formData);
+            const response = await api.post('/saveStories', formData);
             navigate('/Feed')
       
-            console.log('Post criado com sucesso:', response.data);
+            console.log('Stories criado com sucesso:', response.data);
         } catch (error) {
-            console.error('Erro ao criar o post:', error);
+            console.error('Erro ao criar o stories:', error);
         }
     };
 
@@ -97,7 +100,7 @@ function AddPost() {
                 
             <AddPostComponent>
                 <OptionButton>
-                    <Publication>Publicação</Publication>
+                    <Publication onClick={goToCreatePost}>Publicação</Publication>
                     <Stories onClick={goToCreateStories}>Stories</Stories>
                 </OptionButton>
 
@@ -124,23 +127,17 @@ function AddPost() {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}/>
 
-                    <Text>Adicionar Legenda</Text>
-                    <Input style={{ background: theme.background, color: theme.color}}  type="text"
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}/>
-
-                    <Text>Adicionar Categoria</Text>
+                    <Text>Tempo de duração</Text>
                         
                     <SelectContainer>
                         <select type="text"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}>
-                            <option id="mainOption" value="Opções de categoria">Opções de categoria</option>
-                            <option value="Diversos">Diversos</option>
-                            <option value="Músicas">Músicas</option>
-                            <option value="Atividades e Esporte">Atividades e Esporte</option>
-                            <option value="Natureza e Paisagem">Natureza e Paisagem</option>
-                            <option value="Educação">Educação</option>
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}>
+                            <option id="mainOption" value="Opções de categoria">Opções de tempo</option>
+                            <option value="30">30 min</option>
+                            <option value="12">12 horas</option>
+                            <option value="24">24 horas</option>
+                            <option value="48">48 horas</option>
                         </select>
                     </SelectContainer>
 
@@ -158,4 +155,4 @@ function AddPost() {
     )
 }
 
-export default AddPost;
+export default AddStories;

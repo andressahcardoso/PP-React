@@ -77,11 +77,10 @@ async function listUsersById(request, response) {
 // Função que cria um novo usuário
 async function storeUser(request, response) {
     // Preparar o comando de execução no banco
-    const query1 = 'INSERT INTO users(name, userName, email, userPicture, password, personTypeId, status, themeDefinition) VALUES(?, ?, ?, ?, ?, ?, ?, ?);';
+    const query1 = 'INSERT INTO users(name, userName, email, password, personTypeId, status, themeDefinition) VALUES(?, ?, ?, ?, ?, ?, ?);';
     const query2 = 'INSERT INTO timequestion(userId, time_24h, time_week) VALUES(LAST_INSERT_ID(), ?, ?);'
 
     // Recuperar os dados enviados na requisição
-    const userPicture = 'foto usuário';
     const personTypeId = request.body.person === 'Pessoa Física' ? 1 : 2;
     const status = 1;
 
@@ -89,7 +88,6 @@ async function storeUser(request, response) {
         request.body.name,
         request.body.userName,
         request.body.email,
-        userPicture,
         bcrypt.hashSync(request.body.password, 10),
         personTypeId,
         status,

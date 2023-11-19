@@ -74,12 +74,21 @@ async function getAllPosts(req, res) {
     posts.location,
     users.userName as name,
     users.email as email,
-    users.userPicture as picture
-  FROM
+    users.userPicture as picture,
+    COUNT(comments.id) AS comment_count,
+    (SELECT COUNT(LikeID) FROM likes WHERE isEnabled = 1 AND PostID = posts.ID) AS likes_count
+FROM
     posts
-  JOIN
-    users ON posts.userId = users.ID and users.personTypeId = 1
-  ORDER BY posts.PublishDate DESC
+JOIN
+    users ON posts.userId = users.ID AND users.personTypeId = 1
+LEFT JOIN
+    comments ON comments.postId = posts.ID
+GROUP BY
+    posts.ID
+ORDER BY
+    posts.PublishDate DESC;
+
+
   `;
 
   connection.query(query, (error, results) => {
@@ -113,12 +122,19 @@ async function getCommercePost(req, res) {
       posts.location,
       users.userName as name,
       users.email as email,
-      users.userPicture as picture
+      users.userPicture as picture,
+      COUNT(comments.id) AS comment_count,
+    (SELECT COUNT(LikeID) FROM likes WHERE isEnabled = 1 AND PostID = posts.ID) AS likes_count
     FROM
       posts
-    JOIN
-      users ON posts.userId = users.ID and users.personTypeId = 2
-    ORDER BY posts.PublishDate DESC
+  JOIN
+      users ON posts.userId = users.ID AND users.personTypeId = 2
+  LEFT JOIN
+      comments ON comments.postId = posts.ID
+  GROUP BY
+      posts.ID
+  ORDER BY
+      posts.PublishDate DESC;
   `;
 
   connection.query(query, (error, results) => {
