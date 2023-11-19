@@ -26,6 +26,18 @@ import { useTheme } from "../../hooks/useTheme";
 
 
 function Categorie() {
+    // Theme definition
+    const {theme} = useTheme();
+    let darkMode = false;
+    
+    const darkTheme = localStorage.getItem('themeColor');
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
+    
     // Lista fixa de categorias | Iguais as do BD.
     let userList = [
         { id: 1, name: 'Diversos', picture:  darkMode ? all2 : all},
@@ -48,16 +60,6 @@ function Categorie() {
     const [filteredUsers, setFilteredUsers] = useState([]);
     
 
-    // Theme definition
-    const {theme} = useTheme();
-    let darkMode = false;
-    
-    const darkTheme = localStorage.getItem('themeColor');
-    if (darkTheme == 'black') {
-        darkMode = true
-    } else {
-        darkMode = false
-    }
 
 
     // Função para filtrar a lista de usuários com base no input de busca
