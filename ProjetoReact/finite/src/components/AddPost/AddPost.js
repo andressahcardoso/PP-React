@@ -15,9 +15,27 @@ import selectedImage3 from '../../assets/Icons/addPost.PNG'
 
 // Api
 import { api } from "../../services/api";
+
+// Theme
 import { useTheme } from "../../hooks/useTheme";
 
 function AddPost() {
+    const navigate = useNavigate();
+    
+    function goToCreateStories() {
+        navigate('/Add/Stories')
+    }
+
+    // Hooks
+    const [image, setImage] = useState('');
+    const [preview, setPreview] = useState('');
+    const [location, setLocation] = useState('');
+    const [category, setCategory] = useState('');
+    const [content, setContent] = useState('');
+
+
+    // Theme definition
+    const {theme} = useTheme();
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
@@ -27,44 +45,26 @@ function AddPost() {
         darkMode = false
     }
 
-    const {theme} = useTheme();
-
-    const navigate = useNavigate();
-
-    // Hooks
-    const [image, setImage] = useState('');
-    const [preview, setPreview] = useState('');
-    const [location, setLocation] = useState('');
-    const [category, setCategory] = useState('');
-    const [content, setContent] = useState('');
-
+    // UseEffect Onload
     useEffect(() => {
         // Define a imagem inicial.
         const initialImageUrl = darkMode ? selectedImage3 : selectedImage2;
         setPreview(initialImageUrl);
     }, []); 
     
+    
+    const handleImageClick = () => {
+        // Ativar click no input que está oculto.
+        document.getElementById('imageInput').click();        
+    };
+
     function handleImageChange(e) {
         setImage(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]));
     }
     
-    useEffect(() => {
-        console.log('image', image);
-    }, [image]);
-    
-    useEffect(() => {
-        console.log('preview', preview);
-    }, [preview]);
-
-    function goToCreateStories() {
-        console.log('storiessssssssssss')
-        navigate('/Add/Stories')
-    }
-
-
+    // Form Submit
     const handleSubmit = async (e) => {
-        // Evita que o envio do formulário seja tratado de maneira padrão pelo navegador e faz com que você possa determinar as ações futuras.
         e.preventDefault();
         
         let formData = new FormData();
@@ -73,23 +73,16 @@ function AddPost() {
         formData.append('category', category)
         formData.append('userId', localStorage.getItem('@Auth:id'));
         formData.append('file', image);
-        console.log('================image :', image);
-
-        
+      
         try {
             const response = await api.post('/createPost', formData);
             navigate('/Feed')
-      
             console.log('Post criado com sucesso:', response.data);
         } catch (error) {
             console.error('Erro ao criar o post:', error);
         }
     };
-
-    const handleImageClick = () => {
-        // Ativar click no input que está oculto.
-        document.getElementById('imageInput').click();        
-    };
+    
 
     return (
         <div style={{ background: theme.background, color: theme.color}}>
@@ -106,14 +99,10 @@ function AddPost() {
                             name="image" 
                             accept="image/*" 
                             multiple={false} 
-                            // value={image}
                             onChange={ handleImageChange }  id="imageInput"/>
-                            {/* onChange={ (e) => setImage(e.target.files[0]) }  id="imageInput"/> */}
-                            {/* onChange={ (e) => setImage(URL.createObjectURL(e.target.files[0])) }  id="imageInput"/> */}
                     {preview && (
                         <div>
                             <PostImg src={preview} alt="Imagem selecionada" />
-                            {/* <img src={image} width="50px" height="50px"/> */}
                         </div>
                     )}
                 </PostDiv>
