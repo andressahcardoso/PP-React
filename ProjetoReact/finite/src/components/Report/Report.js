@@ -1,6 +1,7 @@
 import { HeaderComponent, AddPostComponent, OptionButton, Publication, Stories, TimeDiv, Time, Num, Text, Text2, TextDiv, PostDiv, Num2, Div, Img} from "./Report.jsx";
 
 // React 
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Components
@@ -12,28 +13,47 @@ import rankingIcon from '../../assets/rankingIcon.svg'
 import post from '../../assets/Icons/post.svg'
 import rankingIcon2 from '../../assets/MenuIcons/medalstar.svg'
 
-import { useTheme } from "../../hooks/useTheme";
-import { useEffect, useState } from "react";
-
-
 // Api
 import { api } from "../../services/api";
 
+// Theme
+import { useTheme } from "../../hooks/useTheme";
 
 
 function Report() {
-    const {theme} = useTheme();
+    const navigate = useNavigate();
+    
+    // Navigate functions 
+    function goToRanking() {
+        navigate('/Ranking')
+    }
+    
+    function goToBack() {
+        navigate(-1)
+    }   
+
+    
+    // Hooks
     const [timeData, setTimeData] = useState([]);
     const [timeSpentSevenDays, setTimeSevenDay] = useState([]);
     const [currentTime, setCurrentTime] = useState([]);
-
+    
     const [postData, setPostData] = useState([]);
     const [postSevenDays, setPostSevenDay] = useState([]);
     const [currentPost, setCurrentPost] = useState([]);
-
+    
     const [totalHours, setTotalHours] = useState();
     const [TotalMinutes, setTotalMinutes] = useState();
+    const [totalPost, setTotalPost] = useState();
+    
+    const id = Number(localStorage.getItem('@Auth:id'))
+         
+    let arrayPosts = []
+    let arrayPosts2 = []
+    
 
+    // Theme definition
+    const {theme} = useTheme();
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
@@ -43,121 +63,91 @@ function Report() {
         darkMode = false
     }
 
-    const navigate = useNavigate();
 
-    // Navigate functions 
-    function goToRanking() {
-        navigate('/Ranking')
-    }
-
-    function goToBack() {
-        navigate(-1)
-    }   
-
-    const id = Number(localStorage.getItem('@Auth:id'))
-    
-    const [totalArray, setTotalArray] = useState([]);
-    const [totalPost, setTotalPost] = useState();
-    let arrayPosts = []
-    let arrayPosts2 = []
-    
-
-    useEffect(() => {
-        
-        console.log('totalArray :', postData);
-        let finalArray = [...new Set(postData)]
-        console.log('finalArray :', finalArray);
-
-        setTotalPost(finalArray.length)
-    }, [postData])
-    
-    let teste = localStorage.getItem('PostViewed').split(',');
-    let totalPost2 = localStorage.getItem('PostViewed')
-    console.log('teste :', teste);
-
+    // UseEffect Onload
     useEffect(() => {
         async function fetchPosts() {
 
             const dataArray2 = {
                 totalPost: totalPost2,
                 userId: id
-            }; 
+            }
 
             try {
                 const responseSave = await api.post('/saveTotalPost', dataArray2);
                 console.log('Time criado com sucesso:', responseSave.data);
-            
-      
-
-
-            try {
-                const response = await api.post('/TimeSpent', {id: id}); 
-                setTimeData(response.data); 
-                setCurrentTime(response.data);
 
                 try {
-                    const response2 = await api.post('/getTimeSpent_SevenDays', {id: id})
-                    setTimeSevenDay(response2.data)
-                } catch (error) {
-                    console.error('Erro ao recuperar os posts:', error);
-                }
+                    const response = await api.post('/TimeSpent', {id: id}); 
+                    setTimeData(response.data); 
+                    setCurrentTime(response.data);
 
-
-                try {
-                    const response3 = await api.post('/getTotalPost', {id: id})
-                    console.log('hhhhhhhhhhhhhhhhhhhhhhhh')
-                    setPostData(teste)
-                    setCurrentPost(teste)
-                    response3.data.map(item => {
-                    console.log('item :', item);
-                    if (item.totalPost !== null) {
-                        let tempPost = item.totalPost.split(',')
-                        tempPost.map(f => {
-                            arrayPosts.push(f)
-                            setPostData(arrayPosts)
-                            console.log('ooooooooooooo',postData)
-                            setCurrentPost(arrayPosts)
-                        })
+                    try {
+                        const response2 = await api.post('/getTimeSpent_SevenDays', {id: id})
+                        setTimeSevenDay(response2.data)
+                    } catch (error) {
+                        console.error('Erro ao recuperar os posts:', error);
                     }
-                    })
 
-                try {
-                    const response4 = await api.post('/getTotalPost_SevenDays', {id: id})
-                    console.log('------------aaaaaaaaaaa----------', response4.data)
-                    setPostSevenDay(teste)
-                    response4.data.map(item => {
-                        let tempPost = item.totalPost.split(',')
-                        tempPost.map(f => {
-                        arrayPosts2.push(f)
-                            setPostSevenDay(arrayPosts2)
+
+                    try {
+                        const response3 = await api.post('/getTotalPost', {id: id})
+                        setPostData(teste)
+                        setCurrentPost(teste)
+                        response3.data.map(item => {
+                            if (item.totalPost !== null) {
+                                let tempPost = item.totalPost.split(',')
+                                tempPost.map(f => {
+                                    arrayPosts.push(f)
+                                    setPostData(arrayPosts)
+                                    setCurrentPost(arrayPosts)
+                                })
+                            }
                         })
-                    })
+
+                        try {
+                            const response4 = await api.post('/getTotalPost_SevenDays', {id: id})
+                            setPostSevenDay(teste)
+                            response4.data.map(item => {
+                                let tempPost = item.totalPost.split(',')
+                                tempPost.map(f => {
+                                    arrayPosts2.push(f)
+                                    setPostSevenDay(arrayPosts2)
+                                })
+                            })
+                        } catch (error) {
+                            console.error('Erro ao recuperar os posts:', error);
+                        }
+
+                    } catch (error) {
+                        console.error('Erro ao recuperar os posts:', error);
+                    }
+
                 } catch (error) {
                     console.error('Erro ao recuperar os posts:', error);
                 }
-
-                    
-                } catch (error) {
-                    console.error('Erro ao recuperar os posts:', error);
-                }
-
 
             } catch (error) {
-                console.error('Erro ao recuperar os posts:', error);
-            }
-
-        } catch (error) {
-            console.error('Erro ao criar o Time:', error);
-        }
-            
+                console.error('Erro ao criar o Time:', error);
+            }  
         }
 
         fetchPosts();
     }, []);
-
-
+    
+    
     useEffect(() => {
-        // Seta o valor do endTime no localStorage
+        let finalArray = [...new Set(postData)]
+        setTotalPost(finalArray.length)
+    }, [postData])
+    
+    let teste = localStorage.getItem('PostViewed').split(',');
+    let totalPost2 = localStorage.getItem('PostViewed')
+
+    
+
+    // UseEffect OnChange TimeData
+    useEffect(() => {
         const EndDate = new Date();
         localStorage.setItem('EndTime', `${EndDate.getHours()}:${EndDate.getMinutes()}:${EndDate.getSeconds()}`);
         
@@ -185,8 +175,6 @@ function Report() {
         console.log('total_DbTime :', total_DbTime);
         console.log('TimeSpent :', TimeSpent);
             
-
-
         // Converter a diferença de volta para o formato de horas, minutos e segundos
         setTotalHours(Math.floor(TimeSpent / 3600));
         setTotalMinutes(Math.floor((TimeSpent % 3600) / 60));
@@ -202,21 +190,14 @@ function Report() {
       setActiveButton(button);
 
       if (button === 'publication') {
-        console.log('-------------------------------------hojeeeee')
         setTimeData(currentTime)
         setPostData(currentPost)
-        console.log('currentPost :', currentPost);
-        console.log('currentTime :', currentTime);
-
       } else if (button === 'stories') {
-        console.log('----------------------------------semanaaaaaaa')
         setTimeData(timeSpentSevenDays)
         setPostData(postSevenDays)
-        console.log('postSevenDays :', postSevenDays);
       }
     };
 
-   
 
     return (
         <div style={{ background: theme.background, color: theme.color}}>
