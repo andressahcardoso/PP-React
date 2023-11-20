@@ -1,31 +1,22 @@
 import { Color, UserSection, UserInformations, TextDiv, Num, Text, ImgDiv, UserImg, UserText, Account, Description, BtnDiv, EditBtn, ReportBtn, OptionDiv, P, PostSection, DivImage, PostImage } from "./UserAccount.jsx";
+import { PostImg } from "./UserAccount.jsx";
 
 // React
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Components
 import Nav from '../Nav/Nav.js'
-
-// Images
-import userImage from '../../assets/Icons/user.svg'
-import post1 from '../../assets/post1.png'
-import post2 from '../../assets/post2.png'
-import post3 from '../../assets/post3.png'
-import post4 from '../../assets/post4.png'
-import { useEffect, useState } from "react";
+import ImagePopup from '../Post/popUp.js'
 
 // Api
 import { api } from "../../services/api";
-import { PostImg } from "./UserAccount.jsx";
 
-import ImagePopup from '../Post/popUp.js'
-
+// Theme
 import { useTheme } from "../../hooks/useTheme";
 
-function UserAccount() {
-    const {theme} = useTheme();
 
-    const userId = localStorage.getItem('@Auth:id')
+function UserAccount() {
     const navigate = useNavigate();
 
     // Navigate functions
@@ -36,85 +27,51 @@ function UserAccount() {
     function goToReport() {
         navigate('/Report')
     }
-
+    
+    
     // Hooks
-    const [image, setImage] = useState('');
-    const [preview, setPreview] = useState('');
     const [objectData, setObjectData] = useState({});
     const [postsUser, setPostsUser] = useState();
+    const [showImagePopup, setShowImagePopup] = useState(false);
+    const [selectedImage, setSelectedImage] = useState('');
+
+    const userId = localStorage.getItem('@Auth:id')
 
     const images = 'http://localhost:3001/uploads/';
 
-    useEffect(() => {
 
+    // Theme definition
+    const {theme} = useTheme();
+
+
+    // UseEffect Onload
+    useEffect(() => {
         const fetchData = async () => {                 
             try{
                 const postData = await api.post("/userInfo", {userId: userId})
                 const userPost = await api.post("/userPosts", {userId: userId})
-                console.log('userPost :', userPost.data.data);
                 setPostsUser(userPost.data.data)
                 setObjectData(postData.data.data[0]);
-                console.log('postData.data.data[0] :', postData.data.data[0]);
-                
             } catch (err) {
                 console.error(err);
             }
         };
 
         fetchData();
-        console.log('objectData :', objectData);
-       
-      }, []); 
+    }, []); 
     
-    const handleImageChange = async (e) => {
-        setPreview(URL.createObjectURL(e.target.files[0]));
-
-        e.preventDefault();
-        
-        let formData = new FormData();
-        formData.append('userId', localStorage.getItem('@Auth:id'));
-        formData.append('file', e.target.files[0]);
-
-        
-        try {
-
-            const response = await api.post('/user', formData);
-      
-            console.log('Post criado com sucesso:', response.data);
-        } catch (error) {
-            console.error('Erro ao criar o post:', error);
-        }
-    }
     
-      useEffect(() => {
-        console.log('image', image);
-      }, [image]);
-    
-      useEffect(() => {
-        console.log('===========preview', preview);
-      }, [preview]);
 
-      const [showImagePopup, setShowImagePopup] = useState(false);
-      const [selectedImage, setSelectedImage] = useState('');
-
-      // Função para abrir o pop-up
-  const openImagePopup = (imageUrl) => {
-    console.log('imageUrl :', imageUrl);
-      setSelectedImage(imageUrl);
-      setShowImagePopup(true);
+    // Função para abrir o pop-up
+    const openImagePopup = (imageUrl) => {
+        setSelectedImage(imageUrl);
+        setShowImagePopup(true);
     };
   
     // Função para fechar o pop-up
     const closeImagePopup = () => {
-      setSelectedImage('');
-      setShowImagePopup(false);
-    };
-
-    
-
-    const handleImageClick = () => {
-        // Ativar click no input que está oculto.
-        document.getElementById('imageInput').click();        
+        setSelectedImage('');
+        setShowImagePopup(false);
     };
 
 
@@ -129,18 +86,7 @@ function UserAccount() {
                         <Text>seguindo</Text>
                         </TextDiv>
                         <ImgDiv >
-                            {/* <UserImg> */}
-                            {/* onChange={ (e) => setImage(e.target.files[0]) }  id="imageInput"/> */}
-                            {/* onChange={ (e) => setImage(URL.createObjectURL(e.target.files[0])) }  id="imageInput"/> */}
-                                <PostImg src={images + objectData.userPicture} alt="Imagem selecionada" />
-                            {/* </UserImg> */}
-
-                    {/* {preview && (
-                        <div>
-                            <PostImg src={preview} alt="Imagem selecionada" />
-                            {/* <img src={image} width="50px" height="50px"/> */}
-                        {/* </div> */}
-                    {/* )}  */}
+                            <PostImg src={images + objectData.userPicture} alt="Imagem selecionada" />
                         </ImgDiv>
                         <TextDiv>
                             <Num>{objectData.followed}</Num>
@@ -166,7 +112,6 @@ function UserAccount() {
 
                 <PostSection>
                     {postsUser && postsUser.map((item, index) => (
-                        // console.log('item', item)
                         <DivImage key={index}>
                             <PostImage src={images + item.image} alt={`Post ${index + 1}`} onClick={() => openImagePopup(images + item.image)} />
                         </DivImage>
