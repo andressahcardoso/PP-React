@@ -24,6 +24,12 @@ export const OptionButton = styled.div`
     margin-top: 2%;
 `
 
+export const ListDiv = styled.div`
+    overflow: auto;
+    padding-bottom: 10vh;
+    height: 40vh;
+`
+
 export const Publication = styled.button`
     z-index: ${({ active }) => (active ? 1 : 2)};
     position: relative;
@@ -186,7 +192,7 @@ export const MainImg = styled.div`
 export const ImgMain = styled.img`
     width: 25vw;
     z-index: 2;
-`
+    `
 
 
 // Start | User List
