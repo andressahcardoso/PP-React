@@ -15,11 +15,37 @@ import Config2 from '../../assets/Icons/Settings_icon2.svg'
 import Profile from '../../assets/MenuIcons/User_icon.svg'
 import Profile2 from '../../assets/Icons/User_icon2.svg'
 
+// Theme
 import { useTheme } from "../../hooks/useTheme";
 
 
 function Nav() {
+    const navigate = useNavigate();
+    
+    // Navigate functions
+    function HomeDirection() {
+        navigate('/Feed')
+    }
+    
+    function SearchDirection() {
+        navigate('/Search')
+    }
+    
+    function AddPostDirection() {
+        navigate('/Add/Post')
+    }
+    
+    function ConfigDirection() {
+        navigate('/Config')
+    }
+    
+    function UserAccount() {
+        navigate('/User/Account')
+    }
 
+    
+    // Theme definition
+    const {theme} = useTheme();
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
@@ -27,31 +53,6 @@ function Nav() {
         darkMode = true
     } else {
         darkMode = false
-    }
-
-    const {theme} = useTheme();
-    
-    const navigate = useNavigate();
-
-    // Navigate functions
-    function HomeDirection() {
-        navigate('/Feed')
-    }
-
-    function SearchDirection() {
-        navigate('/Search')
-    }
-
-    function AddPostDirection() {
-        navigate('/Add/Post')
-    }
-
-    function ConfigDirection() {
-        navigate('/Config')
-    }
-
-    function UserAccount() {
-        navigate('/User/Account')
     }
 
     return (
