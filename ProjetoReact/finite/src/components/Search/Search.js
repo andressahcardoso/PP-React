@@ -13,21 +13,26 @@ import user1 from '../../assets/user1.svg'
 
 // Api
 import { api } from "../../services/api";
+
+// Theme
 import { useTheme } from "../../hooks/useTheme";
 
 function Search() {
-    const {theme} = useTheme();
-    
+    // Hooks
     const [userList, setUser] = useState([]); 
-    
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredUsers, setFilteredUsers] = useState(userList);
+    const [isFollowing, setFollowing] = useState([]);
 
     const userId = localStorage.getItem('@Auth:id')
+    
+
+    // Theme
+    const {theme} = useTheme();
+
 
     // Função para filtrar a lista de usuários com base no input de busca.
     const filterUsers = useCallback(() => {
-        
         const filteredUsers = userList.filter((user) =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
@@ -35,6 +40,7 @@ function Search() {
     }, [searchTerm]);
 
     
+    // UseEffect OnChange filterUsers
     useEffect(() => {
         async function fetchUsers() { 
             try { 
@@ -43,15 +49,10 @@ function Search() {
                 setUser(response.data); 
                 if (userList == 0 ){
                     setFilteredUsers(response.data)
-                    console.log('response.data :', response.data);
                 }
 
-
                 const response2 = await api.post(`/informations/contact`, {userId: userId});
-                console.log('response :', response2.data.data);
                 setFollowing(response2.data.data)
-
-                console.log('isFollowing :', isFollowing);
             } catch (error) {
                 console.error('Erro ao recuperar usuários:', error);
             }
@@ -62,12 +63,7 @@ function Search() {
     }, [filterUsers]);
 
 
-
-
-
-    const [isFollowing, setFollowing] = useState([]);
-
-    
+    // Follow function
     const handleFollow = async (contactId) => {
         const data = {
             userIdLogin: userId, 
@@ -78,29 +74,28 @@ function Search() {
             await api.post('/createFollow', data);
             setFollowing([...isFollowing, { follower_id: contactId }]);
             window.location.reload();
-           
         } catch (err) {
             console.error(err);
         }
     }
 
+    // Unfollow function
     const handleUnfollow = async (contactId) => {
         window.location.reload();
         const data = {
             userIdLogin: userId,
             contactId: Number(contactId)
-        };
+        }
     
         try {
             await api.post('/unfollow', data);
-            window.location.reload();
-                
+            window.location.reload();  
         } catch (err) {
             console.error(err);
         }
     }
     
-
+    
     return (
         <div style={{ background: theme.background, color: theme.color}}>
             <MainHeader title='Pesquisar'/>

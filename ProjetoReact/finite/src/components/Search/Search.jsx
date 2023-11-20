@@ -6,6 +6,7 @@ export const SearchComponent = styled.section`
     justify-content: center;
     align-content: start;
     flex-wrap: wrap;
+    padding-bottom: 20vh;
 `
 
 
