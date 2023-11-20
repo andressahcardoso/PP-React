@@ -20,25 +20,35 @@ import { api } from "../../services/api";
 import { useTheme } from "../../hooks/useTheme";
 
 function UserSettings() {
-    const {theme} = useTheme();
-
-    const userId = localStorage.getItem('@Auth:id')
-
     const navigate = useNavigate();
-
+    
     // Navigate functions
     function goToBack() {
         navigate(-1)
     }
 
+    const handleCancel = () => {
+        navigate('/User/Account')
+    }
+    
+    // Hooks  
     const [isEditing, setIsEditing] = useState(false);
     const [isEditing2, setIsEditing2] = useState(false);
     const [isEditing3, setIsEditing3] = useState(false);
     const [newName, setNewName] = useState();
     const [newUserName, setNewUserName] = useState();
     const [newDescription, setNewDescription] = useState();
+    const [image, setImage] = useState('');
+    const [preview, setPreview] = useState('');
     
+    const userId = localStorage.getItem('@Auth:id')
+    
+
+    // Theme definition
+    const {theme} = useTheme();
   
+    
+    // Is Editing
     const handleEditClick = () => {
       setIsEditing(true);
     };
@@ -49,17 +59,8 @@ function UserSettings() {
 
     const handleEditClick3 = () => {
         setIsEditing3(true);
-      };
-  
-    const handleSaveClick = () => {
-      // Lógica para salvar o novo nome no backend ou onde for necessário
-      setIsEditing(false);
     };
 
-    const handleCancel = () => {
-        navigate('/User/Account')
-    }
-  
     const handleInputChange = (e) => {
       setNewName(e.target.value);
     };
@@ -72,28 +73,19 @@ function UserSettings() {
         setNewDescription(e.target.value);
     };
 
-    // Hooks
-    const [image, setImage] = useState('');
-    const [preview, setPreview] = useState('');
 
+    // UseEffect Onload
     useEffect(() => {
         // Define a imagem inicial.
         const initialImageUrl = userImage;
         setPreview(initialImageUrl);
     }, []); 
     
+
     function handleImageChange(e) {
         setImage(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]));
     }
-    
-    useEffect(() => {
-        console.log('image', image);
-    }, [image]);
-    
-    useEffect(() => {
-        console.log('preview', preview);
-    }, [preview]);
 
     const handleImageClick = () => {
         // Ativar click no input que está oculto.
@@ -101,18 +93,14 @@ function UserSettings() {
     };
 
 
-
-
     useEffect(() => {
-
         const fetchData = async () => {                 
             try{
                 const postData = await api.post("/userInfo", {userId: userId})
+                console.log('postData :', postData);
                 setNewName(postData.data.data[0].name)
                 setNewUserName(postData.data.data[0].userName)
                 setNewDescription(postData.data.data[0].description)
-                console.log('postData.data.data[0] :', postData.data.data[0]);
-                
             } catch (err) {
                 console.error(err);
             }
@@ -123,7 +111,6 @@ function UserSettings() {
 
 
       const handleSubmit = async (e) => {
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         e.preventDefault();
                             
         const userID = parseInt(localStorage.getItem('@Auth:id'));
@@ -134,15 +121,6 @@ function UserSettings() {
         formData.append('userName', newUserName)
         formData.append('description', newDescription)
         formData.append('file', image)
-
-        // const data = {
-        //     userId: userID,
-        //     name: newName,
-        //     userName: newUserName,
-        //     description: newDescription,
-        //     file: image
-        // }
-       
     
         try{
             const response = await api.post("/userUpdate", formData);
@@ -154,6 +132,7 @@ function UserSettings() {
         }
     };
 
+
     return (
         <div style={{ background: theme.background, color: theme.color}}>
             <HeaderComponent>
@@ -164,13 +143,9 @@ function UserSettings() {
             <Settings>
                 <User>
                     <ImgDiv>
-                        {/* <Img src={userImage}/> */}
                         {preview && (
-                       
                             <Img src={preview} alt="Imagem selecionada" />
-                           
-                      
-                    )}
+                        )}
                     </ImgDiv>
                     <TextDiv onClick={handleImageClick}>
                         <Pfoto>Alterar foto</Pfoto>
@@ -179,7 +154,6 @@ function UserSettings() {
                             name="image" 
                             accept="image/*" 
                             multiple={false} 
-                            // value={image}
                             onChange={ handleImageChange }  id="imageInput"></Title2>
                     </TextDiv>
                 </User>
