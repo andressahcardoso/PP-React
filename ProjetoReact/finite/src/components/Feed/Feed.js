@@ -17,14 +17,13 @@ import commerce from '../../assets/commerce.svg'
 // Api
 import { api } from "../../services/api";
 
+// Theme
 import { useTheme } from "../../hooks/useTheme";
 
 
 function Feed() {
-    const {theme} = useTheme();
-
     const navigate = useNavigate()
-
+    
     // Navigate functions
     function goToFeedCommerce(titleFeed) {
         navigate(`/Feed/Commerce/${titleFeed}`)
@@ -33,15 +32,20 @@ function Feed() {
     function goToCategorie() {
         navigate('/Categorie')
     }
-
+    
     function goToStories() {
         navigate('/Stories')
     }
+    
+    // Theme definition
+    const {theme} = useTheme();
 
 
-    // Estado para armazenar os posts
+    // Hooks
     const [posts, setPosts] = useState([]); 
 
+
+    // UseEffect Onload
     useEffect(() => {
         async function fetchPosts() {
             try {
