@@ -11,16 +11,6 @@ import rankingIcon2 from '../../assets/MenuIcons/medalstar.svg'
 
 
 function MainHeader(props) {
-
-    let darkMode = false;
-
-    const darkTheme = localStorage.getItem('themeColor');
-    if (darkTheme == 'black') {
-        darkMode = true
-    } else {
-        darkMode = false
-    }
-
     const navigate = useNavigate();
 
     // Navigate functions
@@ -32,6 +22,18 @@ function MainHeader(props) {
         navigate('/Ranking')
     }
 
+
+    // Theme definition
+    let darkMode = false;
+
+    const darkTheme = localStorage.getItem('themeColor');
+    if (darkTheme == 'black') {
+        darkMode = true
+    } else {
+        darkMode = false
+    }
+
+    
     return (
         <HeaderComponent>
             <img onClick={goToReport} src={darkMode ? reportIcon2 : reportIcon} alt="Relatório"></img>
