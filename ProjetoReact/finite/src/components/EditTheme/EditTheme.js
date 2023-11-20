@@ -1,27 +1,25 @@
-import {Header, ImgContainer, ImgSun, SunTheme, Title, Subtitle, ParagrafoImg, ButtonTheme, CheckBoxWrapper, CheckBox, NextPreviousButtons } from "../../pages/Register/Theme/ThemeStyle"
-import { HeaderComponent, DivBtn, Btn, Themes, DivTheme } from "./style";
+import {ImgContainer, ImgSun, SunTheme, Title, Subtitle, ParagrafoImg, ButtonTheme, CheckBoxWrapper, CheckBox } from "../../pages/Register/Theme/ThemeStyle"
+import { HeaderComponent, DivBtn, Btn, Themes } from "./style";
+
+// React
+import { useNavigate } from "react-router-dom";
 
 // Images
 import SunImg from "../../assets/Sun.svg"
 import SunImg2 from "../../assets/Sun2.svg"
 
+// Icons
+import previous from '../../assets/Icons/backIcon.svg'
 
 import { CheckBoxLabel as LightThemes2} from "../../pages/Register/Theme/ThemeLight"; // Importe os estilos para o tema claro
 import { CheckBoxLabel as DarkThemes2 } from "../../pages/Register/Theme/ThemeDark";
 
+// Theme
 import { useTheme } from '../../hooks/useTheme';
-import { useNavigate } from "react-router-dom";
 
-// Icons
-import previous from '../../assets/Icons/backIcon.svg'
 
 function EditTheme() {
-    const { theme, toggleTheme } = useTheme();
     const navigate = useNavigate();
-
-    function goToSettings() {
-        navigate('/Config')
-    }
 
     function goToBack() {
         navigate(-1)
@@ -31,17 +29,9 @@ function EditTheme() {
         navigate(-1)
     }
 
-    // let theme = 0;
 
-    // const location = useLocation();
-    // const userInfo = location.state ? location.state.formData : null;
-
- 
-    // const [darkMode, setDarkMode] = useState(false);
-
-    // const toggleDarkMode = () => {
-    //     setDarkMode(!darkMode);
-    // };
+    // Theme definition
+    const { theme, toggleTheme } = useTheme();
 
     let LabelComponents = LightThemes2
 
@@ -60,7 +50,6 @@ function EditTheme() {
                 <img onClick={goToBack} src={previous} alt="Back"></img>
             </HeaderComponent>
            
-           
             <SunTheme>
                 <ImgContainer>
                     <ImgSun src={theme.color === 'white' ? SunImg2 : SunImg} />
@@ -78,7 +67,6 @@ function EditTheme() {
                 </CheckBoxWrapper>
             </ButtonTheme>
             
-
             <DivBtn>
                 <Btn onClick={goToUser}>Salvar</Btn>
             </DivBtn>
