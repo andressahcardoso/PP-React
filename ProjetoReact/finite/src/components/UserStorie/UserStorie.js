@@ -4,9 +4,7 @@ import { ImgDiv, StorieImg, Img, Profile, ImgProfile, PersonName, PersonProfile,
 import { useNavigate, useParams } from 'react-router-dom';
 
 // Context
-import { useUserContext } from '../Stories/UserContext.js';
 import { useEffect, useState } from 'react';
-
 
 // Api
 import { api } from "../../services/api";
@@ -14,13 +12,6 @@ import { api } from "../../services/api";
 
 function UserStorie() {
   const navigate = useNavigate();
-  const [storie, setStorieInfo] = useState([]);
-  const images = 'http://localhost:3001/uploads/';
-
-  const {id} = useParams([]);
-  console.log('==========id :', id);
-
-  // const { userData } = useUserContext();
 
   // Navigate functions
   function goToStories() {
@@ -28,6 +19,15 @@ function UserStorie() {
   }
 
 
+  // Hooks
+  const [storie, setStorieInfo] = useState([]);
+
+  const images = 'http://localhost:3001/uploads/';
+
+  const {id} = useParams([]);
+
+
+  // UseEffect Onload
   useEffect(() => {
     const fetchData = async () => {                 
         try{
@@ -39,15 +39,13 @@ function UserStorie() {
             console.error(err);
         }
     };
-
     fetchData();
 }, []);
 
   
     return (
     <ImgDiv>
-    {storie.map((item) => {
-    console.log('item :', item);
+      {storie.map((item) => {
         return(
           <>
             <Profile>
@@ -70,10 +68,7 @@ function UserStorie() {
         )
         })}
     </ImgDiv>
-  )
- 
-
-  
+  ) 
 }
 
 export default UserStorie;
