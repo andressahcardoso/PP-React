@@ -12,15 +12,22 @@ import { useParams } from "react-router-dom";
 // Api
 import { api } from "../../services/api";
 
+// Theme
 import { useTheme } from "../../hooks/useTheme";
 
-function FeedCommerce(props) {
-    const {theme} = useTheme();
 
+function FeedCommerce() {
+    // Parâmetros da rota
     const {titleFeed} = useParams()
        
+    // Hooks
     const [posts, setPosts] = useState([]); 
 
+    // Theme definition
+    const {theme} = useTheme();
+
+    
+    // UseEffect Onload
     useEffect(() => {
         async function fetchPosts() {    
             try {
@@ -38,6 +45,7 @@ function FeedCommerce(props) {
 
         fetchPosts();
     }, [titleFeed]);
+    
 
     return (
         <div style={{ background: theme.background, color: theme.color}} >
