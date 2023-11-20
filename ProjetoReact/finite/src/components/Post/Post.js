@@ -10,8 +10,6 @@ import likeSimple from '../../assets/MenuIcons/heart-regular.svg'
 import likeFull from '../../assets/MenuIcons/heart-solid.svg'
 import send from '../../assets/MenuIcons/send.svg'
 import save from '../../assets/MenuIcons/save.svg'
-import PersonImg from '../../assets/Icons/user.svg'
-
 import ImagePopup from './popUp.js'
 
 // Api
@@ -20,17 +18,29 @@ import { api } from "../../services/api";
 
 function Post({posts}) {
   const navigate = useNavigate();
+
+  // Navigate functions
+  function goToComment(id) {
+    navigate(`/Comment/${id}`);
+  }
+  
   
   // Hooks
   const [showImagePopup, setShowImagePopup] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [filteredPost, setFilteredPost] = useState([]);
+  const [postsLike, setPostsLike] = useState([]);
   
   let totalPost = 0;
   let PostViewed = [];
-  console.log('PostViewed :', PostViewed);
-  const images = 'http://localhost:3001/uploads/';
+  // Liked posts
+  let like = false;
+  let likePosts = [];
   
+  const images = 'http://localhost:3001/uploads/';
+  const userID = parseInt(localStorage.getItem('@Auth:id'))
+  
+
   // Função para abrir o pop-up
   const openImagePopup = (imageUrl) => {
     setSelectedImage(imageUrl);
@@ -43,11 +53,6 @@ function Post({posts}) {
     setShowImagePopup(false);
   };
   
-  
-  // Navigate functions
-  function goToComment(id) {
-    navigate(`/Comment/${id}`);
-  }
   
   
   // Determinar array de filtro de posts a cada 5 posts visualizados.
@@ -67,35 +72,16 @@ function Post({posts}) {
   }, [startIndex, endIndex, posts]);
   
   
-
-  
-  const [isLiked, setIsLiked] = useState();
-  const userID = parseInt(localStorage.getItem('@Auth:id'))
-  
-  
-  
-  
-  
-  
-  // Liked posts
-  const [postsLike, setPostsLike] = useState([]);
-  let like = false;
-  let likePosts = [];
-
-  
   // Salva no Banco
   const handleClick = async (postId) => {
-    window.location.reload()
     try {
       const formData = {
         UserID: userID,
         PostID: postId,
       };
-
+      
       await api.post('/likePost', formData);
-      // Após o clique, busca o novo status do like
-      // fetchLikeStatus(postId);
-
+      
       try {
         const response = await api.post('/listLiked', {UserID: userID});
         const postList = response.data.data;
@@ -105,6 +91,7 @@ function Post({posts}) {
             setPostsLike(likePosts);
           }
         })
+        window.location.reload()
     } catch (err) {
         console.error(err);
     }
@@ -114,30 +101,28 @@ function Post({posts}) {
   };
 
   
+  useEffect(() => {
+    likePosts = []
 
-    useEffect(() => {
-      likePosts = []
-
-        const fetchData = async () => {
-            try {
-                const response = await api.post('/listLiked', {UserID: userID});
-                const postList = response.data.data;
-                postList.map(f => {
-                  if (f.isEnabled.data[0] === 1){
-                    likePosts.push(f.PostID)
-                    setPostsLike(likePosts);
-                  }
-                })
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        fetchData();
-    }, []);
+    const fetchData = async () => {
+      try {
+        const response = await api.post('/listLiked', {UserID: userID});
+        const postList = response.data.data;
+        postList.map(f => {
+          if (f.isEnabled.data[0] === 1){
+            likePosts.push(f.PostID)
+            setPostsLike(likePosts);
+          }
+        })
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, []);
 
   
-  
-  
+
   return (
     <MainDiv>        
       {filteredPost.map((item) => {
@@ -145,16 +130,12 @@ function Post({posts}) {
         PostViewed.push(item.post_id)
         localStorage.setItem('PostViewed', PostViewed);
 
-        // postId = item.post_id
-
-
         if (postsLike.includes(item.post_id)) {
           like = true;
         } else {
           like = false;
         }
        
-
         return (
           <PostContainer key={item.post_id} className="card">
             <Profile>
