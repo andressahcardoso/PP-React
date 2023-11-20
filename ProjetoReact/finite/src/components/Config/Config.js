@@ -19,15 +19,28 @@ import privacyIcon2 from '../../assets/Icons/lock.svg'
 import closeAccountIcon from '../../assets/Icons/closeAccountIcon.svg'
 import closeAccountIcon2 from '../../assets/Icons/Vector.svg'
 
-import { useTheme } from "../../hooks/useTheme";
-
 // Api
 import { api } from "../../services/api";
 
+// Theme
+import { useTheme } from "../../hooks/useTheme";
+
 
 function Config() {
-    const {theme} = useTheme();
+    const navigate = useNavigate();
+    
+    // Navigate functions
+    function goToUserSettings() {
+        navigate('/User/Settings')
+    }
+    
+    function goToTheme() {
+        navigate('/EditTheme')
+    }
+    
 
+    // Theme definition
+    const {theme} = useTheme();
     let darkMode = false;
 
     const darkTheme = localStorage.getItem('themeColor');
@@ -37,16 +50,11 @@ function Config() {
         darkMode = false
     }
     
-    const navigate = useNavigate();
-    
-    // Navigate functions
-    function goToUserSettings() {
-        navigate('/User/Settings')
-    }
     
     const id = Number(localStorage.getItem("@Auth:id"))
-    console.log('userId :', id);
 
+
+    // Logout function
     const handleLogout = async (e) => {
         e.preventDefault();
 
@@ -58,44 +66,43 @@ function Config() {
                 
         localStorage.setItem('EndTime', `${horas}:${minutos}:${segundos}`);
 
+        const horaInicial = localStorage.getItem('StartTime');
+        const horaFinal = localStorage.getItem('EndTime');
 
-          const horaInicial = localStorage.getItem('StartTime');
-            const horaFinal = localStorage.getItem('EndTime');
+        // Função para converter uma string de hora para segundos
+        function converterParaSegundos(hora) {
+            const partes = hora.split(":");
+            return parseInt(partes[0]) * 3600 + parseInt(partes[1]) * 60 + parseInt(partes[2]);
+        }
+            
+        // Converter horas iniciais e finais para segundos
+        const segundosInicio = converterParaSegundos(horaInicial);
+        const segundosFim = converterParaSegundos(horaFinal);
+           
+        // Calcular a diferença em segundos
+        const diferencaSegundos = segundosFim - segundosInicio;
+          
+        // Converter a diferença de volta para o formato de horas, minutos e segundos
+        const horas2 = Math.floor(diferencaSegundos / 3600);
+        const minutos2 = Math.floor((diferencaSegundos % 3600) / 60);
+        const segundos2 = diferencaSegundos % 60;
 
-            // Função para converter uma string de hora para segundos
-            function converterParaSegundos(hora) {
-                const partes = hora.split(":");
-                return parseInt(partes[0]) * 3600 + parseInt(partes[1]) * 60 + parseInt(partes[2]);
-            }
+        let time = `${horas2}:${minutos2}:${segundos2}`
+        const totalPost = localStorage.getItem('PostViewed');
+        console.log('totalPost :', totalPost);
             
-            // Converter horas iniciais e finais para segundos
-            const segundosInicio = converterParaSegundos(horaInicial);
-            const segundosFim = converterParaSegundos(horaFinal);
-            
-            // Calcular a diferença em segundos
-            const diferencaSegundos = segundosFim - segundosInicio;
-            
-            // Converter a diferença de volta para o formato de horas, minutos e segundos
-            const horas2 = Math.floor(diferencaSegundos / 3600);
-            const minutos2 = Math.floor((diferencaSegundos % 3600) / 60);
-            const segundos2 = diferencaSegundos % 60;
-
-            let time = `${horas2}:${minutos2}:${segundos2}`
-            const totalPost = localStorage.getItem('PostViewed');
-            console.log('totalPost :', totalPost);
-            
-            const dataArray = {
-                time: diferencaSegundos,
-                userId: id
-            }; 
+        const dataArray = {
+            time: diferencaSegundos,
+            userId: id
+        }; 
             
 
-            const dataArray2 = {
-                totalPost: totalPost,
-                userId: id
-            }; 
+        const dataArray2 = {
+            totalPost: totalPost,
+            userId: id
+        }; 
             
-            try {
+        try {
             const response = await api.post('/saveTimeSpent', dataArray);
             
             localStorage.clear()
@@ -118,13 +125,7 @@ function Config() {
         }
     };
 
-    function goToTheme() {
-        navigate('/EditTheme')
-    }
 
-
-
-    
     return (
         <div style={{ background: theme.background, color: theme.color}}>
             <MainHeader title='Configurações'/>
