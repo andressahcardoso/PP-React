@@ -5,6 +5,7 @@
 <h4> Sobre: </h4>
 
 <p align="justify" > Construção do produto final do projeto profissional desenvolvido no periódo de 2021 a 2023. </p>
+<p align="justify" > ATENÇÂO: A versão final do projeto encontra-se na branch "databaseServer"</p>
 
 <hr>
 
