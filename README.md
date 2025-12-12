@@ -1,6 +1,6 @@
 <h1 align="center"> Projeto - PP React </h1>
 
-![Badge Desenvolvido](https://img.shields.io/badge/STATUS-CONCLUIDO-green?style=for-the-badge)
+![Badge Desenvolvido](https://img.shields.io/badge/STATUS-CONCLUÍDO-green?style=for-the-badge)
 
 <h4> Sobre: </h4>
 
